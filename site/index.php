@@ -9,7 +9,6 @@
     }else{
         $VIEW_NAME = 'trang-chu.php';
     }
-
     include_once './layout.php';
 
 ?>
