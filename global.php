@@ -1,5 +1,6 @@
 <?php
 
+
 function dd(){
     echo "<pre>";
     $args = func_get_args();
@@ -12,3 +13,4 @@ const BASE_URL = "http://localhost/project_1/";
 const SITE_URL = BASE_URL . "site/index.php";
 const ADMIN_BASE = BASE_URL . 'admin/';
 ?>
+
