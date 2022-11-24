@@ -1,71 +1,159 @@
 <?php
-<?php
-function insert_product($product_name, $product_price, $image, $view, $id_categories)
+require_once "pdo.php";
+
+// Thêm hàng hóa
+function them_san_pham($pr_name, $pr_price, $pr_sale, $pr_size, $pr_color, $pr_description, $pr_image1, $pr_image2, $pr_image3, $pr_origin, $cate_id)
 {
-    $sql = "insert into product (name,product_price,img,view,id_categories) values('$product_name','$product_price','$image','$view','$id_categories')";
+
+    $sql = "INSERT INTO `products`(`pr_name`, `pr_price`, `pr_sale`, `pr_size`, `pr_color`, `pr_description`, `pr_image1`, `pr_image2`, `pr_image3`, `pr_origin`, `cate_id`) VALUES ('$pr_name','$pr_price','$pr_sale','$pr_size','$pr_color','$pr_description','$pr_image1','$pr_image2','$pr_image3','$pr_origin','$cate_id')";
     pdo_execute($sql);
 }
 
-function delete_product($id)
+/*function cap_nhat_so_luot_xem($ma_hang_hoa)
 {
-    $sql = "delete from product where id=" . $id;
+    $sql = "UPDATE hang_hoa SET so_luot_xem = so_luot_xem + 1 WHERE ma_hang_hoa = $ma_hang_hoa";
+    pdo_execute($sql);
+}
+*/
+// Xóa hàng hóa theo mã hàng hóa
+function xoa_san_pham($pr_id)
+{
+    $sql = "DELETE FROM products WHERE pr_id = $pr_id";
     pdo_execute($sql);
 }
 
-function loadall_product_home()
+// Truy vấn tất cả hàng hóa
+function lay_tat_ca_san_pham()
 {
-    $sql = "select * from product where 1 order by id desc limit 0,9";
-    $listproduct = pdo_query($sql);
-    return $listproduct;
-}
-function loadall_product($kyw = "", $id_categories = 0)
-{
-    $sql = "select * from product where 1";
-    if ($kyw != "") {
-        $sql .= " and name like '%" . $kyw . "%'";
-    }
-    if ($id_categories > 0) {
-        $sql .= " and id_categories ='" . $id_categories . "'";
-    }
-    $sql .= " order by id desc";
-    $listproduct = pdo_query($sql);
-    return $listproduct;
+    $sql = "SELECT * FROM products ORDER BY pr_id DESC";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
 }
 
-function load_name_categories($id_categories)
+// Truy vấn tất cả hàng hóa theo sắp xếp theo số lượt xem giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
+function lay_san_pham_noi_bat()
 {
-    if ($id_categories > 0) {
-        $sql = "select * from danhmuc where id=" . $id_categories;
-        $dm = pdo_query_one($sql);
-        extract($dm);
-        return $name;
+    $sql = "SELECT * FROM products WHERE 1 ORDER BY so_luot_xem DESC LIMIT 0,5";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
+
+// Truy vấn tất cả hàng hóa có thuộc tính đặc biệt là 1 sắp xếp theo mã hàng hóa giảm dần giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
+function lay_san_pham_dac_biet()
+{
+    $sql = "SELECT * FROM products WHERE dac_biet = 1 ORDER BY ma_hang_hoa DESC LIMIT 0,5";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
+
+// Truy vấn tất cả hàng hóa sắp xếp theo mã hàng hóa giảm dần
+function lay_san_pham_moi()
+{
+    $sql = "SELECT * FROM products WHERE 1 ORDER BY pr_id DESC";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
+
+// Truy vấn một hàng hóa theo mã hàng hóa
+function lay_san_pham_theo_ma($pr_id)
+{
+    $sql = "SELECT * FROM products WHERE pr_id = $pr_id";
+    $san_pham = pdo_query_one($sql);
+    return $san_pham;
+}
+
+// Truy vấn tất cả hàng hóa theo mã loại(có cùng mã loại) và phải khác mã hàng hóa sắp xếp theo mã hàng hóa giảm giá giới hạn là 3 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
+function lay_san_pham_lien_quan($pr_id, $cate_id)
+{
+    $sql = "SELECT * FROM products WHERE cate_id = $cate_id AND pr_id <> $pr_id ORDER BY pr_id DESC LIMIT 0,3";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
+
+// Truy vấn tất cả hàng hóa theo loại hàng
+function lay_san_pham_theo_dm($cate_id)
+{
+    $sql = "SELECT * FROM products WHERE 1";
+    // Nếu tham số mã loại truyền vào lớn hơn 0
+    if ($cate_id > 0) {
+        // Nối chuỗi biến $sql
+        // Truy vấn hàng hóa theo mã loại 
+        $sql .= " AND cate_id = $cate_id";
+    }
+    // Default nối chuỗi sắp xếp theo mã hàng hóa giảm dần
+    $sql .= " ORDER BY pr_id DESC";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
+
+// Truy vấn hàng hóa theo từ khóa
+function lay_san_pham_theo_kw($kw)
+{
+    // Truy vấn hàng hóa theo tên hàng hóa so sánh với từ khóa
+    // Sử dụng câu lệnh LIKE để so sánh tham số $kw truyền vào với tên hàng hóa
+    $sql = "SELECT * FROM hang_hoa WHERE ten_hang_hoa LIKE '%" . $kw . "%'";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
+
+// Cập nhật hàng hóa theo mã hàng hóa
+function cap_nhat_san_pham($ma_hang_hoa, $ten_hang_hoa, $don_gia, $giam_gia, $hinh, $ngay_nhap, $mau, $mo_ta, $thong_so, $dac_biet, $so_luot_xem, $ma_loai)
+{
+    // Nếu tham số hình khác rỗng(ở đây là người dùng có đăng tải hình ảnh lên)
+    if ($hinh != "") {
+        // Sẽ update tất cả bao gồm cả hình ảnh 
+        $sql = "UPDATE hang_hoa SET ten_hang_hoa = '$ten_hang_hoa', don_gia = '$don_gia', giam_gia = '$giam_gia', hinh = '$hinh', ngay_nhap = '$ngay_nhap', mau = '$mau', mo_ta = '$mo_ta', thong_so = '$thong_so', dac_biet = '$dac_biet', so_luot_xem = '$so_luot_xem', ma_loai = '$ma_loai' WHERE ma_hang_hoa = $ma_hang_hoa";
     } else {
-        return "";
-    }
-}
-
-function loadone_product($id)
-{
-    $sql = "select * from product where id=" . $id;
-    $sp = pdo_query_one($sql);
-    return $sp;
-}
-
-function load_product_cungloai($id, $id_categories)
-{
-    $sql = "select * from product where id_categories=" . $id_categories . " AND id <>" . $id;
-    $listproduct = pdo_query($sql);
-    return $listproduct;
-}
-
-function update_product($id, $id_categories, $product_name, $product_price, $view, $image)
-{
-    if ($image != "") {
-        $sql = "update product set id_categories='" . $id_categories . "', name='" . $product_name . "',product_price='" . $product_price . "',view='" . $view . "',img='" . $image . "'where id=" . $id;
-    } else {
-        $sql = "update product set id_categories='" . $id_categories . "', name='" . $product_name . "',product_price='" . $product_price . "',view='" . $view . "'where id=" . $id;
+        // Nếu tham số hình là rỗng(người dùng giữ nguyên) thì sẽ cập nhật tất cả trừ hình ảnh
+        $sql = "UPDATE hang_hoa SET ten_hang_hoa = '$ten_hang_hoa', don_gia = '$don_gia', giam_gia = '$giam_gia', ngay_nhap = '$ngay_nhap', mau = '$mau', mo_ta = '$mo_ta', thong_so = '$thong_so', dac_biet = '$dac_biet', so_luot_xem = '$so_luot_xem', ma_loai = '$ma_loai' WHERE ma_hang_hoa = $ma_hang_hoa";
     }
     pdo_execute($sql);
 }
 
-?>
+// Truy vấn hàng hóa theo trang page
+// Truyền vào 2 tham số order: sắp xếp theo cái gì đó, limit: giới hạn dữ liệu xuất hiện(hiển thị)
+function lay_san_pham_theo_trang($order, $limit)
+{
+    if (!isset($_GET['page'])) {
+        $_SESSION['page'] = 1;
+    }
+    if (!isset($_SESSION['total_page'])) {
+        $_SESSION['total_page'] = 1;
+    }
+    // Sử pdo_query_value để lấy giá trị của câu lệnh sql count trả về(ở đây là lấy số lượng hàng hóa trong bảng hang_hoa)
+    // Khởi tạo một biến $_SESSION['total_pro'](chứa số lượng sản phẩm)
+    $_SESSION['total_pro'] = pdo_query_value("SELECT count(*) FROM hang_hoa");
+    // Nếu tồn tại biến page ở trên url 
+    if (isset($_GET['page'])) {
+        // Khởi tạo $_SESSION['page'] chứa biến page
+        $_SESSION['page'] = $_GET['page'];
+    }
+    // Tạo biến begin để câu lệnh LIMIT lấy bắt đầu từ vị trí index = ?
+    $begin = ($_SESSION['page'] - 1) * $limit;
+    // ceil() làm tròn lên số nguyên gần nhất
+    // Lấy $_SESSION['total_pro'] chia cho tham số $limit truyền vào và làm tròn lên số nguyên gần nhất gán vào biến $_SESSION['total_page']
+    $_SESSION['total_page'] = ceil($_SESSION['total_pro'] / $limit);
+    // Truy vấn tất cả sản phẩm từ bảng hàng hóa sắp xếp theo tham số order truyền vào lấy tất cả sản phẩm từ vị trí $begin, và giới hạn $limit
+    $sql = "SELECT * FROM hang_hoa ORDER BY $order DESC LIMIT $begin, $limit";
+    return pdo_query($sql);
+}
+
+/*
+  Ví dụ: Nếu người dùng chọn vào phím 1(trang đầu tiên)
+
+  $_SESSION['total_pro'] = số lượng sản phẩm trong bảng hàng hóa (ở đây là 26 * có thể tăng ...) = 26
+
+  Nếu tồn tại biến page trên url thì lưu vào $_SESSION['page'] (trường hợp người dùng không nhấn vào trang số nào thường là khi mới vào trang sản phẩm thì mặc định $_SESSION['PAGE'] = 1)
+
+  Tính vị trí index đầu tiên bắt đầu lấy từ câu lệnh LIMIT và lưu vào biến $begin bằng :
+    Lấy số trang - 1 * với tham số giới hạn truyền vào(ví dụ là 16)
+         (1 - 1) * 16 = 0
+         
+  Tính số trang để hiển thị số sản phẩm theo tham số $limit truyền vào và lưu vào biến $_SESSION['total_page'] bằng
+    Tổng số sản phẩm / giới hạn $limit truyền vào(16)
+        26 / 16 = 1.625 --> 2 Sử dụng ceil(làm tròn lên số nguyên gần nhất)
+
+  Viết câu lệnh sql truy vấn tất cả sản phẩm trong bảng hang_hoa sắp xếp theo tham số $order có thể truyền vào các thuộc tính trong bảng(ma_hang_hoa, ten_hang_hoa. don_gia, ...) và dùng câu lệnh LIMIT để lấy sản phẩm bắt đầu từ vị trí $begin(0) ở đây là do sắp xếp giảm dần nên sẽ lấy tử vị trí cuối cùng trở đi là $begin(26) và chỉ lấy giới hạn tổng số $limit(16) sản phẩm
+  
+  Các trường hợp còn lại tương tự khi ấn vào trang số khác như 2, 3, 4, 5, ...
+*/

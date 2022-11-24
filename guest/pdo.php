@@ -1,85 +1,82 @@
 <?php
-const DBNAME = "duan1";
-const DBUSER = "root";
-const DBPASS = "";
-const DBCHARSET = "utf8";
-const DBHOST = "localhost";
 
-// tạo kết nối từ project php sang mysql
-function getConnect(){
-    $connect = new PDO("mysql:host=" . DBHOST 
-                        . ";dbname=" . DBNAME 
-                        . ";charset=" . DBCHARSET,
-                        DBUSER,
-                        DBPASS
-            );
-    return $connect;
+// ===================Kết nối database=======================//
+function pdo_get_connection()
+{
+    $dburl = "mysql:host=localhost;dbname=da1_ry;charset=utf8";
+    $username = 'root';
+    $password = '';
+
+    $conn = new PDO($dburl, $username, $password);
+    // PDO cung cấp 3 chế độ xử lý lỗi (Error Mode) được thiết lập thông qua phương thức setAttribute()
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $conn;
 }
 
-
-
-function pdo_query_all($query){
-    // select * from users where email = ? or role_id = ?
-
-    $args = func_get_args();
-    $args = array_slice($args, 1);
-    
-    $conn = getConnect();
-    
-    $stmt = $conn->prepare($query);
-    $stmt->execute($args);
-    $data = $stmt->fetchAll();
-    if(count($data) > 0){
-        return $data;
+// ===================Thực thi câu lệnh sql(thêm, sửa, xóa)=======================//
+function pdo_execute($sql)
+{
+    $sql_args = array_slice(func_get_args(), 1);
+    try {
+        $conn = pdo_get_connection();
+        // Sử dụng prepare để chuẩn hóa câu truy vấn
+        $stmt = $conn->prepare($sql);
+        // Thực thi câu truy vấn
+        $stmt->execute($sql_args);
+    } catch (PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
     }
-
-    return [];
-
 }
 
-
-function pdo_query_one($query){
-    // select * from users where email = ? or role_id = ?
-
-    $args = func_get_args();
-    $args = array_slice($args, 1);
-    
-    $conn = getConnect();
-    
-    $stmt = $conn->prepare($query);
-    $stmt->execute($args);
-    $data = $stmt->fetch();
-    if(count($data) > 0){
-        return $data;
+// ===================Truy vấn nhiều dữ liệu=======================//
+function pdo_query($sql)
+{
+    $sql_args = array_slice(func_get_args(), 1);
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $rows = $stmt->fetchAll(); // Trả về danh sách kết quả
+        return $rows;
+    } catch (PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
     }
-    return null;
-
 }
 
-
-function pdo_execute_get_id($query){
-
-    $args = func_get_args();
-    $args = array_slice($args, 1);
-    
-    $conn = getConnect();
-    
-    $stmt = $conn->prepare($query);
-    $stmt->execute($args);
-    $lastId =  $conn->lastInsertId();
-    return $lastId;
+// ===================Truy vấn một dữ liệu=======================//
+function pdo_query_one($sql)
+{
+    $sql_args = array_slice(func_get_args(), 1);
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC); // Trả về 1 kết quả
+        return $row;
+    } catch (PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
+    }
 }
 
-
-function pdo_execute($query){
-
-    $args = func_get_args();
-    $args = array_slice($args, 1);
-    
-    $conn = getConnect();
-    
-    $stmt = $conn->prepare($query);
-    $stmt->execute($args);
-   
+// ===================Trả về giá trị của câu lệnh sql(count, min, max)=======================//
+function pdo_query_value($sql)
+{
+    $sql_args = array_slice(func_get_args(), 1);
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return array_values($row)[0];
+    } catch (PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
+    }
 }
-?>
