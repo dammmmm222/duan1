@@ -40,10 +40,7 @@ CREATE TABLE `order` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_user` int,
   `total` int,
-  `time` datetime,
-  `ship_address` varchar(255),
-  `ship_name_user` varchar(255),
-  `ship_phone_user` varchar(255)
+  `time` datetime
 );
 
 CREATE TABLE `voucher` (
