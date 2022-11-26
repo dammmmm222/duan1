@@ -1,4 +1,6 @@
 <?php
+$pathimg = "../upload/";
+$img_path="../upload/";
 
 function dd(){
     echo "<pre>";

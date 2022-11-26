@@ -84,25 +84,41 @@
     <div class="my-4">
         <span class="text-gray-600 ">Showing 1-12 of 38 results</span>
         <?php
-
-        foreach ($ds_san_pham as $dssp) {
-            extract($dssp);
-            $pr_image2 = "./upload/" . $pr_image2;
-
-
-        ?>
-
-            <div class="my-10">
-                <div class="bg-[#F3F3F3]">
-                    <img src=" <?= $pr_image2 ?> " alt="">
+    $new_product= loadall_product_trangchu();
+           $i=0;
+            foreach ($new_product as $product){
+                extract($product);
+                $image=$img_path.$product['image'];
+                echo'
+                <a href="index.php?act=productdetail&pr_id='.$product['id'].'">
+                <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
+                   
+                <img src="'.$image.'";" alt="" class="text-center" />
+                        <h3 class="my-2 inline-block">
+                            <a href="" class="text-3xl font-bold">'.$product_name.'</a>
+                        </h3>
+                <div class="text-3xl my-2">
+                        <span class="text-violet-900 font-bold">$'.$product_price.'</span>
                 </div>
-                <h3 class="text-gray-600"> <?= $pr_name  ?></h3>
-                <div class="flex">
-                    <span><?= $pr_price ?></span>
-                    <button class="mx-4 hover:border-2 border-gray-200">+ Add To Cart </button>
+                <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
+            <form action="index.php?act=addtocart" method="post">
+                <input type="hidden" name="id" value="'.$id.'">
+                <input type="hidden" name="product_name" value="'.$product_name.'">
+                <input type="hidden" name="image" value="'.$image.'">
+                <input type="hidden" name="product_price" value="'.$product_price.'">
+                <input type="submit" name="addtocart"  value="ADD TO CART">
+            </form>
+            
+                </button>
                 </div>
-            </div>
-        <?php } ?>
+                </a>
+                ';
+                $i+=1;
+            }
+           ?>
+
+         
+        
 
     </div>
 </div>

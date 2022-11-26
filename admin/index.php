@@ -13,8 +13,10 @@ include "layout/home.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
+        case"order":
+            
+            break;
         case "them_dm":
-
             if (isset($_POST['btn_luu'])) {
                 $cate_name = $_POST['cate_name'];
                 //file upload

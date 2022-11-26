@@ -53,7 +53,7 @@ function get_pttt($n)
     return $pt;
 }
 function order_detail($listorder_detail,$order){
-     $img_path  = "../site/image/";
+     $img_path  = "../upload/";
     $tong = 0;
     $i = 0;
     foreach($order as $order){

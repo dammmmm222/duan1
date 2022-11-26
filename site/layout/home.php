@@ -2,10 +2,10 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
-        <div class="swiper-slide"><video src="upload/VD4.mp4" autoplay loop muted></video></div>
-        <div class="swiper-slide"><video src="upload/VD2.mp4" autoplay loop muted></video></div>
-        <div class="swiper-slide"><video src="upload/VD3.mp4" autoplay loop muted></video></div>
-        <div class="swiper-slide"><video src="upload/VD1.mp4" autoplay loop muted></video></div>
+        <div class="swiper-slide"><video src=" ../upload/VD4.mp4" autoplay loop muted></video></div>
+        <div class="swiper-slide"><video src=" ../upload/VD2.mp4" autoplay loop muted></video></div>
+        <div class="swiper-slide"><video src=" ../upload/VD3.mp4" autoplay loop muted></video></div>
+        <div class="swiper-slide"><video src=" ../upload/VD1.mp4" autoplay loop muted></video></div>
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
@@ -13,7 +13,7 @@
     <!-- If we need navigation buttons -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script>
         const swiper = new Swiper('.swiper', {
             // Optional parameters
@@ -48,19 +48,19 @@
 </div>
 <div class="grid grid-cols-2 max-w-[1380px] mx-auto gap-2  my-20">
     <div class="">
-        <img src="upload/tui12.jpg" alt="" class=" w-[90%] mx-auto">
+        <img src=" ../upload/tui12.jpg" alt="" class=" w-[90%] mx-auto">
 
     </div>
     <div class="">
-        <img src="upload/balo12.jpg" alt="" class="w-[90%] mx-auto">
+        <img src="../upload/balo12.jpg" alt="" class="w-[90%] mx-auto">
 
     </div>
     <div class="">
-        <img src="upload/giay12.jpg" alt="" class="w-[90%] mx-auto">
+        <img src="../upload/giay12.jpg" alt="" class="w-[90%] mx-auto">
 
     </div>
     <div class="">
-        <img src="upload/vi12.jpg" alt="" class="w-[90%] mx-auto">
+        <img src=" ../upload/vi12.jpg" alt="" class="w-[90%] mx-auto">
 
     </div>
 </div>
@@ -77,7 +77,7 @@
         <span><a href="">Next</a></span>
     </div>
 </div>
-<img src="upload/img4.webp" alt="" class="my-10 rounded-lg mx-auto w-[1380px]">
+<img src="../upload/img4.webp" alt="" class="my-10 rounded-lg mx-auto w-[1380px]">
 <hr class="my-10 w-4/5 mx-auto">
 <div class="max-w-[1280px] mx-auto flex justify-between items-center">
     <div class="flex rounded-2xl font-black bg-[#EDF7FA] py-4 px-1">
@@ -95,80 +95,38 @@
     </div>
 </div>
 <div class="LV grid grid-cols-3 mt-10 mx-auto w-[1380px] gap-10">
-    <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
-        <img srcset="upload/LV4.webp 2x" alt="" class="text-center ml-10" />
-        <h3 class="my-2 inline-block">
-            <a href="" class="text-3xl font-bold">BOLSA DE TRANSPORTE </a>
-        </h3>
-        <div class="text-3xl my-2">
-            <span class="text-violet-900 font-bold">$19.300</span>
+           <?php
+            $new_product= loadall_product_trangchu();
+           $i=0;
+            foreach ($new_product as $product){
+                extract($product);
+                $image=$img_path.$product['image'];
+                echo'
+                <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
+                    <img src=" '.$image.'";" alt="" class="text-center" />
+                        <h3 class="my-2 inline-block">
+                            <a href="" class="text-3xl font-bold">'.$product_name.'</a>
+                        </h3>
+                <div class="text-3xl my-2">
+                        <span class="text-violet-900 font-bold">$'.$product_price.'</span>
+                </div>
+                <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
+            <form action="index.php?act=addtocart" method="post">
+                <input type="hidden" name="id" value="'.$id.'">
+                <input type="hidden" name="product_name" value="'.$product_name.'">
+                <input type="hidden" name="image" value="'.$image.'">
+                <input type="hidden" name="product_price" value="'.$product_price.'">
+                <input type="submit" name="addtocart"  value="ADD TO CART">
+            </form>
+            
+                </button>
+                </div>
+                ';
+                $i+=1;
+            }
+           ?>
+           
         </div>
-        <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
-            Add to cart
-        </button>
-    </div>
-    <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
-        <img srcset="upload/LV6.webp 2x" alt="" class="text-center ml-10" />
-        <h3 class="my-2 inline-block">
-            <a href="" class="text-3xl font-bold">COLEIRA MM</a>
-        </h3>
-        <div class="text-3xl my-2">
-            <span class="text-violet-900 font-bold">$2.100</span>
-        </div>
-        <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
-            Add to cart
-        </button>
-    </div>
-    <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
-        <img srcset="upload/LV5.webp 2x" alt="" class="text-center ml-10" />
-        <h3 class="my-2 inline-block">
-            <a href="" class="text-3xl font-bold">KEEPALL BANDOULIÈRE </a>
-        </h3>
-        <div class="text-3xl my-2">
-            <span class="text-violet-900 font-bold">$15.200</span>
-        </div>
-        <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
-            Add to cart
-        </button>
-    </div>
-    <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
-        <img srcset="upload/LV7.webp 2x" alt="" class="text-center ml-10" />
-        <h3 class="my-2 inline-block">
-            <a href="" class="text-3xl font-bold">MOCASSIM LV DRIVER </a>
-        </h3>
-        <div class="text-3xl my-2">
-            <span class="text-violet-900 font-bold">$6.350</span>
-        </div>
-        <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
-            Add to cart
-        </button>
-    </div>
-    <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
-        <img srcset="upload/LV9.webp 2x" alt="" class="text-center ml-10" />
-        <h3 class="my-2 inline-block">
-            <a href="" class="text-3xl font-bold">SNEAKER LV TRAINER </a>
-        </h3>
-        <div class="text-3xl my-2">
-            <span class="text-violet-900 font-bold">$8.750</span>
-        </div>
-        <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
-            Add to cart
-        </button>
-    </div>
-    <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
-        <img srcset="upload/LV8.webp 2x" alt="" class="text-center ml-10" />
-        <h3 class="my-2 inline-block">
-            <a href="" class="text-3xl font-bold">DERBY LV VENDÔME</a>
-        </h3>
-        <div class="text-3xl my-2">
-            <span class="text-violet-900 font-bold">$7.850</span>
-        </div>
-        <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
-            Add to cart
-        </button>
-    </div>
-
-</div>
 <div class="max-w-[1280px] my-10 mx-auto flex justify-between items-center">
     <div class="flex rounded-2xl font-black bg-[#EDF7FA] py-4 px-2">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
