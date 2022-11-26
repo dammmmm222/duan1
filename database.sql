@@ -1,11 +1,11 @@
 CREATE TABLE `categories` (
-  `id` int(11) PRIMARY KEY NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `categories_name` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL
 );
 
 CREATE TABLE `detail_order` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `id_product` int(11) DEFAULT NULL,
   `id_order` int(11) DEFAULT NULL,
   `total` int(11) DEFAULT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE `detail_order` (
 );
 
 CREATE TABLE `order` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `id_user` int(11) DEFAULT NULL,
   `total` int(11) DEFAULT NULL,
   `time` datetime DEFAULT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE `order` (
 );
 
 CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `id_categories` int(11) DEFAULT NULL,
   `product_name` varchar(255) DEFAULT NULL,
   `product_price` int(11) DEFAULT NULL,
@@ -36,14 +36,14 @@ CREATE TABLE `product` (
 );
 
 CREATE TABLE `product_rev` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `id_user` int(11) DEFAULT NULL,
   `id_product` int(11) DEFAULT NULL,
   `stars` tinyint(4) DEFAULT NULL
 );
 
 CREATE TABLE `role` (
-  `id` int(11) PRIMARY KEY NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL
 );
 
@@ -53,14 +53,14 @@ CREATE TABLE `save` (
 );
 
 CREATE TABLE `type` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
   `size` int DEFAULT NULL,
   `color` int DEFAULT NULL
 );
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `user_name` varchar(255) DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `user` (
 );
 
 CREATE TABLE `voucher` (
-  `id` int(11) PRIMARY KEY NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `quanlity` varchar(255) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `discount` int(11) DEFAULT NULL
