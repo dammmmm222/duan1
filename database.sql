@@ -56,7 +56,7 @@ CREATE TABLE `save` (
 CREATE TABLE `type` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
-  `size` varchar(255) DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
   `color` int DEFAULT NULL
 );
 
@@ -78,9 +78,10 @@ CREATE TABLE `voucher` (
 );
 
 CREATE TABLE `size` (
-  `id_size` varchar(255) PRIMARY KEY AUTO_INCREMENT,
-  `size` int
+  `id_size` int PRIMARY KEY AUTO_INCREMENT,
+  `size` varchar(255)
 );
+
 
 CREATE TABLE `color` (
   `id_color` int PRIMARY KEY AUTO_INCREMENT,
