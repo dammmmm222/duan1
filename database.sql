@@ -27,9 +27,10 @@ CREATE TABLE `product` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `id_categories` int(11) DEFAULT NULL,
   `product_name` varchar(255) DEFAULT NULL,
-  `product_price` int(11) DEFAULT NULL,
+  `product_price` varchar(255) DEFAULT NULL,
+  `product_price_sale` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `view` varchar(255) DEFAULT NULL,
+  `origin` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `image2` varchar(255) DEFAULT NULL,
   `image3` varchar(255) DEFAULT NULL
@@ -55,7 +56,7 @@ CREATE TABLE `save` (
 CREATE TABLE `type` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
-  `size` int DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
   `color` int DEFAULT NULL
 );
 
@@ -77,7 +78,7 @@ CREATE TABLE `voucher` (
 );
 
 CREATE TABLE `size` (
-  `id_size` int PRIMARY KEY AUTO_INCREMENT,
+  `id_size` varchar(255) PRIMARY KEY AUTO_INCREMENT,
   `size` int
 );
 
