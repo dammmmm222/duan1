@@ -1,7 +1,9 @@
 <?php
 
+
 if (isset($_SESSION['cart'])) {
     //echo var_dump($_SESSION['cart']); 
+      if(isset($_SESSION['id_user'])){
 ?>
 
 
@@ -37,7 +39,7 @@ if (isset($_SESSION['cart'])) {
                             <td class=" px-11 border border-slate-300 ...">' . $product[4] . '</td>
                             <td class=" px-11 border border-slate-300 ...">' . $ttien . '</td>
                             <td style="text-align:center"><a href="index.php?act=delcart&idcart=">Xóa</a></td>
-                        </tr>';
+             </tr>';
                 $i++;
             }
             ?>
@@ -47,10 +49,14 @@ if (isset($_SESSION['cart'])) {
                 <td style="background-color: #CCC;">Xóa tất cả</td>
             </tr>
 
-        </table>
-        <p><a href="../index.php" class=" pt-10 font-bold ">Tiếp tục đặt hàng?</a></p>
-        <div class="items-center text-stast rounded-lg   text-[30px] font-bold mt-10 ">
-            <a href="./site/pay.html"> <button type="submit" class="text-black hover:bg-gray-300 hover:rounded-lg ">THANH TOÁN</button> </a>
+         
+              </table>
+              <p><a href="../index.php" class=" pt-10 font-bold ">Tiếp tục đặt hàng?</a></p>
+              <div class="items-center text-stast rounded-lg   text-[30px] font-bold mt-10 ">
+             <a href="index.php?act=thanhtoan&tong=<?= $tong ?>" class=""> <button type="submit" class="text-black hover:bg-gray-300 hover:rounded-lg " >THANH TOÁN</button> </a>
+              </div>  
+        </div>
+
         </div>
     </div>
     </div>
@@ -59,6 +65,8 @@ if (isset($_SESSION['cart'])) {
 
     </html>
 <?php
-}
 
+    }
+    }
 ?>
+

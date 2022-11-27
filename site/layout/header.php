@@ -139,7 +139,14 @@
                 <a href="../index.php">Royal Center</a>
             </div>
             <div class="flex gap-10 justify-end items-center">
-                <h3 class="font-black text-center text-[16px]">ACCOUNT</h3>
+    <?php
+                   if(isset($_SESSION['id_user'])){
+
+                 echo '<h3 class="font-black text-center text-[24px]">'.$_SESSION['dangky'].'</h3>';
+                 } 
+                else{
+                 echo '<a class="font-black text-center text-[24px]" href="user.php">Sign up</a>';
+                 } ?> 
                 <a href="index.php?act=viewcart">
 
                     <div id="cart" class="cart" data-totalitems="0">
@@ -148,6 +155,8 @@
                         </svg>
                     </div>
                 </a>
+            
+    
             </div>
 
         </div>
