@@ -20,6 +20,7 @@ if (isset($_GET['act'])) {
   switch ($act) {
       // Trang sản phẩm
     case "san_pham":
+
          $ds_san_pham = lay_tat_ca_san_pham();
        include "san-pham/products.php";
            break;  
@@ -116,6 +117,7 @@ if (isset($_GET['act'])) {
              default:
                      include "../site/layout/home.php";
                   break;
+
   }
 } else {
   include "../site/layout/home.php";

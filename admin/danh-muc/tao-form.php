@@ -54,14 +54,14 @@
             <form action="index.php?act=them_dm" method="post" enctype="multipart/form-data" class="" id="add_loai">
 
 
-                <p class="text-[#551AA9] text-[20px] my-4" for="">Cate_Name</p><input type="text" name="cate_name" placeholder="Túi ...." class="px-10 py-2 rounded-md">
+                <p class="text-[#551AA9] text-[20px] my-4" for="">Cate_Name</p><input type="text" name="categories_name" placeholder="Túi ...." class="px-10 py-2 rounded-md">
                 <?php if (isset($cate_name_err)) : ?>
                     <span style="color:red" ;>
                         <?= $cate_name_err ?>
                     </span>
                 <?php endif ?>
                 <p class="text-[#551AA9] text-[20px] my-4" for="">Image</p>
-                <input type="file" name="cate_img" class="text-[#551AA9] text-[20px] my-2">
+                <input type="file" name="image" class="text-[#551AA9] text-[20px] my-2">
                 <?php if (isset($file_err)) : ?>
                     <span style="color:red" ;>
                         <?= $file_err ?>

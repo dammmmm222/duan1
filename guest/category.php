@@ -2,17 +2,22 @@
 require_once "pdo.php";
 
 // Thêm loại hàng
-function them_danh_muc($cate_name, $cate_img)
+function them_danh_muc($categories_name, $image)
 {
-    $sql = " INSERT INTO `categories`(`name`) VALUES ('$cate_name')";
+    $sql = " INSERT INTO `categories`(`categories_name`,`image`) VALUES ('$categories_name','$image')";
 
     pdo_execute($sql);
 }
-
-// Xóa loại hàng theo mã loại
-function xoa_danh_muc($cate_id)
+function lay_danh_muc_dac_biet()
 {
-    $sql = "DELETE FROM categories WHERE id = $cate_id";
+    $sql = "SELECT * FROM categories WHERE dac_biet = 1 ORDER BY id DESC LIMIT 0,5";
+    $ds_danh_muc = pdo_query($sql);
+    return $ds_danh_muc;
+}
+// Xóa loại hàng theo mã loại
+function xoa_danh_muc($id)
+{
+    $sql = "DELETE FROM categories WHERE id = $id";
     pdo_execute($sql);
 }
 
@@ -25,23 +30,23 @@ function lay_tat_ca_danh_muc($order = "DESC") // Tham số order nhận giá tr�
 }
 
 // Truy vấn một loại hàng theo mã loại
-function lay_danh_muc_theo_ma($cate_id)
+function lay_danh_muc_theo_ma($id)
 {
-    $sql = "SELECT * FROM categories WHERE id = $cate_id";
+    $sql = "SELECT * FROM categories WHERE id = $id";
     $danh_muc = pdo_query_one($sql);
     return $danh_muc;
 }
 
 // Lấy ra tên loại hàng theo mã loại
-function lay_ten_danh_muc($cate_id)
+function lay_ten_danh_muc($id)
 {
     // Nếu mã loại truyền vào lớn hơn 0
-    if ($cate_id > 0) {
-        $sql = "SELECT * FROM categories WHERE id = $cate_id";
+    if ($id > 0) {
+        $sql = "SELECT * FROM categories WHERE id = $id";
         $categories = pdo_query_one($sql);
         // Biến các cột(thuộc tính) trong bảng loại hàng thành các biến
         extract($categories);
-        return $cate_name; // Trả về biến(ten_loai) tên loại hàng
+        return $categories_name; // Trả về biến(ten_loai) tên loại hàng
     } else {
         // Nếu $ma_loại nhỏ hơn 0 trả về chuỗi rỗng
         return "";
@@ -49,9 +54,9 @@ function lay_ten_danh_muc($cate_id)
 }
 
 // Cập nhật loại hàng theo mã loại
-function cap_nhat_danh_muc($cate_id, $cate_name, $cate_img)
+function cap_nhat_danh_muc($id, $categories_name, $image)
 {
 
-    $sql = "UPDATE categories SET id ='$cate_id', name = '$cate_name' WHERE id = $cate_id";
+    $sql = "UPDATE categories SET id ='$id', name = '$categories_name',image= '$image' WHERE id = $id";
     pdo_execute($sql);
 }

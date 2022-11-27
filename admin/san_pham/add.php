@@ -61,63 +61,54 @@
             <form action="index.php?act=them_san_pham" method="post" enctype="multipart/form-data" class="" id="update_hang_hoa">
 
 
-                <p class="text-[#551AA9] text-[20px] my-4" for="">CATE NAME</p><input type="text" name="pr_name" placeholder="LV ...." class="border w-full px-10 rounded-lg py-2 mt-2">
+                <p class="text-[#551AA9] text-[20px] my-4" for="">CATE NAME</p><input type="text" name="product_name" placeholder="LV ...." class="border w-full px-10 rounded-lg py-2 mt-2">
                 <?php if (isset($product_name_err)) : ?>
                     <span style="color:red" ;>
                         <?= $product_name_err ?>
                     </span>
                 <?php endif ?>
-                <p class="text-[#551AA9] text-[20px] my-4" for="">PRICE</p><input type="text" name="pr_price" placeholder="999$ ...." class="border w-full px-10 rounded-lg py-2 mt-2">
+                <p class="text-[#551AA9] text-[20px] my-4" for="">PRICE</p><input type="text" name="product_price" placeholder="999$ ...." class="border w-full px-10 rounded-lg py-2 mt-2">
                 <?php if (isset($price_err)) : ?>
                     <span style="color:red" ;>
                         <?= $price_err ?>
                     </span>
                 <?php endif ?>
-                <p class="text-[#551AA9] text-[20px] my-4" for="">PRICE SALE</p><input type="text" name="pr_sale" placeholder="899$ ...." class="border w-full px-10 rounded-lg py-2 mt-2">
+                <p class="text-[#551AA9] text-[20px] my-4" for="">PRICE SALE</p><input type="text" name="product_price_sale" placeholder="899$ ...." class="border w-full px-10 rounded-lg py-2 mt-2">
                 <?php if (isset($price_sale_err)) : ?>
                     <span style="color:red" ;>
                         <?= $price_sale_err ?>
                     </span>
                 <?php endif ?>
-                <p class="text-[#551AA9] text-[20px] my-4" for="">SIZE</p><input type="text" name="pr_size" placeholder="899$ ...." class="border w-full px-10 rounded-lg py-2 mt-2">
-                <?php if (isset($price_sale_err)) : ?>
-                    <span style="color:red" ;>
-                        <?= $price_sale_err ?>
-                    </span>
-                <?php endif ?>
-                <p class="text-[#551AA9] text-[20px] my-4" for="">COLOR</p><input type="text" name="pr_color" placeholder="899$ ...." class="border w-full px-10 rounded-lg py-2 mt-2">
-                <?php if (isset($price_sale_err)) : ?>
-                    <span style="color:red" ;>
-                        <?= $price_sale_err ?>
-                    </span>
-                <?php endif ?>
+
+
                 <br>
                 <label class="uppercase font-1xl text-[#551AA9] text-[20px] my-4">Description</label>
                 <br>
-                <textarea cols="30" rows="10" placeholder="Expensive ..." name="pr_description" class="border w-full rounded-lg px-10 py-2 h-48 mt-2"></textarea>
+                <textarea cols="30" rows="10" placeholder="Expensive ..." name="description" class="border w-full rounded-lg px-10 py-2 h-48 mt-2"></textarea>
 
 
                 <p class="text-[#551AA9] text-[20px] my-4" for="">Image Main</p>
-                <input type="file" name="pr_image1" class=" text-[#551AA9] text-[20px] my-2">
+                <input type="file" name="image" class=" text-[#551AA9] text-[20px] my-2">
 
                 <p class="text-[#551AA9] text-[20px] my-4" for="">Image 2</p>
-                <input type="file" name="pr_image2" class=" text-[#551AA9] text-[20px] my-2">
+                <input type="file" name="image2" class=" text-[#551AA9] text-[20px] my-2">
 
                 <p class="text-[#551AA9] text-[20px] my-4" for="">Image 3</p>
-                <input type="file" name="pr_image3" class=" text-[#551AA9] text-[20px] my-2">
+                <input type="file" name="image3" class=" text-[#551AA9] text-[20px] my-2">
 
 
 
-                <p class="text-[#551AA9] text-[20px] my-4" for="">Origin</p><input type="text" name="pr_origin" placeholder="899$ ...." class="border w-full px-10 rounded-lg py-2 mt-2">
+                <p class="text-[#551AA9] text-[20px] my-4" for="">Origin</p><input type="text" name="origin" placeholder="899$ ...." class="border w-full px-10 rounded-lg py-2 mt-2">
 
 
 
-                <p class="text-[#551AA9] text-[20px] my-4" for="">Cate_Id</p><select name="cate_id" id="" class="w-full border rounded-lg px-10 py-2">
+                <p class="text-[#551AA9] text-[20px] my-4" for="">Cate_Id</p>
+                <select name="id_categories" id="" class="w-full border rounded-lg px-10 py-2">
                     <?php
                     foreach ($ds_danh_muc as $dsdm) {
                         extract($dsdm);
                     ?>
-                        <option value="<?= $cate_id ?>"><?= $cate_name ?></option>
+                        <option value="<?= $id  ?>"><?= $categories_name ?></option>
                     <?php
                     }
                     ?>

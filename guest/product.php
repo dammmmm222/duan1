@@ -2,10 +2,10 @@
 require_once "pdo.php";
 
 // Thêm hàng hóa
-function them_san_pham($pr_name, $pr_price, $pr_sale, $pr_size, $pr_color, $pr_description, $pr_image1, $pr_image2, $pr_image3, $pr_origin, $cate_id)
+function them_san_pham($product_name, $product_price, $product_price_sale, $description, $image, $image2, $image3, $origin, $id_categories)
 {
 
-    $sql = "INSERT INTO `product`(`pr_name`, `pr_price`, `pr_sale`, `pr_size`, `pr_color`, `pr_description`, `pr_image1`, `pr_image2`, `pr_image3`, `pr_origin`, `cate_id`) VALUES ('$pr_name','$pr_price','$pr_sale','$pr_size','$pr_color','$pr_description','$pr_image1','$pr_image2','$pr_image3','$pr_origin','$cate_id')";
+    $sql = "INSERT INTO `product`(`product_name`, `product_price`, `product_price_sale`, `description`, `image`, `image2`, `image3`, `origin`, `id_categories`) VALUES ('$product_name','$product_price','$product_price_sale','$description','$image','$image2','$image3','$origin','$id_categories')";
     pdo_execute($sql);
 }
 
@@ -16,10 +16,10 @@ function them_san_pham($pr_name, $pr_price, $pr_sale, $pr_size, $pr_color, $pr_d
 }
 */
 // Xóa hàng hóa theo mã hàng hóa
-function showspdetail($pr_id)
+function showspdetail($id)
 {
     $sql = "select * from product where 1";
-    if ($pr_id > 0) $sql .= " AND id=" . $pr_id;
+    if ($id > 0) $sql .= " AND id=" . $id;
     $conn = pdo_get_connection();
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -32,18 +32,18 @@ function xoa_san_pham($id)
     pdo_execute($sql);
 }
 
-    function loadall_product_trangchu()
-    {
-    $sql ="SELECT * FROM `product` where 1";
+function loadall_product_trangchu()
+{
+    $sql = "SELECT * FROM `product` where 1";
     $list_product = pdo_query($sql);
     return $list_product;
-    }
-    function loadall_ALL_product()
-    {
-    $sql ="SELECT * FROM `product`";
+}
+function loadall_ALL_product()
+{
+    $sql = "SELECT * FROM `product`";
     $list_product = pdo_query($sql);
     return $list_product;
-    }
+}
 
 // Truy vấn tất cả hàng hóa
 function lay_tat_ca_san_pham()
@@ -64,7 +64,7 @@ function lay_san_pham_noi_bat()
 // Truy vấn tất cả hàng hóa có thuộc tính đặc biệt là 1 sắp xếp theo mã hàng hóa giảm dần giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
 function lay_san_pham_dac_biet()
 {
-    $sql = "SELECT * FROM product WHERE dac_biet = 1 ORDER BY ma_hang_hoa DESC LIMIT 0,5";
+    $sql = "SELECT * FROM product WHERE dac_biet = 1 ORDER BY id DESC LIMIT 0,5";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
@@ -86,22 +86,22 @@ function lay_san_pham_theo_ma($id)
 }
 
 // Truy vấn tất cả hàng hóa theo mã loại(có cùng mã loại) và phải khác mã hàng hóa sắp xếp theo mã hàng hóa giảm giá giới hạn là 3 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
-function lay_san_pham_lien_quan($id, $cate_id)
+function lay_san_pham_lien_quan($id, $id_categories)
 {
-    $sql = "SELECT * FROM product WHERE cate_id = $cate_id AND id <> $id ORDER BY id DESC LIMIT 0,3";
+    $sql = "SELECT * FROM product WHERE id_categories = $id_categories AND id <> $id ORDER BY id DESC LIMIT 0,3";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
 
 // Truy vấn tất cả hàng hóa theo loại hàng
-function lay_san_pham_theo_dm($cate_id)
+function lay_san_pham_theo_dm($id_categories)
 {
     $sql = "SELECT * FROM product WHERE 1";
     // Nếu tham số mã loại truyền vào lớn hơn 0
-    if ($cate_id > 0) {
+    if ($id_categories > 0) {
         // Nối chuỗi biến $sql
         // Truy vấn hàng hóa theo mã loại 
-        $sql .= " AND cate_id = $cate_id";
+        $sql .= " AND id_categories = $id_categories";
     }
     // Default nối chuỗi sắp xếp theo mã hàng hóa giảm dần
     $sql .= " ORDER BY id DESC";

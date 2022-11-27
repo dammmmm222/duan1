@@ -13,16 +13,16 @@ include "layout/home.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
-        case"order":
-            
+        case "order":
+
             break;
         case "them_dm":
             if (isset($_POST['btn_luu'])) {
-                $cate_name = $_POST['cate_name'];
+                $categories_name = $_POST['categories_name'];
                 //file upload
-                $file = $_FILES['cate_img'];
-                $cate_img = $file['name'];
-                them_danh_muc($cate_name, $cate_img);
+                $file = $_FILES['image'];
+                $image = $file['name'];
+                them_danh_muc($categories_name, $image);
             }
             include "danh-muc/tao-form.php";
             break;
@@ -61,31 +61,24 @@ if (isset($_GET['act'])) {
 
         case "them_san_pham":
             if (isset($_POST['btn_luu'])) {
-                $pr_name = $_POST['pr_name'];
-                $pr_price = $_POST['pr_price'];
-                $pr_sale = $_POST['pr_sale'];
-
-                $pr_size = $_POST['pr_size'];
-                $pr_color = $_POST['pr_color'];
-                $pr_description = $_POST['pr_description'];
-                $pr_origin = $_POST['pr_origin'];
-
-                $cate_id = $_POST['cate_id'];
-
+                $product_name = $_POST['product_name'];
+                $product_price = $_POST['product_price'];
+                $product_price_sale = $_POST['product_price_sale'];
+                $description = $_POST['description'];
+                $origin = $_POST['origin'];
+                $id_categories = $_POST['id_categories'];
                 //file upload
-                $file = $_FILES['pr_image1'];
-                $pr_image1 = $file['name'];
-
-                $file = $_FILES['pr_image2'];
-                $pr_image2 = $file['name'];
-                $file = $_FILES['pr_image3'];
-                $pr_image3 = $file['name'];
-
+                $file = $_FILES['image'];
+                $image = $file['name'];
+                $file = $_FILES['image2'];
+                $image2 = $file['name'];
+                $file = $_FILES['image3'];
+                $image3 = $file['name'];
                 $target_dir = "../upload/";
-                $target_file = $target_dir . basename($_FILES['pr_image1']['name']);
-                $target_file = $target_dir . basename($_FILES['pr_image2']['name']);
-                $target_file = $target_dir . basename($_FILES['pr_image3']['name']);
-                them_san_pham($pr_name, $pr_price, $pr_sale, $pr_size, $pr_color, $pr_description, $pr_image1, $pr_image2, $pr_image3, $pr_origin, $cate_id);
+                $target_file = $target_dir . basename($_FILES['image']['name']);
+                $target_file = $target_dir . basename($_FILES['image2']['name']);
+                $target_file = $target_dir . basename($_FILES['image3']['name']);
+                them_san_pham($product_name, $product_price, $product_price_sale, $description, $image, $image2, $image3, $origin, $id_categories);
                 $thong_bao = "Thêm thành công";
             }
             $ds_danh_muc = lay_tat_ca_danh_muc();
