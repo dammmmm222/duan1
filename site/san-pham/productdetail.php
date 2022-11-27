@@ -3,13 +3,13 @@ if (!is_array($pro)) {
     echo 'Sản Phẩm Không Tồn Tại';
 } else {
     $pr_name = $pro['product_name'];
-    $pr_size = "none";// $pro['size'];
+    $pr_size = "none"; // $pro['size'];
     $pr_price = $pro['product_price'];
     $pr_description = $pro['description'];
-    $pr_origin = "none";// $pro['origin'];
-    $pr_image1 = $pathimg . $pro['image'];
-    $pr_image2 = $pathimg . "none"; //$pro['pr_image2'];//
-    $pr_image3 = $pathimg . "none";// $pro['pr_image3'];//
+    $pr_origin = "none"; // $pro['origin'];
+    $image = $pathimg . $pro['image'];
+    $image2 = $pathimg . $pro['image2']; //$pro['pr_image2'];//
+    $image3 = $pathimg . $pro['image3']; // $pro['pr_image3'];//
     /*if (is_file($pr_image1)) $pr_image1 = '<img src="' . $pr_image1 . '" alt="">';
     else $pr_image1 = '';
     if (is_file($pr_image2)) $pr_image2 = '<img src="' . $pr_image2 . '" alt="">';
@@ -22,14 +22,14 @@ if (!is_array($pro)) {
 <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-5 ">
         <div class="col-span-3">
-            <div class="bg-[#F3F3F5] mb-4"><img src="<?= $pr_image1 ?>" alt=""></div>
+            <div class="bg-[#F3F3F5] mb-4"><img src="<?= $image ?>" alt=""></div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div class="bg-[#F3F3F5]">
-                    <img src="<?= $pr_image2 ?>" alt="">
+                    <img src="<?= $image2 ?>" alt="">
                 </div>
                 <div class="bg-[#F3F3F5]">
-                    <img src="<?= $pr_image3 ?>" alt="">
+                    <img src="<?= $image3 ?>" alt="">
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@ if (!is_array($pro)) {
     <h3 class="text-center">SUGGESTIONS</h3>
     <div class="grid grid-cols-4 gap-10">
         <div class="my-10">
-            <img src="upload/Lou4.webp" alt="">
+            <img src="../upload/Lou4.webp" alt="">
             <h3 class="text-gray-600">LARGE DIOR BOOK TOTE</h3>
             <div class="flex">
                 <span>$499.00</span>
@@ -140,7 +140,7 @@ if (!is_array($pro)) {
             </div>
         </div>
         <div class="my-10">
-            <img src="upload/Lou1.webp" alt="">
+            <img src="../upload/Lou1.webp" alt="">
             <h3 class="text-gray-600">LARGE DIOR BOOK TOTE</h3>
             <div class="flex">
                 <span>$499.00</span>
@@ -148,7 +148,7 @@ if (!is_array($pro)) {
             </div>
         </div>
         <div class="my-10">
-            <img src="upload/Lou2.webp" alt="">
+            <img src="../upload/Lou2.webp" alt="">
             <h3 class="text-gray-600">LARGE DIOR BOOK TOTE</h3>
             <div class="flex">
                 <span>$499.00</span>
@@ -156,7 +156,7 @@ if (!is_array($pro)) {
             </div>
         </div>
         <div class="my-10">
-            <img src="upload/Lou3.webp" alt="">
+            <img src="../upload/Lou3.webp" alt="">
             <h3 class="text-gray-600">LARGE DIOR BOOK TOTE</h3>
             <div class="flex">
                 <span>$499.00</span>

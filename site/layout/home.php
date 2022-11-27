@@ -95,38 +95,38 @@
     </div>
 </div>
 <div class="LV grid grid-cols-3 mt-10 mx-auto w-[1380px] gap-10">
-           <?php
-            $new_product= loadall_product_trangchu();
-           $i=0;
-            foreach ($new_product as $product){
-                extract($product);
-                $image=$img_path.$product['image'];
-                echo'
+    <?php
+    $new_product = loadall_product_trangchu();
+    $i = 0;
+    foreach ($new_product as $product) {
+        extract($product);
+        $image = $img_path . $product['image'];
+        echo '
                 <div class="colums text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:border-2 hover:border-violet-900 duration-300 group px-4 py-4">
-                    <img src=" '.$image.'";" alt="" class="text-center" />
+                    <img src=" ' . $image . '";" alt="" class="text-center w-[401px] h-[401px]" />
                         <h3 class="my-2 inline-block">
-                            <a href="" class="text-3xl font-bold">'.$product_name.'</a>
+                            <a href="" class="text-3xl font-bold">' . $product_name . '</a>
                         </h3>
                 <div class="text-3xl my-2">
-                        <span class="text-violet-900 font-bold">$'.$product_price.'</span>
+                        <span class="text-violet-900 font-bold">$' . $product_price . '</span>
                 </div>
                 <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-3xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
             <form action="index.php?act=addtocart" method="post">
-                <input type="hidden" name="id" value="'.$id.'">
-                <input type="hidden" name="product_name" value="'.$product_name.'">
-                <input type="hidden" name="image" value="'.$image.'">
-                <input type="hidden" name="product_price" value="'.$product_price.'">
+                <input type="hidden" name="id" value="' . $id . '">
+                <input type="hidden" name="product_name" value="' . $product_name . '">
+                <input type="hidden" name="image" value="' . $image . '">
+                <input type="hidden" name="product_price" value="' . $product_price . '">
                 <input type="submit" name="addtocart"  value="ADD TO CART">
             </form>
             
                 </button>
                 </div>
                 ';
-                $i+=1;
-            }
-           ?>
-           
-        </div>
+        $i += 1;
+    }
+    ?>
+
+</div>
 <div class="max-w-[1280px] my-10 mx-auto flex justify-between items-center">
     <div class="flex rounded-2xl font-black bg-[#EDF7FA] py-4 px-2">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
@@ -144,7 +144,7 @@
 </div>
 <div class="w-[1380px] mx-auto">
     <div class="flex">
-        <img srcset="upload/LV10.webp 2x" alt="">
+        <img srcset="../upload/LV10.webp 2x" alt="">
         <div class="ml-10">
             <h3 class="font-bold text-xl">MEN'S SPRING-SUMMER 2023 SHOW</h3>
             <div class="my-4">
@@ -161,7 +161,7 @@
 
 
     <div class="flex">
-        <img srcset="upload/LV11.webp 2x" alt="">
+        <img srcset="../upload/LV11.webp 2x" alt="">
         <div class="ml-10">
             <h3 class="font-bold text-xl">MEN'S FALL-WINTER 2022 SHOW IN BANGKOK</h3>
             <div class="my-4">

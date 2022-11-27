@@ -64,14 +64,14 @@
 
                 <?php foreach ($ds_danh_muc as $cate) :
                     extract($cate);
-                    $sua_dm = "index.php?act=sua_dm&cate_id=" . $cate_id;
-                    $xoa_dm = "index.php?act=xoa_dm&cate_id=" . $cate_id;
+                    $sua_dm = "index.php?act=sua_dm&id=" . $id;
+                    $xoa_dm = "index.php?act=xoa_dm&id=" . $id;
                 ?>
                     <tr class="text-[#551AA9] ">
-                        <td class="border-2 border-[#BAAACE] py-4 px-2 text-center"><?= $cate['cate_id'] ?></td>
-                        <td class="border-2 border-[#BAAACE] py-4 px-2 text-center"><?= $cate['cate_name'] ?></td>
+                        <td class="border-2 border-[#BAAACE] py-4 px-2 text-center"><?= $cate['id'] ?></td>
+                        <td class="border-2 border-[#BAAACE] py-4 px-2 text-center"><?= $cate['categories_name'] ?></td>
                         <td class="border-2 border-[#BAAACE] py-2 px-2 text-center ">
-                            <img srcset="../upload/<?= $cate['cate_img'] ?> " alt="" width="50px" class="text-center inline-block">
+                            <img srcset="../upload/<?= $cate['image'] ?> " alt="" width="50px" class="text-center inline-block">
                         </td>
 
                         <td class="border-2 border-[#BAAACE] py-4 px-2 text-center">

@@ -2,7 +2,7 @@
     <div class="f-on grid grid-cols-5 mx-10 items-center">
         <div class="col-span-2">
             <div class="flex items-center">
-                <img srcset="img/logo.png 2x" alt="" class="w-[80px] mx-4">
+                <img srcset="../upload/logo.png 2x" alt="" class="w-[80px] mx-4">
                 <h2 class="text-3xl ">Royal CenTer</h2>
             </div>
             <p class="mx-8 hover:underline my-6">But I must explain to you how all this mistaken idea of denouncing
@@ -10,7 +10,7 @@
                 praising pain was
                 born and I will give you</p>
             <div class="mx-8 my-4">
-                <input type="text" class="border-2 py-2 px-20 rounded-lg" required placeholder="Your email">
+                <input type="text" class="border-2 py-2 px-14 rounded-lg" required placeholder="Your email">
                 <button class="border-2 py-2 px-8 rounded-lg">Subscribe</button>
             </div>
         </div>
@@ -59,6 +59,27 @@
         </div>
     </div>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#addtocart').on('click', function() {
+
+            var button = $(this);
+            var cart = $('#cart');
+            var cartTotal = cart.attr('data-totalitems');
+            var newCartTotal = parseInt(cartTotal) + 1;
+
+            button.addClass('sendtocart');
+            setTimeout(function() {
+                button.removeClass('sendtocart');
+                cart.addClass('shake').attr('data-totalitems', newCartTotal);
+                setTimeout(function() {
+                    cart.removeClass('shake');
+                }, 500)
+            }, 1000)
+        })
+    })
+</script>
 </body>
 
 </html>

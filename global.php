@@ -1,8 +1,9 @@
 <?php
 $pathimg = "../upload/";
-$img_path="../upload/";
+$img_path = "../upload/";
 
-function dd(){
+function dd()
+{
     echo "<pre>";
     $args = func_get_args();
     var_dump($args);
