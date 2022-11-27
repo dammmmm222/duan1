@@ -482,6 +482,7 @@
 
     .payment-method,
     .input-flex {
+      
       flex-direction: column;
       gap: 20px;
     }
@@ -535,29 +536,27 @@
 
               <ion-icon class="checkmark fill" name="checkmark-circle"></ion-icon>
             </button>
-
-            <button class="method">
-              <img src="../upload/momo.png" alt="" width="16px">
-
-              <span>MoMo</span>
-
+          <form  class="method" method="post" enctype="application/x-www-form-urlencoded" action="thanhtoan/xulythanhtoanmomo_atm.php">
+          <input type="hidden" value="<?php echo $money?>" name="money">    
+          <button type="submit" style="display:flex; align-items:center; justify-content: space-between ">
+             <div style="display:flex; align-items:center; ">
+             <img src="../upload/momo.png" alt="" width="16px">
+             <span>Momo</span>
+             </div>
               <ion-icon class="checkmark" name="checkmark-circle-outline"></ion-icon>
             </button>
-
           </div>
-
+          </form>
           <form action="#">
 
             <div class="cardholder-name">
-              <label for="cardholder-name" class="label-default">Cardholder name</label>
+              <label   for="cardholder-name" class="label-default">Cardholder name</label>
               <input type="text" name="cardholder-name" id="cardholder-name" class="input-default">
             </div>
-
             <div class="card-number">
               <label for="card-number" class="label-default">Card number</label>
               <input type="number" name="card-number" id="card-number" class="input-default">
             </div>
-
             <div class="input-flex">
 
               <div class="expire-date">
@@ -567,7 +566,7 @@
 
                   <input type="number" name="day" id="expire-date" placeholder="31" min="1" max="31"
                     class="input-default">
-                  /
+                  
                   <input type="number" name="month" id="expire-date" placeholder="12" min="1" max="12"
                     class="input-default">
 
@@ -586,7 +585,7 @@
         </div>
 
         <button class="btn btn-primary">
-          <b>Pay</b> $ <span id="payAmount">1098.00</span>
+          <b>Pay</b> $ <span id="payAmount">2000</span>
         </button>
 
       </section>
@@ -602,87 +601,53 @@
           <h2 class="section-heading">Order Summery</h2>
 
           <div class="product-card">
+          <?php
+                
+                $tong=0;
+                $i=0;
+                foreach ($_SESSION['cart'] as $product) {
+                    $ttien=$product[3]*$product[4];
+                    $tong+=$ttien;
+                    echo '
+                    <div class="card">
 
-            <div class="card">
-
-              <div class="img-box">
-                <img src="../upload/Balen.webp" alt="Green tomatoes" width="80px" class="product-img">
-              </div>
-
-              <div class="detail mr-10">
-
-                <h4 class="product-name">BALENCIAGA BB T-shirt</h4>
-
-                <div class="wrapper">
-
-                  <div class="product-qty">
-                    <button id="decrement">
-                      <ion-icon name="remove-outline"></ion-icon>
+                    <div class="img-box">
+                      <img src="'.$product[2].'" alt="Cabbage" width="100px" class="product-img">
+                    </div>
+      
+                    <div class="detail">
+      
+                      <h4 class="product-name">'.$product[1].'</h4>
+      
+                      <div class="wrapper">
+      
+                        <div class="product-qty">
+                          <button id="decrement">
+                            <ion-icon name="remove-outline"></ion-icon>
+                          </button>
+      
+                          <span name="quantity">'.$product[4].'</span>
+      
+                          <button id="increment">
+                            <ion-icon name="add-outline"></ion-icon>
+                          </button>
+                        </div>
+      
+                        <div class="price">
+                          $ <span id="price">'.$product[3].'</span>
+                        </div>
+                      </div>
+      
+                    </div>
+      
+                    <button class="product-close-btn">
+                      <ion-icon name="close-outline"></ion-icon>
                     </button>
-
-                    <span id="quantity">1</span>
-
-                    <button id="increment">
-                      <ion-icon name="add-outline"></ion-icon>
-                    </button>
+      
                   </div>
-
-                  <div class="price">
-                    $ <span id="price">499.00</span>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <button class="product-close-btn">
-                <ion-icon name="close-outline"></ion-icon>
-              </button>
-
-            </div>
-
-          </div>
-
-          <div class="product-card">
-
-            <div class="card">
-
-              <div class="img-box">
-                <img src="../upload/Lou6.jpg" alt="Cabbage" width="100px" class="product-img">
-              </div>
-
-              <div class="detail">
-
-                <h4 class="product-name">LOUIS VUITTON Vanity PM Nowa</h4>
-
-                <div class="wrapper">
-
-                  <div class="product-qty">
-                    <button id="decrement">
-                      <ion-icon name="remove-outline"></ion-icon>
-                    </button>
-
-                    <span id="quantity">1</span>
-
-                    <button id="increment">
-                      <ion-icon name="add-outline"></ion-icon>
-                    </button>
-                  </div>
-
-                  <div class="price">
-                    $ <span id="price">599.00</span>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <button class="product-close-btn">
-                <ion-icon name="close-outline"></ion-icon>
-              </button>
-
-            </div>
-
+               ';
+                   }   ?>
+          
           </div>
 
         </div>
@@ -706,11 +671,11 @@
           <div class="amount">
 
             <div class="subtotal">
-              <span>Subtotal</span> <span>$ <span id="subtotal">1098.00</span></span>
+              <span>Subtotal</span> <span>$ <span id="subtotal"><?= $tong?></span></span>
             </div>
 
             <div class="tax">
-              <span>Tax</span> <span>$ <span id="tax">0.10</span></span>
+              <span>Tax</span> <span>$ <span id="tax">0.00</span></span>
             </div>
 
             <div class="shipping">
@@ -718,7 +683,7 @@
             </div>
 
             <div class="total">
-              <span>Total</span> <span>$ <span id="total">1098.00</span></span>
+              <span>Total</span> <span>$ <span id="total"><?= $tong?></span></span>
             </div>
 
           </div>

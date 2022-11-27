@@ -4,10 +4,11 @@
 session_start();
 ob_start();
 
-// include "model/pdo.php";
 include "../global.php";
 include "../guest/category.php";
+include "../guest/order.php";
 include "../guest/product.php";
+include "../guest/account.php";
 include "../site/layout/header.php";
 
 // Kiểm tra biến chuyển trang ?act
@@ -19,9 +20,26 @@ if (isset($_GET['act'])) {
   switch ($act) {
       // Trang sản phẩm
     case "san_pham":
-      $ds_san_pham = lay_tat_ca_san_pham();
-      include "san-pham/products.php";
-      break;  
+         $ds_san_pham = lay_tat_ca_san_pham();
+       include "san-pham/products.php";
+           break;  
+    case 'signup':
+      	if(isset($_POST['confirm'])) {
+	      	$username = $_POST['username'];
+	    	  $fullname = $_POST['fullname'];
+	      	$email = $_POST['email'];
+	    	  $phone = $_POST['phone'];
+	      	$password = md5($_POST['password']);
+	      	$address = $_POST['address'];
+	      	$role = $_POST['role'];
+	      	$sql_dangky = pdo_execute("INSERT INTO `user`( `user_name`, `full_name`, `email`, `phone`, `address`, `role`, `password`) VALUES ('$username','$fullname','$email]','$phone]','$address]','$role]','$password]')");
+	    	  echo '<p style="color:green">Bạn đã đăng ký thành công</p>';
+		    	$_SESSION['dangky'] = $fullname;
+		  	  $_SESSION['email'] = $email;
+		  	  $_SESSION['id_user'] = search_id();
+		  	header('Location:index.php?act=home');
+	      }
+            break;
       case 'addtocart':
         if(!isset($_SESSION['cart'])) $_SESSION['cart']=array();
         if(isset($_POST['addtocart'])&&($_POST['addtocart'])){
@@ -47,11 +65,12 @@ if (isset($_GET['act'])) {
             }
             if($check==0){
                     array_push($_SESSION['cart'],$arr);
+              
             }
             $tm=0;
             // tìm và so sánh sp trong giỏ hàng
-            include "../site/cart/viewcart.php";
-        }
+            include "cart/viewcart.php";
+        }   
             break;
             case 'delcart':
                 // if(isset($_GET['idcart'])){
@@ -84,10 +103,19 @@ if (isset($_GET['act'])) {
                     
                     include "san-pham/productdetail.php";
                     break;
-                   
-    default:
-      include "../site/layout/home.php";
-      break;
+                    case'camon':
+                      include "thanhtoan/camon.php";
+                      break;
+                      case'thanhtoan':
+                        $money = $_GET['tong'];
+                        include "thanhtoan/pay.php";
+                        break;
+                   case'detail_order':
+                    include "detail_order.php";
+                    break;
+             default:
+                     include "../site/layout/home.php";
+                  break;
   }
 } else {
   include "../site/layout/home.php";

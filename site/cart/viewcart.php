@@ -2,9 +2,8 @@
     
     if(isset($_SESSION['cart'])){
         //echo var_dump($_SESSION['cart']); 
-?>
-
-        
+  if(isset($_SESSION['id_user'])){
+?> 
         <div class="items-center text-center text-[50px] font-bold ">
             Giỏ hàng
         </div>
@@ -27,7 +26,7 @@
                 foreach ($_SESSION['cart'] as $product) {
                     $ttien=$product[3]*$product[4];
                     $tong+=$ttien;
-                    
+
                     $xoasp='<a href="index.php?act=delcart&idcart='.$id.'"><input type="button" value="Xóa"></a>';
                     echo '<tr>
                             <td class=" px-11 border border-slate-300 ..." >'.($i+1).'</td>
@@ -50,7 +49,7 @@
               </table>
               <p><a href="../index.php" class=" pt-10 font-bold ">Tiếp tục đặt hàng?</a></p>
               <div class="items-center text-stast rounded-lg   text-[30px] font-bold mt-10 ">
-             <a href="./site/pay.html"> <button type="submit" class="text-black hover:bg-gray-300 hover:rounded-lg " >THANH TOÁN</button> </a>
+             <a href="index.php?act=thanhtoan&tong=<?= $tong ?>" class=""> <button type="submit" class="text-black hover:bg-gray-300 hover:rounded-lg " >THANH TOÁN</button> </a>
               </div>  
         </div>
         </div>
@@ -59,5 +58,5 @@
 </html>
 <?php
     }
-
+    }
 ?>

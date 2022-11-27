@@ -37,33 +37,18 @@ function loadall_order_count($id)
     $bill = pdo_query($sql);
     return sizeof($bill);
 }
-function get_pttt($n)
-{
-    switch ($n) {
-        case '1':
-            $pt = 'Thanh toán khi nhận hàng';
-            break;
-        case '2':
-            $pt = 'Đã thanh toán';
-            break;
-        default:
-            $pt = 'Thanh toán khi nhận hàng';
-            break;
-    }
-    return $pt;
-}
 function order_detail($listorder_detail,$order){
      $img_path  = "../upload/";
     $tong = 0;
     $i = 0;
     foreach($order as $order){
-        $pttt =get_pttt($order['pttt']);
+        $pttt = $order['pttt'];
         echo '  <div class="flex justify-between items-center text-xl my-6">
         <div class="">
             <label for="">Mã Đơn Hàng : '.$order['id'].'</label>
         </div>
             <div class="">
-                <label for="">Trạng Thái:</label>
+                <label for="">Trạng Thái: Đã thanh toán qua</label>
                 <label for="">'.$pttt.'</label>
             </div>
         </div>';
@@ -71,8 +56,7 @@ function order_detail($listorder_detail,$order){
           $price = $listorder['quanlity']*$listorder['product_price'];
           $tong += $price;
           $hinh = $img_path . $listorder['image'];
-          echo '  
-        
+          echo'  
           <hr>
           <div class="flex my-10 grid grid-cols-4">
               <div class="bg-[#F3F3F5]"><img src=" '.$hinh.'" alt=""></div>
@@ -99,7 +83,7 @@ function order_detail($listorder_detail,$order){
       </svg>
       <label for="" class="text-xl font-semibold">Tổng Tiền : '.$tong.' </label>
   </div>
-</div>';
+';
     }}
 function loadall_bill($iduser = 0)
 {
