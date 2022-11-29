@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping Cart</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link
-    href="https://fonts.googleapis.com/css?family=Source+Sans+3:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
-    rel="stylesheet" />
-</head>
 <style>
   :root {
 
@@ -278,7 +266,6 @@
     width: 40%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
   }
 
   .cart-item-box {
@@ -536,7 +523,7 @@
 
               <ion-icon class="checkmark fill" name="checkmark-circle"></ion-icon>
             </button>
-          <form  class="method" method="post" enctype="application/x-www-form-urlencoded" action="thanhtoan/xulythanhtoanmomo_atm.php">
+          <form  class="method" method="post" enctype="application/x-www-form-urlencoded" action="thanhtoan/xulythanhtoanmomo.php">
           <input type="hidden" value="<?php echo $money?>" name="money">    
           <button type="submit" style="display:flex; align-items:center; justify-content: space-between ">
              <div style="display:flex; align-items:center; ">
@@ -601,7 +588,7 @@
           <h2 class="section-heading">Order Summery</h2>
 
           <div class="product-card">
-          <?php
+            <?php
                 
                 $tong=0;
                 $i=0;
@@ -796,11 +783,8 @@
   </script>
 
   <!--
-    - ionicon link
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
-
-</html>

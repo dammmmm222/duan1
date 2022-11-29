@@ -1,4 +1,3 @@
-
 <?php
 // Khởi tạo session bằng session_start()
 session_start();
@@ -20,13 +19,12 @@ if (isset($_GET['act'])) {
   switch ($act) {
       // Trang sản phẩm
     case "san_pham":
-
          $ds_san_pham = lay_tat_ca_san_pham();
        include "san-pham/products.php";
            break;  
     case 'signup':
       	if(isset($_POST['confirm'])) {
-	      	$username = $_POST['username'];
+	          	$username = $_POST['username'];
 	    	  $fullname = $_POST['fullname'];
 	      	$email = $_POST['email'];
 	    	  $phone = $_POST['phone'];
@@ -66,7 +64,6 @@ if (isset($_GET['act'])) {
             }
             if($check==0){
                     array_push($_SESSION['cart'],$arr);
-              
             }
             $tm=0;
             // tìm và so sánh sp trong giỏ hàng
@@ -98,10 +95,9 @@ if (isset($_GET['act'])) {
                 break;
                   case "productdetail":
                     $pro = [];
-                    if (isset($_GET['pr_id']) && ($_GET['pr_id'] > 0)) {
-                      $pro = showspdetail($_GET['pr_id']);
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                      $pro = showspdetail($_GET['id']);
                     }
-                    
                     include "san-pham/productdetail.php";
                     break;
                     case'camon':
@@ -117,7 +113,6 @@ if (isset($_GET['act'])) {
              default:
                      include "../site/layout/home.php";
                   break;
-
   }
 } else {
   include "../site/layout/home.php";
