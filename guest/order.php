@@ -67,7 +67,7 @@ function order_detail($listorder_detail,$order){
                       <label class="my-10">Phân loại hàng : ###</label>
                   </div>
                   <div class="">
-                      <span><del class="text-gray-400 mx-4">$test</del></span>
+                      <span><del class="text-gray-400 mx-4">$'.$listorder['product_price_sale'].'</del></span>
                       <span>$'.$listorder['product_price'].'</span>
                   </div>
               </div>
@@ -119,3 +119,42 @@ function get_ttdh($n)
     }
     return $tt;
 }
+
+function size($id){
+    $sql = "SELECT * FROM `size`" ;
+    $size = pdo_query($sql);
+    return $size;
+}
+
+function color($id){
+    $sql = "SELECT * FROM `color`";
+    $color = pdo_query($sql);
+    return $color;
+}
+
+// Thêm size và màu (chỉ admin)
+
+function size_insert($size)
+{
+    $sql = "insert into size (size) values('$size')";
+    return pdo_execute($sql);
+}
+function color_insert($color)
+{
+    $sql = "insert into color (color) values('$color')";
+    return pdo_execute($sql);
+}
+//
+function type($id){
+    $sql = "SELECT * FROM `type` where id = " .$id;
+    $bill = pdo_query($sql);
+    return $bill;
+}
+// Thêm phân loại 
+
+function type_insert($idorder, $id_size, $id_color)
+{
+    $sql = "insert into type (idorder,id_size,id_color) values('$idorder', '$id_size','$id_color')";
+    return pdo_execute($sql);
+}
+// 

@@ -1,4 +1,3 @@
-
 <?php
 // Khởi tạo session bằng session_start()
 session_start();
@@ -20,20 +19,19 @@ if (isset($_GET['act'])) {
   switch ($act) {
       // Trang sản phẩm
     case "san_pham":
-
          $ds_san_pham = lay_tat_ca_san_pham();
        include "san-pham/products.php";
            break;  
     case 'signup':
       	if(isset($_POST['confirm'])) {
-	      	$username = $_POST['username'];
+	          	$username = $_POST['username'];
 	    	  $fullname = $_POST['fullname'];
 	      	$email = $_POST['email'];
 	    	  $phone = $_POST['phone'];
-	      	$password = md5($_POST['password']);
+	      	$password = ($_POST['password']);
 	      	$address = $_POST['address'];
 	      	$role = $_POST['role'];
-	      	$sql_dangky = pdo_execute("INSERT INTO `user`( `user_name`, `full_name`, `email`, `phone`, `address`, `role`, `password`) VALUES ('$username','$fullname','$email]','$phone]','$address]','$role]','$password]')");
+	      	$sql_dangky = pdo_execute("INSERT INTO `user`( `user_name`, `full_name`, `email`, `phone`, `address`, `role`, `password`) VALUES ('$username','$fullname','$email','$phone','$address','$role','$password')");
 	    	  echo '<p style="color:green">Bạn đã đăng ký thành công</p>';
 		    	$_SESSION['dangky'] = $fullname;
 		  	  $_SESSION['email'] = $email;
@@ -41,6 +39,23 @@ if (isset($_GET['act'])) {
 		  	header('Location:index.php?act=home');
 	      }
             break;
+      case 'signin': 
+            if (isset($_POST['signin']) && ($_POST['signin'])) {
+          $user = $_POST['name'];
+          $pass = $_POST['password'];
+          $check_user = check_user($user, $pass);
+          if (is_array($check_user)) {
+           $_SESSION['dangky'] = $check_user['full_name'];
+           
+		  	   $_SESSION['id_user'] = $check_user['id'];  
+        // $thongbao = "Bạn đã đăng nhập thành công!";
+           header('Location: index.php'); 
+          } else{
+            echo 'Sai tên tài khoản hoặc mật khẩu';
+
+          }
+      } 
+        break;
       case 'addtocart':
         if(!isset($_SESSION['cart'])) $_SESSION['cart']=array();
         if(isset($_POST['addtocart'])&&($_POST['addtocart'])){
@@ -66,7 +81,6 @@ if (isset($_GET['act'])) {
             }
             if($check==0){
                     array_push($_SESSION['cart'],$arr);
-              
             }
             $tm=0;
             // tìm và so sánh sp trong giỏ hàng
@@ -98,10 +112,9 @@ if (isset($_GET['act'])) {
                 break;
                   case "productdetail":
                     $pro = [];
-                    if (isset($_GET['pr_id']) && ($_GET['pr_id'] > 0)) {
-                      $pro = showspdetail($_GET['pr_id']);
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                      $pro = showspdetail($_GET['id']);
                     }
-                    
                     include "san-pham/productdetail.php";
                     break;
                     case'camon':
@@ -117,7 +130,6 @@ if (isset($_GET['act'])) {
              default:
                      include "../site/layout/home.php";
                   break;
-
   }
 } else {
   include "../site/layout/home.php";

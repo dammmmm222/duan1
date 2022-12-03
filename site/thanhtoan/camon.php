@@ -26,10 +26,13 @@ if(isset($_GET['partnerCode'])){
 			//them don hàng chi tiet
 			foreach($_SESSION['cart'] as $key => $value){
 				$id_sanpham = $value[0];
+				$color = 1;
+				$size = 2;
 				$soluong = $value[4];
-				$insert_order_details = "INSERT INTO detail_order(id_product,id_order,quanlity) VALUE('".$id_sanpham."','".$code_order."','".$soluong."')";
+				$insert_order_details = "INSERT INTO detail_order(id_product,id_order,quanlity,color,size) VALUE('".$id_sanpham."','".$code_order."','".$soluong."','".$color."','".$size."')";
 				pdo_execute($insert_order_details);
 			}
+			unset($_SESSION['cart']);
 			echo '<h3>Giao dịch thanh toán bằng MOMO thành công</h3>';
 			echo '<p>Vui lòng vào trang <a target="_blank" href="index.php?act=detail_order">lịch sử đơn hàng</a> để xem chi tiết đơn hàng của bạn</p>';
 

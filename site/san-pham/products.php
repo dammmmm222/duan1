@@ -114,10 +114,8 @@
                             <input type="hidden" name="image" value="<?= $image2 ?>">
                             <input type="hidden" name="product_price" value="<?= $product_price ?>">
 
-                            <button id="addtocart" type="submit" name="addtocart" class="flex gap-4 mx-4 hover:border-2 border-gray-200">
-                                Thêm vào rỏ hàng
-                                <span class="cart-item"></span>
-                            </button>
+                            <input id="addtocart" type="submit" name="addtocart" value=" Add to Cart
+                            " class="flex gap-4 hover:border-2">
                     </form>
                 </div>
         </div>
