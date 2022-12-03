@@ -135,7 +135,7 @@
             </div>
 
             <div class="items-center text-center text-[30px] ">
-                <a href="../index.php">Royal Center</a>
+                <a href="index.php">Royal Center</a>
             </div>
             <div class="flex gap-10 justify-end items-center">
     <?php

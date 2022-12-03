@@ -24,9 +24,16 @@
     </header>
     <div class="MENU border-[1px] border-gray-200 grid grid-cols-3">
         <form class="right bg-[#F6F5F3] col-span-2"  method="post" action="index.php?act=signup">
-            <div class="mx-32 my-20">
+           
+        <div class="mx-32 my-20">
+        <a  href ="sign_in.php">
+               <h3 class="font-bold text-2xl">ĐÃ CÓ TÀI KHOẢN ?</h3>
+</a>
+               <hr class="mt-5 mb-10">
+
                 <h1 class="font-bold text-3xl ">CREATE A NEW ACCOUNT</h1>
                 <hr class="mt-5 mb-10">
+         
                 <h3 class="font-bold text-2xl ">LOGIN INFORMATION</h3>
                 <div class="bg-[#FFFFFF] my-10 rounded">
                     <div class="mx-10 py-10 space-y-4">

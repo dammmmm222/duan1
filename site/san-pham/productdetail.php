@@ -3,10 +3,12 @@ if (!is_array($pro)) {
     echo 'Sản Phẩm Không Tồn Tại';
 } else {
     $pr_name = $pro['product_name'];
-    $pr_size = "none"; // $pro['size'];
+    $pr_size = // $pro['size'];
+    $pr_color = // $pro['size'];
     $pr_price = $pro['product_price'];
+    $pr_price_sale = $pro['product_price_sale'];
     $pr_description = $pro['description'];
-    $pr_origin = "none"; // $pro['origin'];
+    $pr_origin = $pro['origin']; // $pro['origin'];
     $image = $pathimg . $pro['image'];
     $image2 = $pathimg . $pro['image2']; //$pro['pr_image2'];//
     $image3 = $pathimg . $pro['image3']; // $pro['pr_image3'];//

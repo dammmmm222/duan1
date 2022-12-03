@@ -62,9 +62,16 @@
         <?php 
              $id = $_SESSION['id_user'];
              $order = loadall_order($id);
-             $id_order = $order[0];
-             $listorder_detail = loadone_order($id_order);
-            order_detail($listorder_detail,$order);
+                if (!empty($order)) {
+                    $id_order = $order['0'];
+                    $listorder_detail = loadone_order($id_order);
+                   order_detail($listorder_detail,$order);
+                }
+                else{
+                    echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Bạn chưa mua gì cả:<
+                    <a class="text-center text-[32px] border border-slate-300 ..." href="index.php?act=san_pham" >Quay lại trang sản phẩm</a>
+                    </h1>';
+                }
     ?>
         </div>
         </div>

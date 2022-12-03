@@ -33,7 +33,7 @@ function check_email($email)
 
 function check_user($user, $pass)
 {
-    $sql = "select * from taikhoan where user='" . $user . "' AND pass='" . $pass . "'";
+    $sql = "select * from user where user_name='" . $user . "' AND password='" . $pass . "'";
     $kq = pdo_query_one($sql);
     return $kq;
 }
