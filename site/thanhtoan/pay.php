@@ -469,7 +469,7 @@
 
     .payment-method,
     .input-flex {
-      
+
       flex-direction: column;
       gap: 20px;
     }
@@ -537,7 +537,7 @@
           <form action="#">
 
             <div class="cardholder-name">
-              <label   for="cardholder-name" class="label-default">Cardholder name</label>
+              <label for="cardholder-name" class="label-default">Cardholder name</label>
               <input type="text" name="cardholder-name" id="cardholder-name" class="input-default">
             </div>
             <div class="card-number">
@@ -551,11 +551,9 @@
 
                 <div class="input-flex">
 
-                  <input type="number" name="day" id="expire-date" placeholder="31" min="1" max="31"
-                    class="input-default">
-                  
-                  <input type="number" name="month" id="expire-date" placeholder="12" min="1" max="12"
-                    class="input-default">
+                  <input type="number" name="day" id="expire-date" placeholder="31" min="1" max="31" class="input-default">
+
+                  <input type="number" name="month" id="expire-date" placeholder="12" min="1" max="12" class="input-default">
 
                 </div>
               </div>
@@ -589,7 +587,6 @@
 
           <div class="product-card">
             <?php
-                
                 $tong=0;
                 $i=0;
                 foreach ($_SESSION['cart'] as $product) {
@@ -599,12 +596,12 @@
                     <div class="card">
 
                     <div class="img-box">
-                      <img src="'.$product[2].'" alt="Cabbage" width="100px" class="product-img">
+                      <img src="' . $product[2] . '" alt="Cabbage" width="100px" class="product-img">
                     </div>
       
                     <div class="detail">
       
-                      <h4 class="product-name">'.$product[1].'</h4>
+                      <h4 class="product-name">' . $product[1] . '</h4>
       
                       <div class="wrapper">
       
@@ -613,7 +610,7 @@
                             <ion-icon name="remove-outline"></ion-icon>
                           </button>
       
-                          <span name="quantity">'.$product[4].'</span>
+                          <span name="quantity">' . $product[4] . '</span>
       
                           <button id="increment">
                             <ion-icon name="add-outline"></ion-icon>
@@ -621,7 +618,7 @@
                         </div>
       
                         <div class="price">
-                          $ <span id="price">'.$product[3].'</span>
+                          $ <span id="price">' . $product[3] . '</span>
                         </div>
                       </div>
       
@@ -633,8 +630,8 @@
       
                   </div>
                ';
-                   }   ?>
-          
+            }   ?>
+
           </div>
 
         </div>
@@ -658,7 +655,7 @@
           <div class="amount">
 
             <div class="subtotal">
-              <span>Subtotal</span> <span>$ <span id="subtotal"><?= $tong?></span></span>
+              <span>Subtotal</span> <span>$ <span id="subtotal"><?= $tong ?></span></span>
             </div>
 
             <div class="tax">
@@ -670,7 +667,7 @@
             </div>
 
             <div class="total">
-              <span>Total</span> <span>$ <span id="total"><?= $tong?></span></span>
+              <span>Total</span> <span>$ <span id="total"><?= $tong ?></span></span>
             </div>
 
           </div>
@@ -708,7 +705,7 @@
     // loop: for add event on multiple `increment` & `decrement` button
     for (let i = 0; i < incrementBtn.length; i++) {
 
-      incrementBtn[i].addEventListener('click', function () {
+      incrementBtn[i].addEventListener('click', function() {
 
         // collect the value of `quantity` textContent,
         // based on clicked `increment` button sibling.
@@ -726,7 +723,7 @@
       });
 
 
-      decrementBtn[i].addEventListener('click', function () {
+      decrementBtn[i].addEventListener('click', function() {
 
         // collect the value of `quantity` textContent,
         // based on clicked `decrement` button sibling.
@@ -748,7 +745,7 @@
 
 
     // function: for calculating total amount of product price
-    const totalCalc = function () {
+    const totalCalc = function() {
 
       // declare all initial variable
       const tax = 0.05;

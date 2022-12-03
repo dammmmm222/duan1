@@ -15,8 +15,8 @@ $orderInfo = "Thanh toán qua ATM";
 $money = $_POST["money"];
 $amount = $money;
 $orderId = time() ."";
-$redirectUrl = "http://localhost:8080/duan1/site/index.php?act=camon";
-$ipnUrl = "http://localhost:8080/web_mysqli/site/index.php?act=camon";
+$redirectUrl = "http://localhost/duan1/site/index.php?act=camon";
+$ipnUrl = "http://localhost/web_mysqli/site/index.php?act=camon";
 $extraData = "";
 $requestId = time() . "";
 $requestType = "payWithATM";
@@ -44,5 +44,3 @@ $requestType = "payWithATM";
     //Just a example, please check more in there
 
     header('Location: ' . $jsonResult['payUrl']);
-
-?>

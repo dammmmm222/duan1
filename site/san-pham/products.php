@@ -1,18 +1,17 @@
 <img src="../upload/banner3.jpg" alt="" class="max-w-screen-2xl rounded-lg mx-auto">
 <div class="max-w-6xl mx-auto grid grid-cols-4 gap-8 mt-24 ">
     <div class="col-span-1">
-        <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Product
-            Categories</h2>
+        <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Danh mục sản phẩm</h2>
         <div class="space-y-4">
-            <label for="">Clothes</label><select name="" id="" class="">
+            <label for="">Quần áo</label><select name="" id="" class="">
             </select><br>
-            <label for="">Shoes</label><select name="" id=""></select><br>
-            <label for="">Bags</label><select name="" id=""></select><br>
-            <label for="">Wallets</label><select name="" id=""></select><br>
-            <label for="">Dress</label><select name="" id=""></select><br>
+            <label for="">Giày</label><select name="" id=""></select><br>
+            <label for="">Túi</label><select name="" id=""></select><br>
+            <label for="">Ví</label><select name="" id=""></select><br>
+            <label for="">Phụ kiện</label><select name="" id=""></select><br>
         </div>
         <div class="space-x-4">
-            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Any Size
+            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Kích Thước
             </h2>
             <span>S</span>
             <span>M</span>
@@ -21,14 +20,13 @@
             <span>XXL</span>
         </div>
         <div class="">
-            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Choose
-                Color</h2>
+            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Màu</h2>
             <div class="">
 
             </div>
         </div>
         <div class="space-y-4">
-            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Brand</h2>
+            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Thương Hiệu Cao Cấp</h2>
             <li class="list-none"><a href="">Louis Vuitton</a></li>
             <li class="list-none"><a href="">Gucci</a></li>
             <li class="list-none"><a href="">Chanel</a></li>
@@ -36,8 +34,7 @@
             <li class="list-none"><a href="">Dior</a></li>
         </div>
         <div class="">
-            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Featured
-                Products
+            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Sản phẩm nổi bật
             </h2>
             <div class="flex items-center">
                 <img srcset="../upload/LV4.webp 6x" alt="">
@@ -83,10 +80,10 @@
     </div>
     <div class="my-4 col-span-3 ">
         <div class="flex justify-between">
-            <span class="text-gray-600 ">Showing 1-12 of 38 results</span>
+            <span class="text-gray-600 ">Đang hiển thị 1-12 của 38 kết quả</span>
             <div class="text-center">
                 <select name="" id="" class="">
-                    <option value="" class="text-gray-600 ">Default sorting</option>
+                    <option value="" class="text-gray-600 ">Bộ lọc</option>
                 </select>
             </div>
         </div>
@@ -141,22 +138,21 @@
         <span class="border-gray-200 border-2 px-2 py-1 text-gray-600">3</span>
         <span class="border-gray-200 border-2 px-2 py-1 text-gray-600">></span>
     </div>
-    <span class="text-gray-600">Showing 1-12 of 38 results</span>
+    <span class="text-gray-600">Đang hiển thị 1-12 của 38 kết quả</span>
 </div>
 <div class="text-center bg-gray-100 py-10 mt-10 mb-20" style="font-family: 'Courier New', Courier, monospace" ;>
     <h2 class="font-bold text-3xl">
-        Get Discount Info
+        Nhận thông tin giảm giá
     </h2>
     <p class=" mt-5 mb-6">
-        Subscribe to order Royal to receive attractive offers, register to receive more attractive discount
-        information
+        Đăng ký đặt hàng Royal để nhận ưu đãi hấp dẫn, đăng ký nhận nhiều thông tin giảm giá hấp dẫn
     </p>
     <div class=" font-bold my-5">
         <button class="border-2 text-black border-black px-3 py-3">
-            Learn More
+            Tìm hiểu thêm
         </button>
         <button class="border-2 text-black border-black px-5 py-3 bg-white-900">
-            Subscribe
+            Đặt mua
         </button>
     </div>
 </div>
