@@ -108,7 +108,7 @@ if (isset($_GET['act'])) {
                 } 
                  break;
           case 'viewcart':
-             include "/xampp/htdocs/duan1/site/cart/viewcart.php";
+            include "cart/viewcart.php";
                 break;
                   case "productdetail":
                     $pro = [];
@@ -135,5 +135,3 @@ if (isset($_GET['act'])) {
   include "../site/layout/home.php";
 }
 include "../site/layout/footer.php";
-
-?>
