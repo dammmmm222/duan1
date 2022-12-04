@@ -101,8 +101,7 @@
                 <div class="">
                     <a href="' . $linksp . '" class="ml-4 text-gray-600">'.$product_name.'</a>
                     <div class="flex">
-                        <span class="mx-4 my-2">'.$product_price_sale.'</span>
-                        <del class="mx-4 my-2">'.$product_price.'</del>
+                        <span class="mx-4 my-2">'.$product_price.' VNĐ</span>
                     </div>
                 </div>
             </div>

@@ -202,13 +202,9 @@ if (isset($_GET['act'])) {
                 cap_nhat_tai_khoan_admin($id, $user_name, $full_name, $email, $phone, $address, $password, $role);
                 $thong_bao = "Cập nhật thành công";
                 $users = loadall_taikhoan();
-
+            }
                 include "user/list-user.php";
                 break;
-    
-            
-    
-           
                 case "listorder":
                     $order = loadall_order_admin();
                     if (!empty($order)) { 

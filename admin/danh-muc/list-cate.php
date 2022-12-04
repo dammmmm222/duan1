@@ -1,4 +1,4 @@
-<div class="home mt-5 px-40 py-10 mr-8 bg-[#F4F6FA] h-auto rounded">
+<div class="home mt-5 px-5 py-10 mr-8 bg-[#F4F6FA] h-auto rounded">
     <div class="ad-r col-span-2">
         <h1 class="text-center text-cyan-500 pb-10  text-4xl " style="font-family: 'Courier New', Courier, monospace">List DANH MỤC</h1>
         <div class="justify-between grid grid-cols-3 items-center">

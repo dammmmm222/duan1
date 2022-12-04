@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="">
-                        <span>'.$listorder['product_price_sale'].' VNĐ</span>
+                        <span>'.$listorder['product_price'].' VNĐ</span>
                     </div>
                 </div>
                                 

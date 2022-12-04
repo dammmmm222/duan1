@@ -3,7 +3,7 @@ if (!is_array($pro)) {
     echo 'Sản Phẩm Không Tồn Tại';
 } else {
     $pr_name = $pro['product_name'];
-    $pr_size = // $pro['size'];
+    $pr_size = 'size L, Màu đỏ';
     $pr_color = // $pro['size'];
     $pr_price = $pro['product_price'];
     $pr_price_sale = $pro['product_price_sale'];
@@ -59,17 +59,22 @@ if (!is_array($pro)) {
                     number
                     or symbol of the
                     House</p>
-
             </div>
-            <p class="text-center font-bold mt-10"><?= $pr_price ?></p>
-            <button class="py-3 w-full mt-4 bg-black text-white rounded-lg">ADD TO CART</button><br>
-            <button class="py-3 mt-4 w-full bg-black text-white rounded-lg">Pay with MOMO</button>
+            <p class="text-center font-bold mt-10"><?= $pr_price ?> VNĐ</p>
+            
+            <button class="py-3 mt-4 w-full bg-black text-white rounded-lg"><form action="index.php?act=addtocart" method="post">
+                <input type="hidden" name="id" value="<?= $id ?>">
+                <input type="hidden" name="product_name" value="<?= $pr_name ?>">
+                <input type="hidden" name="image" value="<?= $image ?>">
+                <input type="hidden" name="product_price" value="<?= $pr_price ?>">
+                <input type="submit" name="addtocart"  value="THÊM VÀO GIỎ HÀNG">
+            </form>
+                </button>
             <p class="mt-10 text-[10px] text-center">By placing your order you agree to the terms of service. Please
                 note,
                 shipping to US
                 Territories is
                 not available.</p>
-
             <span class="text-[10px] flex items-center my-4 text-gray-600  hover:underline">Receive as
                 soon as November
                 21 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle mx-4" viewBox="0 0 16 16">
@@ -88,7 +93,7 @@ if (!is_array($pro)) {
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
                         <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                     </svg>
-                    <span class="mx-3">Contact us +98 929 3467</span>
+                    <span class="mx-3">Liên hệ với chúng tôi 0862381550</span>
                 </div>
                 <div class="flex items-center my-4 hover:underline">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -131,6 +136,9 @@ if (!is_array($pro)) {
     </div>
     <HR class="my-20">
     </HR>
+    <?php
+  include "binh_luan.php";
+  ?>
     <h3 class="text-center">SUGGESTIONS</h3>
     <div class="grid grid-cols-4 gap-10">
         <div class="my-10">

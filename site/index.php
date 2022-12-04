@@ -8,6 +8,7 @@ include "../guest/category.php";
 include "../guest/order.php";
 include "../guest/product.php";
 include "../guest/account.php";
+include "../guest/binh_luan.php";
 include "../site/layout/header.php";
 
 $dsdm= lay_tat_ca_danh_muc();
@@ -45,7 +46,7 @@ if (isset($_GET['act'])) {
             break;
       case 'signin': 
             if (isset($_POST['signin']) && ($_POST['signin'])) {
-          $user = $_POST['name'];
+           $user = $_POST['name'];
           $pass = $_POST['password'];
           $check_user = check_user($user, $pass);
           if (is_array($check_user)) {
@@ -116,8 +117,27 @@ if (isset($_GET['act'])) {
                     $pro = [];
                     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                       $pro = showspdetail($_GET['id']);
-                    }
-                    include "san-pham/productdetail.php";
+                      $danh_sach_bl = [];
+                      if (isset($_POST['stars'])) {
+                        $comment = $_POST['comment'];
+                        $ma_hang_hoa = $_GET['id'];
+                        // date_format(object, format): hàm trả về ngày(date) theo định dạng được chỉ định
+                        // *) object: tạo một(khởi tạo) đối tượng date bằng date_create()
+                        // *) format: chỉ định định dạng cho kiểu ngày
+                        $ngay_bl = date_format(date_create(), 'Y-m-d'); // format theo năm - tháng - ngày
+                        $stars = $_POST['stars'];
+              
+                        // Thêm bình luận 
+                   
+                        them_binh_luan($comment, $_GET['id'], $_SESSION['id_user'], $ngay_bl, $stars);
+                      $danh_sach_bl = lay_binh_luan_theo_hh($ma_hang_hoa);
+
+                      }
+                      include "san-pham/productdetail.php";
+                      
+                      // Lấy danh sách bình luận theo hàng hóa với tham số $ma_hang_hoa ở trên
+
+                    } 
                     break;
                     case'camon':
                       include "thanhtoan/camon.php";

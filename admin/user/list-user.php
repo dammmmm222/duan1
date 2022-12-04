@@ -49,8 +49,7 @@
                     </td>
                     <td class="border-2 border-cyan-500 py-4 px-2 text-center">
                         <?= $password ?>
-                    </td>
-                    <td class="border-2 border-cyan-500 py-4 px-2 text-center">
+                    </td><td class="border-2 border-cyan-500 py-4 px-2 text-center">
                         <?= $full_name ?>
                     </td>
                     <td class="border-2 border-cyan-500 py-4 px-2 text-center">
