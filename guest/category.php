@@ -8,6 +8,7 @@ function them_danh_muc($categories_name, $image)
 
     pdo_execute($sql);
 }
+
 // Xóa loại hàng theo mã loại
 function xoa_danh_muc($id)
 {

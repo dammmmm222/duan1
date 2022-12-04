@@ -126,14 +126,16 @@ function cap_nhat_san_pham($id, $product_name, $product_price, $product_price_sa
     // Nếu tham số hình khác rỗng(ở đây là người dùng có đăng tải hình ảnh lên)
     if ($image2 != "") {
         // Sẽ update tất cả bao gồm cả hình ảnh 
+
         $sql = "UPDATE `product` SET `product_name`='$product_name',`product_price`='$product_price',`product_price_sale`='$product_price_sale',`description`='$description',`origin`='$origin',`image2`='$image2',`id_categories`='$id_categories' WHERE id = $id";
     } else {
         // Nếu tham số hình là rỗng(người dùng giữ nguyên) thì sẽ cập nhật tất cả trừ hình ảnh
         $sql = "UPDATE `product` SET `product_name`='$product_name',`product_price`='$product_price',`product_price_sale`='$product_price_sale',`description`='$description',`origin`='$origin',`id_categories`='$id_categories' WHERE id = $id";
+
     }
     pdo_execute($sql);
 }
-
+/*
 // Truy vấn hàng hóa theo trang page
 // Truyền vào 2 tham số order: sắp xếp theo cái gì đó, limit: giới hạn dữ liệu xuất hiện(hiển thị)
 function lay_san_pham_theo_trang($order, $limit)
