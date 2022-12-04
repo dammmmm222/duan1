@@ -3,7 +3,6 @@
 
 if (isset($_SESSION['cart'])) {
     //echo var_dump($_SESSION['cart']); 
-      if(isset($_SESSION['id_user'])){
 ?>
 <div class="items-center text-center text-[50px] font-bold ">
     Giỏ hàng
@@ -64,7 +63,7 @@ if (isset($_SESSION['cart'])) {
 </html>
 <?php
     }
-    }
+    
     else{
         echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Bạn chưa thêm gì vào giỏ hàng :<
     <a class="text-center text-[32px] border border-slate-300 ..." href="index.php?act=san_pham" >Quay lại trang sản phẩm</a>
