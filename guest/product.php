@@ -120,15 +120,15 @@ function lay_san_pham_theo_kw($kw)
 }
 
 // Cập nhật hàng hóa theo mã hàng hóa
-function cap_nhat_san_pham($ma_hang_hoa, $ten_hang_hoa, $don_gia, $giam_gia, $hinh, $ngay_nhap, $mau, $mo_ta, $thong_so, $dac_biet, $so_luot_xem, $ma_loai)
+function cap_nhat_san_pham($id, $product_name, $product_price, $product_price_sale, $description, $origin, $image2, $id_categories)
 {
     // Nếu tham số hình khác rỗng(ở đây là người dùng có đăng tải hình ảnh lên)
-    if ($hinh != "") {
+    if ($image2 != "") {
         // Sẽ update tất cả bao gồm cả hình ảnh 
-        $sql = "UPDATE hang_hoa SET ten_hang_hoa = '$ten_hang_hoa', don_gia = '$don_gia', giam_gia = '$giam_gia', hinh = '$hinh', ngay_nhap = '$ngay_nhap', mau = '$mau', mo_ta = '$mo_ta', thong_so = '$thong_so', dac_biet = '$dac_biet', view = '$so_luot_xem', ma_loai = '$ma_loai' WHERE ma_hang_hoa = $ma_hang_hoa";
+        $sql = "UPDATE `product` SET `product_name`='$product_name',`product_price`='$product_price',`product_price_sale`='$product_price_sale',`description`='$description',`origin`='$origin',`image2`='$image2',`id_categories`='$id_categories' WHERE id = $id";
     } else {
         // Nếu tham số hình là rỗng(người dùng giữ nguyên) thì sẽ cập nhật tất cả trừ hình ảnh
-        $sql = "UPDATE hang_hoa SET ten_hang_hoa = '$ten_hang_hoa', don_gia = '$don_gia', giam_gia = '$giam_gia', ngay_nhap = '$ngay_nhap', mau = '$mau', mo_ta = '$mo_ta', thong_so = '$thong_so', dac_biet = '$dac_biet', view = '$so_luot_xem', ma_loai = '$ma_loai' WHERE ma_hang_hoa = $ma_hang_hoa";
+        $sql = "UPDATE `product` SET `product_name`='$product_name',`product_price`='$product_price',`product_price_sale`='$product_price_sale',`description`='$description',`origin`='$origin',`id_categories`='$id_categories' WHERE id = $id";
     }
     pdo_execute($sql);
 }
