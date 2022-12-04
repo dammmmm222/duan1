@@ -8,6 +8,17 @@ function them_danh_muc($categories_name, $image)
 
     pdo_execute($sql);
 }
+// load tên dm
+function load_ten_dm($idmm){
+    if($idmm>0){
+    $sql="select * from categories where id=".$idmm;
+    $dm= pdo_query_one($sql);
+    extract($dm);
+    return $categories_name;
+    }else {
+        return "";
+    }
+} 
 function lay_danh_muc_dac_biet()
 {
     $sql = "SELECT * FROM categories WHERE dac_biet = 1 ORDER BY id DESC LIMIT 0,5";

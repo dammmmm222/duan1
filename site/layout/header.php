@@ -119,57 +119,114 @@
             transform: translateX(0);
         }
     }
+
+    .login {
+        position: fixed;
+        width: 500px;
+        right: -500px;
+        height: 100%;
+        background-color: white;
+        animation-name: mymove;
+        animation-duration: 1.5s;
+        overflow: auto;
+    }
+
+    @keyframes mymove {
+        from {
+            right: -500px;
+        }
+
+        to {
+            right: 0px;
+        }
+    }
+
+
+    .login {
+        right: 0px;
+        position: fixed;
+    }
+
+    .swiper {
+
+        left: 0;
+        right: 0;
+        z-index: -2;
+        background-color: black;
+    }
 </style>
 
 <body>
     <div class="" style="font-family: 'Courier New', Courier, monospace;">
-        <div class="logo 	position: relative max-w-[1080px] mx-auto grid justify-between items-center grid-cols-3 my-5 mb-10">
+        <div class="logo  max-w-6xl mx-auto flex justify-between items-center  my-5 mb-10">
 
             <div class="flex items-center gap-10">
 
                 <button id="button"><img src="../upload/menu.svg" alt="" class="w-6"></button>
+                <button id="tim_kiem">
+                <div class="">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 19" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
+                </div>
+                </button>
 
             </div>
 
             <div class="items-center text-center text-[30px] ">
-                <a href="../index.php">Royal Center</a>
+                <a href="index.php">Royal Center</a>
             </div>
             <div class="flex gap-10 justify-end items-center">
-    <?php
-                   if(isset($_SESSION['id_user'])){
 
-                 echo '<h3 class="font-black text-center text-[24px]">'.$_SESSION['dangky'].'</h3>';
-                 } 
-                else{
-                 echo '<a class="font-black text-center text-[24px]" href="user.php">Sign up</a>';
-                 } ?> 
-                <a href="index.php?act=viewcart">
+                <div class="flex space-x-4">
+                    <button id="btn2">Tài khoản</button>
+                    <a href="index.php?act=viewcart">
 
-                    <div id="cart" class="cart" data-totalitems="0">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 3 24 20" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-right">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                        </svg>
-                    </div>
-                </a>
-            
-    
+                        <div id="cart" class="cart" data-totalitems="0">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 3 24 20" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-right">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                            </svg>
+                        </div>
+                    </a>
+
+                </div>
             </div>
-
         </div>
-        <div class="list-none hidden flex justify-center space-x-8 my-10 " id="menu">
-            <li><a href="index.php?act=san_pham">ProDucts</a></li>
-            <li><a href="">Blog</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Recommend</a></li>
-        </div>
-        <script>
-            const menu = document.getElementById("menu");
-            const button = document.getElementById("button");
 
-            button.addEventListener("click", function() {
-                menu.classList.toggle("hidden");
-            });
-        </script>
+
+
+
+    </div>
+
+
+    <div class="list-none hidden flex justify-center space-x-8 my-10 " id="menu">
+        <li><a class="hover:underline" href="index.php">Trang chủ</a></li>
+        <li><a class="hover:underline" href="index.php?act=san_pham">Sản phẩm</a></li>
+        <li><a class="hover:underline" href="">Giới Thiệu</a></li>
+        <li><a class="hover:underline" href="">Liên hệ</a></li>
+        <li><a class="hover:underline" href="">Tin Tức</a></li>
+
+    </div>
+    <div class="list-none hidden flex justify-center space-x-8 my-10 " id="tk">
+        <form action="index.php?act=san_pham" method="post">
+        <input type="text" placeholder="Tìm kiếm sản phẩm" name="kw">
+        <button type="submit" name="timkiem">Tìm Kiếm</button>
+       
+        </form>
+    </div>
+    <script>
+        const tk = document.getElementById("tk");
+        const tim_kiem = document.getElementById("tim_kiem");
+
+        tim_kiem.addEventListener("click", function() {
+            tk.classList.toggle("hidden");
+        });
+    </script>
+    <script>
+        const menu = document.getElementById("menu");
+        const button = document.getElementById("button");
+
+        button.addEventListener("click", function() {
+            menu.classList.toggle("hidden");
+        });
+    </script>

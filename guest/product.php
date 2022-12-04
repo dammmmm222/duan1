@@ -33,7 +33,7 @@ function xoa_san_pham($id)
 }
 
 function loadall_product_trangchu()
-{
+{   
     $sql = "SELECT * FROM `product` where 1";
     $list_product = pdo_query($sql);
     return $list_product;
@@ -44,21 +44,44 @@ function loadall_ALL_product()
     $list_product = pdo_query($sql);
     return $list_product;
 }
-
-// Truy vấn tất cả hàng hóa
-function lay_tat_ca_san_pham()
+function loadall_ALL_products()
 {
-    $sql = "SELECT * FROM product ORDER BY id DESC";
+    $sql = "SELECT * FROM `product`";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
+// sản phẩm top 10
+// function loadall_product_top10(){
+//     $sql="select * from product where 1 order by view desc limit 0,10";
+//     $ds_san_pham=pdo_query($sql);
+//     return $ds_san_pham;
+// }
+
+// Truy vấn tất cả hàng hóa
+function lay_tat_ca_san_pham($kw="",$iddm)
+{
+    // $sql = "SELECT * FROM product ORDER BY id DESC";
+    // $ds_san_pham = pdo_query($sql);
+    // return $ds_san_pham;
+    $sql="select * from product where 1";
+        if($kw!=""){
+            $sql.=" and product_name like '%".$kw."%'";
+        }
+        if($iddm>0){
+            $sql.= " and id_categories = '".$iddm."'";
+        }
+        
+        $ds_san_pham=pdo_query($sql);
+        return $ds_san_pham;
+}
+
 
 // Truy vấn tất cả hàng hóa theo sắp xếp theo số lượt xem giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
 function lay_san_pham_noi_bat()
 {
-    $sql = "SELECT * FROM product WHERE 1 ORDER BY so_luot_xem DESC LIMIT 0,5";
-    $ds_san_pham = pdo_query($sql);
-    return $ds_san_pham;
+    $sql = "SELECT * FROM product WHERE 1 ORDER BY view DESC LIMIT 0,3";
+    $dssp = pdo_query($sql);
+    return $dssp;
 }
 
 // Truy vấn tất cả hàng hóa có thuộc tính đặc biệt là 1 sắp xếp theo mã hàng hóa giảm dần giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
@@ -114,7 +137,7 @@ function lay_san_pham_theo_kw($kw)
 {
     // Truy vấn hàng hóa theo tên hàng hóa so sánh với từ khóa
     // Sử dụng câu lệnh LIKE để so sánh tham số $kw truyền vào với tên hàng hóa
-    $sql = "SELECT * FROM hang_hoa WHERE ten_hang_hoa LIKE '%" . $kw . "%'";
+    $sql = "SELECT * FROM product WHERE product_name LIKE '%" . $kw . "%'";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
