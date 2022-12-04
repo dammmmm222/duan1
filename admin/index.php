@@ -12,194 +12,202 @@ include "layout/header.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
-        case"order":
-            
+        case "order":
+
             break;
         case "them_dm":
             if (isset($_POST['btn_luu'])) {
-                $cate_name = $_POST['cate_name'];
+                $categories_name = $_POST['categories_name'];
                 //file upload
-                $file = $_FILES['cate_img'];
-                $cate_img = $file['name'];
-                them_danh_muc($cate_name, $cate_img);
+                $file = $_FILES['image'];
+                $image = $file['name'];
+                them_danh_muc($categories_name, $image);
+                $thong_bao = "Thêm thành công";
             }
             include "danh-muc/add.php";
             break;
 
         case "list-cate":
-            $cates = lay_tat_ca_danh_muc();
+            $ds_danh_muc = lay_tat_ca_danh_muc();
             include "danh-muc/list-cate.php";
             break;
 
         case "xoa_dm":
-            if (isset($_GET['cate_id']) && ($_GET['cate_id'] > 0)) {
-                xoa_danh_muc($_GET['cate_id']);
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                xoa_danh_muc($_GET['id']);
             }
             $ds_danh_muc = lay_tat_ca_danh_muc();
-            include "danh-muc/listcate.php";
+            include "danh-muc/list-cate.php";
             break;
-
         case "sua_dm":
-            if (isset($_GET['cate_id']) && ($_GET['cate_id']) > 0) {
-                $cate_id = $_GET['cate_id'];
-                $danh_muc = lay_danh_muc_theo_ma($cate_id);
+            if (isset($_GET['id']) && ($_GET['id']) > 0) {
+                $id = $_GET['id'];
+                $danh_muc = lay_danh_muc_theo_ma($id);
+                include "danh-muc/update-cate.php";
             }
-            include "danh-muc/update-cate.php";
             break;
-
         case "cap_nhat_dm":
-            if (isset($_POST['btn_luu']) && ($_POST['btn_luu'])) {
-                $cate_id = $_POST['cate_id'];
-                $cate_name = $_POST['cate_name'];
-                cap_nhat_danh_muc($cate_id, $cate_name, $cate_img);
+            if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
+                $id = $_POST['id'];
+                $categories_name = $_POST['categories_name'];
+                $image = $_FILES['image']['name'];
+                $target_dir = "../upload/";
+
+                if ($image == "") {
+                    $image = $_POST['old_image'];
+                }
+                $target_file = $target_dir . basename($_FILES['image']['name']);
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+                    $thong_bao = "Đăng tải ảnh thành công";
+                } else {
+                    $thong_bao = "Đăng tải ảnh lên thất bại !";
+                }
+                set_danh_muc($id, $categories_name, $image);
                 $thong_bao = "Cập nhật thành công";
             }
             $ds_danh_muc = lay_tat_ca_danh_muc();
             include "danh-muc/list-cate.php";
             break;
 
-        case "addsp":
+        case "them_san_pham":
             if (isset($_POST['btn_luu'])) {
-                $pr_name = $_POST['pr_name'];
-                $pr_price = $_POST['pr_price'];
-                $pr_sale = $_POST['pr_sale'];
-                $pr_size = $_POST['pr_size'];
-                $pr_color = $_POST['pr_color'];
-                $pr_description = $_POST['pr_description'];
-                $pr_origin = $_POST['pr_origin'];
-                $cate_id = $_POST['cate_id'];
+                $product_name = $_POST['product_name'];
+                $product_price = $_POST['product_price'];
+                $product_price_sale = $_POST['product_price_sale'];
+
+                $description = $_POST['description'];
+                $origin = $_POST['origin'];
+                $id_categories = $_POST['id_categories'];
 
                 //file upload
-                $file = $_FILES['pr_image1'];
-                $pr_image1 = $file['name'];
+                $file = $_FILES['image'];
+                $image = $file['name'];
 
-                $file = $_FILES['pr_image2'];
-                $pr_image2 = $file['name'];
-                $file = $_FILES['pr_image3'];
-                $pr_image3 = $file['name'];
+                $file = $_FILES['image2'];
+                $image2 = $file['name'];
+                $file = $_FILES['image3'];
+                $image3 = $file['name'];
 
                 $target_dir = "../upload/";
-                $target_file = $target_dir . basename($_FILES['pr_image1']['name']);
-                $target_file = $target_dir . basename($_FILES['pr_image2']['name']);
-                $target_file = $target_dir . basename($_FILES['pr_image3']['name']);
-                them_san_pham($pr_name, $pr_price, $pr_sale, $pr_size, $pr_color, $pr_description, $pr_image1, $pr_image2, $pr_image3, $pr_origin, $cate_id);
+                $target_file = $target_dir . basename($_FILES['image']['name']);
+                $target_file = $target_dir . basename($_FILES['image2']['name']);
+                $target_file = $target_dir . basename($_FILES['image3']['name']);
+                them_san_pham($product_name, $product_price, $product_price_sale, $description, $image, $image2, $image3, $origin, $id_categories);
                 $thong_bao = "Thêm thành công";
             }
             $ds_danh_muc = lay_tat_ca_danh_muc();
             include "san_pham/addsp.php";
             break;
-            
-            case "listsp":
-              $ds_danh_muc = lay_tat_ca_danh_muc();
-              $danh_sach_sp = lay_tat_ca_san_pham();
-              include "san_pham/listsp.php";
-              break;
 
-        case "danh_sach_sp_trang":
-            $danh_sach_sp = lay_san_pham_theo_trang('ma_hang_hoa', 10);
+        case "listsp":
+            $ds_danh_muc = lay_tat_ca_danh_muc();
+            $danh_sach_sp = lay_tat_ca_san_pham();
             include "san_pham/listsp.php";
             break;
 
+            /* case "danh_sach_sp_trang":
+            $danh_sach_sp = lay_san_pham_theo_trang('id', 5);
+            include "san_pham/listsp.php";
+            break;
+*/
         case "xoa_san_pham":
-            if (isset($_GET['pr_id']) && ($_GET['pr_id']) > 0) {
-                $san_pham = xoa_san_pham($_GET['pr_id']);
+            if (isset($_GET['id']) && ($_GET['id']) > 0) {
+                $san_pham = xoa_san_pham($_GET['id']);
             }
-            $danh_sach_sp = lay_san_pham_theo_trang('pr_id', 10);
+            $danh_sach_sp = lay_tat_ca_san_pham();
             include "san_pham/listsp.php";
             break;
-            
+
         case "sua_san_pham":
-            if (isset($_GET['ma_hang_hoa']) && ($_GET['ma_hang_hoa'] > 0)) {
-                $san_pham = lay_san_pham_theo_ma($_GET['ma_hang_hoa']);
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $san_pham = lay_san_pham_theo_ma($_GET['id']);
             }
             $ds_danh_muc = lay_tat_ca_danh_muc();
             include "san_pham/updatesp.php";
             break;
-            case "them_tai_khoan":
-                if (isset($_POST['btn_insert']) && ($_POST['btn_insert'])) {
-                    $ma_kh = $_POST['ma_kh'];
-                    $mat_khau = $_POST['mat_khau'];
-                    $mat_khau2 = $_POST['mat_khau2'];
-                    $ho = $_POST['ho'];
-                    $ten = $_POST['ten'];
-                    $kich_hoat = $_POST['kich_hoat'];
-                    $hinh = $_FILES['hinh']['name'];
-    
-                    $target_dir = "../public/image/";
-                    $target_file = $target_dir . basename($_FILES['hinh']['name']);
-    
-                    if (move_uploaded_file($_FILES['hinh']['tmp_name'], $target_file)) {
-                        $thong_bao = "Đăng tải ảnh thành công";
-                    } else {
-                        $thong_bao = "Đăng tải ảnh lên thất bại !";
-                    }
-    
-                    $email = $_POST['email'];
-                    $vai_tro = $_POST['vai_tro'];
-    
-                    if ($mat_khau != $mat_khau2) {
-                        $thong_bao = "Vui lòng xác nhận lại mật khẩu !";
-                    } else {
-                        them_tai_khoan_admin($ma_kh, $mat_khau, $ho, $ten, $kich_hoat, $hinh, $email, $vai_tro);
-                        $thong_bao = "Thêm tài khoản thành công";
-                    }
+
+        case "cap_nhat_sp":
+            if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
+                $id = $_POST['id'];
+                $product_name = $_POST['product_name'];
+                $product_price = $_POST['product_price'];
+                $product_price_sale = $_POST['product_price_sale'];
+                $description = $_POST['description'];
+                $origin = $_POST['origin'];
+                $image2 = $_FILES['image2']['name'];
+
+                $target_dir = "../upload/";
+                $target_file = $target_dir . basename($_FILES['image2']['name']);
+
+                if (move_uploaded_file($_FILES['image2']['tmp_name'], $target_file)) {
+                    $thong_bao = "Đăng tải ảnh thành công";
+                } else {
+                    $thong_bao = "Cập nhật hình ảnh thất bại !";
                 }
-                include "user/add.php";
-                break;
-    
-            case "list-user":
+
+                $id_categories  = $_POST['id_categories'];
+
+                cap_nhat_san_pham($id, $product_name, $product_price, $product_price_sale, $description, $origin, $image2, $id_categories);
+            }
+            $danh_sach_sp = lay_tat_ca_san_pham();
+            include "san_pham/listsp.php";
+            break;
+        case "them_tai_khoan":
+            if (isset($_POST['btn_insert'])) {
+                $user_name = $_POST['user_name'];
+                $full_name = $_POST['full_name'];
+                $email = $_POST['email'];
+                $phone = $_POST['phone'];
+                $address = $_POST['address'];
+                $password = $_POST['password'];
+                $role = $_POST['role'];
+                them_tai_khoan($user_name, $full_name, $email, $phone, $address, $password, $role);
+                $thong_bao = "Thêm tài khoản thành công";
+            }
+            include "user/add-user.php";
+            break;
+
+        case "list-user":
+            $users = loadall_taikhoan();
+            include "user/list-user.php";
+            break;
+
+
+        case "xoa_us":
+            if (isset($_GET['id']) && ($_GET['id']) > 0) {
+                $tai_khoan = xoa_tai_khoan($_GET['id']);
+            }
+            $users = loadall_taikhoan();
+            include "user/list-user.php";
+            break;
+
+        case "sua_us":
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $tai_khoan = lay_tai_khoan_theo_ma($_GET['id']);
+                include "user/update-user.php";
+            }
+            break;
+
+        case "cap_nhat_tk":
+            if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
+                $id = $_POST['id'];
+                $user_name = $_POST['user_name'];
+                $full_name = $_POST['full_name'];
+                $email = $_POST['email'];
+                $phone = $_POST['phone'];
+                $address = $_POST['address'];
+                $password = $_POST['password'];
+                $role = $_POST['role'];
+
+                cap_nhat_tai_khoan_admin($id, $user_name, $full_name, $email, $phone, $address, $password, $role);
+                $thong_bao = "Cập nhật thành công";
                 $users = loadall_taikhoan();
+
                 include "user/list-user.php";
-                break;
-    
-            case "xoa_tai_khoan":
-                if (isset($_GET['ma_kh']) && ($_GET['ma_kh']) > 0) {
-                    $tai_khoan = xoa_tai_khoan($_GET['ma_kh']);
-                }
-                $users = loadall_taikhoan();
-                include "user/list-user.php";
-                break;
-    
-            case "update-user":
-                if (isset($_GET['ma_kh']) && ($_GET['ma_kh'] > 0)) {
-                    $tai_khoan = lay_tai_khoan_theo_ma($_GET['ma_kh']);
-                }
-                include "user/update.php";
-                break;
-    
-            case "cap_nhat_tk":
-                if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
-                    $ma_kh = $_POST['ma_kh'];
-                    $mat_khau = $_POST['mat_khau'];
-                    $mat_khau2 = $_POST['mat_khau2'];
-                    $ho = $_POST['ho'];
-                    $ten = $_POST['ten'];
-                    $kich_hoat = $_POST['kich_hoat'];
-                    $hinh = $_FILES['hinh']['name'];
-    
-                    $target_dir = "../public/image/";
-                    $target_file = $target_dir . basename($_FILES['hinh']['name']);
-    
-                    if (move_uploaded_file($_FILES['hinh']['tmp_name'], $target_file)) {
-                        $thong_bao = "Đăng tải ảnh thành công";
-                    } else {
-                        $thong_bao = "Đăng tải ảnh lên thất bại !";
-                    }
-    
-                    $email = $_POST['email'];
-                    $vai_tro = $_POST['vai_tro'];
-    
-                    if ($mat_khau != $mat_khau2) {
-                        $thong_bao = "Vui lòng xác nhận lại mật khẩu";
-                    } else {
-                        cap_nhat_tai_khoan_admin($ma_kh, $mat_khau, $ho, $ten, $kich_hoat, $hinh, $email, $vai_tro);
-                        $thong_bao = "Cập nhật thành công";
-                    }
-                }
-                $users = loadall_taikhoan();
-                include "user/list.php";
-                break;
-/*
+            }
+
+            break;
+            /*
         case "cap_nhat_sp":
             if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
                 $ma_hang_hoa = $_POST['ma_hang_hoa'];
@@ -269,18 +277,16 @@ if (isset($_GET['act'])) {
 
         default:
             $danh_muc = count(lay_tat_ca_danh_muc());
-            /*$san_pham = count(lay_tat_ca_san_pham());
+            $san_pham = count(lay_tat_ca_san_pham());
             $tai_khoan = count(loadall_taikhoan());
-            $binh_luan = count(lay_tat_ca_binh_luan());*/
+            /* $binh_luan = count(lay_tat_ca_binh_luan());*/
             include "layout/home.php";
             break;
     }
 } else {
     $danh_muc = count(lay_tat_ca_danh_muc());
-    /*$san_pham = count(lay_tat_ca_san_pham());
+    $san_pham = count(lay_tat_ca_san_pham());
     $tai_khoan = count(loadall_taikhoan());
-    $binh_luan = count(lay_tat_ca_binh_luan());*/
+    /*  $binh_luan = count(lay_tat_ca_binh_luan());*/
     include "layout/home.php";
 }
-
-

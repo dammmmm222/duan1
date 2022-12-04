@@ -5,7 +5,7 @@
         <div class="bg-white shadow-lg shadow-cyan-500/50  items-center px-6 rounded-2xl py-8 text-[#4F46E5]">
             <div class="grid grid-cols-2">
                 <div class="text-[#4F46E5]">
-                    <h3 class="text-[60px] text-center">9</h3>
+                    <h3 class="text-[60px] text-center"><?= $danh_muc ?></h3>
 
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="100" fill="#4F46E5" class="bi bi-list-ul" viewBox="0 0 16 16">
@@ -17,7 +17,7 @@
         <div class="bg-white shadow-lg shadow-cyan-500/50  items-center px-6 rounded-2xl py-8 text-[#4F46E5]">
             <div class="grid grid-cols-2">
                 <div class="text-[#4F46E5]">
-                    <h3 class="text-[60px] text-center ">18</h3>
+                    <h3 class="text-[60px] text-center "><?= $san_pham ?></h3>
 
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="100" fill="#4F46E5" class="bi bi-diagram-2" viewBox="0 0 16 16">
@@ -29,7 +29,7 @@
         <div class="bg-white shadow-lg shadow-cyan-500/50  items-center px-6 rounded-2xl py-8 text-[#4F46E5]">
             <div class="grid grid-cols-2">
                 <div class="text-[#4F46E5]">
-                    <h3 class="text-[60px] text-center">3</h3>
+                    <h3 class="text-[60px] text-center"><?= $tai_khoan ?></h3>
 
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="100" fill="#4F46E5" class="bi bi-people-fill" viewBox="0 0 16 16">
