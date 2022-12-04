@@ -8,23 +8,6 @@ function them_danh_muc($categories_name, $image)
 
     pdo_execute($sql);
 }
-// load tên dm
-function load_ten_dm($idmm){
-    if($idmm>0){
-    $sql="select * from categories where id=".$idmm;
-    $dm= pdo_query_one($sql);
-    extract($dm);
-    return $categories_name;
-    }else {
-        return "";
-    }
-} 
-function lay_danh_muc_dac_biet()
-{
-    $sql = "SELECT * FROM categories WHERE dac_biet = 1 ORDER BY id DESC LIMIT 0,5";
-    $ds_danh_muc = pdo_query($sql);
-    return $ds_danh_muc;
-}
 // Xóa loại hàng theo mã loại
 function xoa_danh_muc($id)
 {
@@ -35,7 +18,7 @@ function xoa_danh_muc($id)
 // Truy vấn tất cả dữ liệu của bảng loại hàng
 function lay_tat_ca_danh_muc($order = "DESC") // Tham số order nhận giá trị mặc định DESC sắp xếp theo giảm dần
 {
-    $sql = "SELECT * FROM categories ORDER BY id  $order";
+    $sql = "SELECT * FROM categories ORDER BY id $order";
     $ds_danh_muc = pdo_query($sql);
     return $ds_danh_muc;
 }
@@ -45,6 +28,7 @@ function lay_danh_muc_theo_ma($id)
 {
     $sql = "SELECT * FROM categories WHERE id = $id";
     $danh_muc = pdo_query_one($sql);
+
     return $danh_muc;
 }
 
@@ -54,9 +38,11 @@ function lay_ten_danh_muc($id)
     // Nếu mã loại truyền vào lớn hơn 0
     if ($id > 0) {
         $sql = "SELECT * FROM categories WHERE id = $id";
-        $categories = pdo_query_one($sql);
+        $danh_muc = pdo_query_one($sql);
         // Biến các cột(thuộc tính) trong bảng loại hàng thành các biến
-        extract($categories);
+
+        $categories_name = $danh_muc['categories_name'];
+
         return $categories_name; // Trả về biến(ten_loai) tên loại hàng
     } else {
         // Nếu $ma_loại nhỏ hơn 0 trả về chuỗi rỗng
@@ -65,9 +51,8 @@ function lay_ten_danh_muc($id)
 }
 
 // Cập nhật loại hàng theo mã loại
-function cap_nhat_danh_muc($id, $categories_name, $image)
+function set_danh_muc($id, $categories_name, $image)
 {
-
-    $sql = "UPDATE categories SET id ='$id', name = '$categories_name',image= '$image' WHERE id = $id";
+    $sql = " UPDATE `categories` SET `categories_name`='$categories_name',`image`='$image' WHERE id = $id";
     pdo_execute($sql);
 }
