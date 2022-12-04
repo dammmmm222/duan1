@@ -12,8 +12,7 @@ $accessKey = 'klm05TvNBzhg7h7j';
 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 
 $orderInfo = "Thanh toán qua ATM";
-$money = $_POST["money"];
-$amount = $money;
+$amount = $_POST["tong"];
 $orderId = time() ."";
 $redirectUrl = "http://localhost/duan1/site/index.php?act=camon";
 $ipnUrl = "http://localhost/web_mysqli/site/index.php?act=camon";

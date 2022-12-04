@@ -8,6 +8,7 @@ function them_danh_muc($categories_name, $image)
 
     pdo_execute($sql);
 }
+
 // Xóa loại hàng theo mã loại
 function xoa_danh_muc($id)
 {
@@ -18,7 +19,7 @@ function xoa_danh_muc($id)
 // Truy vấn tất cả dữ liệu của bảng loại hàng
 function lay_tat_ca_danh_muc($order = "DESC") // Tham số order nhận giá trị mặc định DESC sắp xếp theo giảm dần
 {
-    $sql = "SELECT * FROM categories ORDER BY id $order";
+    $sql = "SELECT * FROM categories ORDER BY id  $order";
     $ds_danh_muc = pdo_query($sql);
     return $ds_danh_muc;
 }

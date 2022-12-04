@@ -56,7 +56,7 @@ function lay_tat_ca_san_pham()
 // Truy vấn tất cả hàng hóa theo sắp xếp theo số lượt xem giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
 function lay_san_pham_noi_bat()
 {
-    $sql = "SELECT * FROM product WHERE 1 ORDER BY so_luot_xem DESC LIMIT 0,5";
+    $sql = "SELECT * FROM product WHERE 1 ORDER BY view DESC LIMIT 0,5";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
@@ -125,10 +125,12 @@ function cap_nhat_san_pham($id, $product_name, $product_price, $product_price_sa
     // Nếu tham số hình khác rỗng(ở đây là người dùng có đăng tải hình ảnh lên)
     if ($image2 != "") {
         // Sẽ update tất cả bao gồm cả hình ảnh 
+
         $sql = "UPDATE `product` SET `product_name`='$product_name',`product_price`='$product_price',`product_price_sale`='$product_price_sale',`description`='$description',`origin`='$origin',`image2`='$image2',`id_categories`='$id_categories' WHERE id = $id";
     } else {
         // Nếu tham số hình là rỗng(người dùng giữ nguyên) thì sẽ cập nhật tất cả trừ hình ảnh
         $sql = "UPDATE `product` SET `product_name`='$product_name',`product_price`='$product_price',`product_price_sale`='$product_price_sale',`description`='$description',`origin`='$origin',`id_categories`='$id_categories' WHERE id = $id";
+
     }
     pdo_execute($sql);
 }

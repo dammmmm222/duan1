@@ -10,6 +10,9 @@ include "../guest/product.php";
 include "../guest/account.php";
 include "../site/layout/header.php";
 
+$dsdm= lay_tat_ca_danh_muc();
+
+$sptop10 = lay_san_pham_noi_bat();
 // Kiểm tra biến chuyển trang ?act
 if (isset($_GET['act'])) {
   // Nếu tồn tại giá trị biến ?act thì gán $_GET['act'] cho biến $act
@@ -20,6 +23,7 @@ if (isset($_GET['act'])) {
       // Trang sản phẩm
     case "san_pham":
          $ds_san_pham = lay_tat_ca_san_pham();
+         
        include "san-pham/products.php";
            break;  
     case 'signup':
@@ -46,16 +50,26 @@ if (isset($_GET['act'])) {
           $check_user = check_user($user, $pass);
           if (is_array($check_user)) {
            $_SESSION['dangky'] = $check_user['full_name'];
-           
+           $_SESSION['role'] = $check_user['role'];
 		  	   $_SESSION['id_user'] = $check_user['id'];  
+           if ($check_user['role'] == 1){
+            header('Location: ../admin/index.php');
+           }
+           else{
         // $thongbao = "Bạn đã đăng nhập thành công!";
            header('Location: index.php'); 
+          }
           } else{
             echo 'Sai tên tài khoản hoặc mật khẩu';
-
           }
       } 
         break;
+        case 'signout': 
+          if (isset($_POST['signout']) && ($_POST['signout'])) {
+            session_unset();
+         header('Location: index.php'); 
+          }
+      break;
       case 'addtocart':
         if(!isset($_SESSION['cart'])) $_SESSION['cart']=array();
         if(isset($_POST['addtocart'])&&($_POST['addtocart'])){
@@ -88,24 +102,12 @@ if (isset($_GET['act'])) {
         }   
             break;
             case 'delcart':
-                // if(isset($_GET['idcart'])){
-                //      array_splice($_SESSION['mycart'],$_GET['idcart'],1);
-                // }else{
-                //  $_SESSION['mycart']=[];
-                // }
-                //  header('Location: index.php?act=viewcart');
-            
-                if(isset($_SESSION['cart'])){
-                    if(isset($_GET['id'])){
-                        array_splice($_SESSION['cart'],$_GET['id'],1);
-                        
-                    }else{
-                        unset($_SESSION['cart']);
-                        
-                    }
-                    if(count($_SESSION['cart'])>0) header('location: viewcart.php');
-                    else header('location: index.php');
-                } 
+                if(isset($_GET['idcart'])){
+                     array_splice($_SESSION['cart'],$_GET['idcart'],1);
+                }else{
+                 $_SESSION['cart']=[];
+                }
+                 header('Location: index.php?act=viewcart');
                  break;
           case 'viewcart':
             include "cart/viewcart.php";
@@ -121,8 +123,14 @@ if (isset($_GET['act'])) {
                       include "thanhtoan/camon.php";
                       break;
                       case'thanhtoan':
-                        $money = $_GET['tong'];
-                        include "thanhtoan/pay.php";
+                    if(isset($_SESSION['dangky'])){
+                      $money = $_GET['tong'];
+                        include "thanhtoan/xulythanhtoanmomo.php";
+                    }
+                    else{ 
+                      echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Vui lòng đăng nhập để thanh toán</h1>';
+                      include "cart/viewcart.php";
+                    }
                         break;
                    case'detail_order':
                     include "detail_order.php";

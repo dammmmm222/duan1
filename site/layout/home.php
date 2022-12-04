@@ -36,7 +36,6 @@
         });
     </script>
 </div>
-
 <div class="dmnb my-10 max-w-[1080px] mx-auto grid grid-cols-2  items-center">
     <div class=""><button class="border-2 border-black py-1 px-5 font-black flex items-center">Danh mục<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity mx-2" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
@@ -49,33 +48,25 @@
     </div>
 </div>
 <div class="grid grid-cols-4 max-w-6xl mx-auto gap-2  my-20">
-    <div class="">
-        <img src=" ../upload/tui12.jpg" alt="" class=" w-[90%] mx-auto">
-
-    </div>
-    <div class="">
-        <img src="../upload/balo12.jpg" alt="" class="w-[90%] mx-auto">
-
-    </div>
-    <div class="">
-        <img src="../upload/giay12.jpg" alt="" class="w-[90%] mx-auto">
-
-    </div>
-    <div class="">
-        <img src=" ../upload/vi12.jpg" alt="" class="w-[90%] mx-auto">
-
-    </div>
+    <!-- danh mục -->
+            <?php
+                foreach ($dsdm as $dm){
+                    extract($dm);
+                    $image = $img_path . $dm['image'];
+                    $linkdm = "index.php?act=san_pham&iddm=" . $id;
+                    echo'
+                        <a href="' . $linkdm . '"><img src="' . $image . '"></a>
+                    ';
+                }
+            ?>
 </div>
 <div class="dmnb my-5 max-w-5xl mx-auto grid grid-cols-3  items-center">
-    <div class="flex"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="gray" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-        </svg>
-        <span class=" mx-4">Tìm kiếm ?</span>
+    <div class="flex">
+        <span><a href="">Trước</a></span>
+
     </div>
     <span class="text-center text-[20px] border-2 py-2 px-3 font-black">SẢN PHẨM CAO CẤP</span>
     <div class="text-right">
-        <span><a href="">Trước</a></span>
-        <span>|</span>
         <span><a href="">Sau</a></span>
     </div>
 </div>
@@ -90,10 +81,20 @@
         <span class=" mx-4 text-[#551AA9] text-[20px] items-center">Giới hạn</span>
     </div>
     <div class="flex ">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="gray" class="w-6 h-6">
+        <form action="index.php?act=san_pham" method="post">
+            <input type="text" placeholder="Tìm kiếm sản phẩm" name="kw">
+            <button type="submit" name="timkiem" class="">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="gray" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+            </button>
+
+        </form>
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="gray" class="w-10 h-10">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
         </svg>
-        <span class=" mx-4">Tìm</span>
+        <span class=" mx-4"><input class="px-20 py-3" type="text" placeholder="Tìm kiếm sản phẩm"></span> -->
+
     </div>
 </div>
 <div class="LV grid grid-cols-3 mt-10 mx-auto max-w-6xl gap-10">
@@ -110,7 +111,7 @@
                             <a href="" class="text-3xl font-bold">' . $product_name . '</a>
                         </h3>
                 <div class="text-3xl my-2">
-                        <span class="text-violet-900 font-bold">$' . $product_price . '</span>
+                        <span class="text-violet-900 font-bold">' . $product_price . ' VNĐ</span>
                 </div>
                 <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
             <form action="index.php?act=addtocart" method="post">
@@ -118,7 +119,7 @@
                 <input type="hidden" name="product_name" value="' . $product_name . '">
                 <input type="hidden" name="image" value="' . $image . '">
                 <input type="hidden" name="product_price" value="' . $product_price . '">
-                <input type="submit" name="addtocart"  value="THÊM VÀO RỎ HÀNG">
+                <input type="submit" name="addtocart"  value="THÊM VÀO GIỎ HÀNG">
             </form>
             
                 </button>
@@ -184,4 +185,6 @@
     <span class="hover:bg-violet-900 hover:text-white px-4 ml-2 py-2">2</span>
     <span class="hover:bg-violet-900 hover:text-white px-4 py-2">
         Tiếp »</span>
+</div>
+
 </div>

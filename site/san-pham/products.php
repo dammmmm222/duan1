@@ -3,12 +3,26 @@
     <div class="col-span-1">
         <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Danh mục sản phẩm</h2>
         <div class="space-y-4">
-            <label for="">Quần áo</label><select name="" id="" class="">
+            <!-- <label for="">Quần áo</label><select name="" id="" class="">
             </select><br>
             <label for="">Giày</label><select name="" id=""></select><br>
             <label for="">Túi</label><select name="" id=""></select><br>
             <label for="">Ví</label><select name="" id=""></select><br>
-            <label for="">Phụ kiện</label><select name="" id=""></select><br>
+            <label for="">Phụ kiện</label><select name="" id=""></select><br> 
+        -->
+        <ul>
+            <?php
+                foreach ($dsdm as $dm){
+                    extract($dm);
+                    $linkdm = "index.php?act=sanpham&iddm=" . $id;
+                    echo'
+                        <li>
+                        <a href="' . $linkdm . '">' . $categories_name . '</a>
+                        </li>
+                    ';
+                }
+            ?>
+        </ul>
         </div>
         <div class="space-x-4">
             <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Kích Thước
@@ -22,7 +36,6 @@
         <div class="">
             <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Màu</h2>
             <div class="">
-
             </div>
         </div>
         <div class="space-y-4">
@@ -36,7 +49,7 @@
         <div class="">
             <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Sản phẩm nổi bật
             </h2>
-            <div class="flex items-center">
+            <!-- <div class="flex items-center">
                 <img srcset="../upload/LV4.webp 6x" alt="">
                 <div class="">
                     <h3 class=" text-gray-600">Bolsa De Transporte</h3>
@@ -65,8 +78,9 @@
                         <del class="mx-4 my-2">$999</del>
                     </div>
                 </div>
-            </div>
-            <div class="flex items-center ml-2">
+            </div> -->
+
+            <!-- <div class="flex items-center ml-2">
                 <img srcset="../upload/gucci.jpg 8x" alt="">
                 <div class="">
                     <h3 class="ml-4 text-gray-600">Bolsa De Transporte</h3>
@@ -75,7 +89,27 @@
                         <del class="mx-4 my-2">$999</del>
                     </div>
                 </div>
+            </div> -->
+            <?php
+            foreach ($sptop10 as $dssp){
+                extract($dssp);
+                $linksp= "index.php?act=productdetail&id=" .$id;
+                $image2 = $img_path . $image2;
+                echo '
+                <div class="flex items-center ml-2">
+                <img srcset="'.$image2.' 8x" alt="">
+                <div class="">
+                    <a href="' . $linksp . '" class="ml-4 text-gray-600">'.$product_name.'</a>
+                    <div class="flex">
+                        <span class="mx-4 my-2">'.$product_price_sale.'</span>
+                        <del class="mx-4 my-2">'.$product_price.'</del>
+                    </div>
+                </div>
             </div>
+                ';
+
+            }
+            ?>
         </div>
     </div>
     <div class="my-4 col-span-3 ">
@@ -89,22 +123,21 @@
         </div>
         <div class="grid grid-cols-3 gap-10">
             <?php
-
+            //  echo print_r($ds_san_pham);
+            //  die();
             foreach ($ds_san_pham as $dssp) {
                 extract($dssp);
                 $image2 = $img_path . $image2;
-
-
             ?>
                 <div class="">
-                    <a href="index.php?act=productdetail&id= <?php echo $dssp['id']; ?>">
+                    <a href="index.php?act=productdetail&id= <?php echo $id ?>">
                         <div class="my-10 ">
                             <div class="bg-[#F3F3F3] w-[259px] h-[259px]">
                                 <img src=" <?= $image2 ?> " alt="" class="w-[259px] h-[259px]">
                             </div>
                             <h3 class="text-gray-600 my-2"> <?= $product_name  ?></h3>
                             <div class="flex">
-                                <span><?= $product_price ?></span>
+                                <span><?= $product_price ?> VNĐ</span>
                     </a>
                     <form action="index.php?act=addtocart" method="post">
 
@@ -121,7 +154,6 @@
         </div>
     </div>
 </div>
-
 <?php } ?>
 
 </div>

@@ -25,9 +25,16 @@ function loadone_order($id)
     $bill = pdo_query($sql);
     return $bill;
 }
+
 function loadall_order($id)
 {
     $sql = "SELECT * FROM `order` where id_user = " .$id;
+    $bill = pdo_query($sql);
+    return $bill;
+}
+function loadall_order_admin()
+{
+    $sql = "SELECT * FROM `order`";
     $bill = pdo_query($sql);
     return $bill;
 }
@@ -54,7 +61,6 @@ function order_detail($order){
         </div>';
                     $code_cart = $order['code_cart'];
                     $listorder_detail = loadone_order($code_cart);
-          $tong = 0;
       foreach($listorder_detail as $listorder){
           $price = $listorder['quanlity']*$listorder['product_price'];
           $tong += $price;
