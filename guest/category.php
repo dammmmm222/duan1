@@ -8,6 +8,17 @@ function them_danh_muc($categories_name, $image)
 
     pdo_execute($sql);
 }
+// load tên dm
+function load_ten_dm($idmm){
+    if($idmm>0){
+    $sql="select * from categories where id=".$idmm;
+    $dm= pdo_query_one($sql);
+    extract($dm);
+    return $categories_name;
+    }else {
+        return "";
+    }
+} 
 function lay_danh_muc_dac_biet()
 {
     $sql = "SELECT * FROM categories WHERE dac_biet = 1 ORDER BY id DESC LIMIT 0,5";
@@ -24,7 +35,7 @@ function xoa_danh_muc($id)
 // Truy vấn tất cả dữ liệu của bảng loại hàng
 function lay_tat_ca_danh_muc($order = "DESC") // Tham số order nhận giá trị mặc định DESC sắp xếp theo giảm dần
 {
-    $sql = "SELECT * FROM categories ORDER BY id $order";
+    $sql = "SELECT * FROM categories ORDER BY id  $order";
     $ds_danh_muc = pdo_query($sql);
     return $ds_danh_muc;
 }

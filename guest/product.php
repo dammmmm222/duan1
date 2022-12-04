@@ -56,7 +56,7 @@ function lay_tat_ca_san_pham()
 // Truy vấn tất cả hàng hóa theo sắp xếp theo số lượt xem giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
 function lay_san_pham_noi_bat()
 {
-    $sql = "SELECT * FROM product WHERE 1 ORDER BY so_luot_xem DESC LIMIT 0,5";
+    $sql = "SELECT * FROM product WHERE 1 ORDER BY view DESC LIMIT 0,5";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
@@ -125,10 +125,10 @@ function cap_nhat_san_pham($ma_hang_hoa, $ten_hang_hoa, $don_gia, $giam_gia, $hi
     // Nếu tham số hình khác rỗng(ở đây là người dùng có đăng tải hình ảnh lên)
     if ($hinh != "") {
         // Sẽ update tất cả bao gồm cả hình ảnh 
-        $sql = "UPDATE hang_hoa SET ten_hang_hoa = '$ten_hang_hoa', don_gia = '$don_gia', giam_gia = '$giam_gia', hinh = '$hinh', ngay_nhap = '$ngay_nhap', mau = '$mau', mo_ta = '$mo_ta', thong_so = '$thong_so', dac_biet = '$dac_biet', so_luot_xem = '$so_luot_xem', ma_loai = '$ma_loai' WHERE ma_hang_hoa = $ma_hang_hoa";
+        $sql = "UPDATE hang_hoa SET ten_hang_hoa = '$ten_hang_hoa', don_gia = '$don_gia', giam_gia = '$giam_gia', hinh = '$hinh', ngay_nhap = '$ngay_nhap', mau = '$mau', mo_ta = '$mo_ta', thong_so = '$thong_so', dac_biet = '$dac_biet', view = '$so_luot_xem', ma_loai = '$ma_loai' WHERE ma_hang_hoa = $ma_hang_hoa";
     } else {
         // Nếu tham số hình là rỗng(người dùng giữ nguyên) thì sẽ cập nhật tất cả trừ hình ảnh
-        $sql = "UPDATE hang_hoa SET ten_hang_hoa = '$ten_hang_hoa', don_gia = '$don_gia', giam_gia = '$giam_gia', ngay_nhap = '$ngay_nhap', mau = '$mau', mo_ta = '$mo_ta', thong_so = '$thong_so', dac_biet = '$dac_biet', so_luot_xem = '$so_luot_xem', ma_loai = '$ma_loai' WHERE ma_hang_hoa = $ma_hang_hoa";
+        $sql = "UPDATE hang_hoa SET ten_hang_hoa = '$ten_hang_hoa', don_gia = '$don_gia', giam_gia = '$giam_gia', ngay_nhap = '$ngay_nhap', mau = '$mau', mo_ta = '$mo_ta', thong_so = '$thong_so', dac_biet = '$dac_biet', view = '$so_luot_xem', ma_loai = '$ma_loai' WHERE ma_hang_hoa = $ma_hang_hoa";
     }
     pdo_execute($sql);
 }

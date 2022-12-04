@@ -54,6 +54,7 @@
 
         display: flex;
         align-items: center;
+        justify-content: center;
 
     }
 
@@ -131,6 +132,27 @@
         overflow: auto;
     }
 
+
+
+
+    .login {
+
+        right: 0px;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .videomain {
+
+        left: 0;
+        right: 0;
+
+
+    }
+
+
+
+
     @keyframes mymove {
         from {
             right: -500px;
@@ -140,46 +162,84 @@
             right: 0px;
         }
     }
-
-
-    .login {
-        right: 0px;
-        position: fixed;
-    }
-
-    .swiper {
-
-        left: 0;
-        right: 0;
-        z-index: -2;
-        background-color: black;
-    }
 </style>
 
 <body>
-    <div class="" style="font-family: 'Courier New', Courier, monospace;">
-        <div class="logo  max-w-6xl mx-auto flex justify-between items-center  my-5 mb-10">
+    <div class="mx-auto max-w-screen-2xl">
 
-            <div class="flex items-center gap-10">
+        <div class="login hidden px-12" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif" id="content">
+            <div class="my-4">
+                <?php 
+                if (!isset($_SESSION['dangky'])) {
+                    echo '
+                    <div class="flex justify-between items-center">
+                    <h1 class="font-bold text-2xl">ĐĂNG NHẬP</h1>
 
-                <button id="button"><img src="../upload/menu.svg" alt="" class="w-6"></button>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 19" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
+                    <button class="border-[1px] border-gray-200 text-3xl px-4 py-2" id="btn1">X</button>
+                </div>
+                <hr>
+                <form method="post" action="index.php?act=signin">
+                    <h3 class="font-semibold mt-4"> TÔI ĐÃ CÓ TÀI KHOẢN</h3>
+                    <div class="py-6 space-y-4">
+                        <label for="">Tên tài khoản *</label><br>
+                        <input type="text" name="name"  placeholder="" class="py-4 px-4 w-full border-2 rounded border-[#CFCCC8]" required>
+                    </div>
+                    <div class=" py-4 space-y-4">
+                        <label for="">Mật khẩu *</label><br>
+                        <input type="password" name="password"  placeholder="*******" class="py-4 px-4 w-full border-2 rounded border-[#CFCCC8]" required>
+                    </div>
+                    <li class="list-none"><a href=""><u>Quên mật khẩu ?</u></a></li>
+                    <input type="submit" value="Đăng Nhập" name="signin" class="hover:bg-[#EAE8E4] my-10 hover:text-black bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]">
+                </form>
+                <hr>
+                <div class="space-y-10 my-10">
+                    <h3 class="font-semibold my-4">TÔI KHÔNG CÓ TÀI KHOẢN ?</h3>
+                    <span>Tận hưởng các lợi ích bổ sung và trải nghiệm phong phú hơn bằng cách tạo tài khoản cá
+                        nhân</span>
+                    <button type="submit" class="hover:bg-[#EAE8E4] hover:text-black  bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]"><a href="user.php">Tạo
+                        tài khoản</a></button>
+                </div>'
+                    ;
+                }
+                else {
+                    echo '
+                    <div class="flex justify-between items-center">
+                    <h1 class="font-bold text-2xl">ĐĂNG XUẤT</h1>
 
+                    <button class="border-[1px] border-gray-200 text-3xl px-4 py-2" id="btn1">X</button>
+                </div>
+                <hr>
+                <form method="post" action="index.php?act=signout">
+                 
+                    <input type="submit" value="Đăng xuất" name="signout" class="hover:bg-[#EAE8E4] my-10 hover:text-black bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]">
+                </form>
+                ';
+                }
+                ?>
+                
             </div>
+        </div>
+    </div>
 
-            <div class="items-center text-center text-[30px] ">
-                <a href="index.php">Royal Center</a>
-            </div>
-            <div class="flex gap-10 justify-end items-center">
+    <div class="videomain" id="videomain">
+        <div class="" style="font-family: 'Courier New', Courier, monospace;">
+            <div class="logo 	position: relative max-w-[1080px] mx-auto grid justify-between items-center grid-cols-3 my-5 mb-10">
 
-                <div class="flex space-x-4">
-                    <button id="btn2 "> 
+                <div class="flex items-center gap-10">
 
-                    <?php echo isset($_SESSION['dangky']) ? 'Chào: '.$_SESSION['dangky'] :  '<a href="user.php">Tài khoản</a>' ?>
-
-                    </button>
+                    <button id="button"><img src="../upload/menu.svg" alt="" class="w-6"></button>
+                <button id="tim_kiem">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 19" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </div>
+                <div class="items-center text-center text-[30px] ">
+                    <a href="index.php">Royal Center</a>
+                </div>
+                <div class="flex gap-10 justify-end items-center">
+                    <button id="btn2" class="font-black text-center text-[16px]"> <?php echo isset($_SESSION['dangky']) ? 'Chào: ' . $_SESSION['dangky'] :  'ACCOUNT' ?></button>
                     <a href="index.php?act=viewcart">
 
                         <div id="cart" class="cart" data-totalitems="0">
@@ -188,26 +248,37 @@
                             </svg>
                         </div>
                     </a>
-
                 </div>
             </div>
         </div>
-    </div>
+        <div class="list-none hidden flex justify-center space-x-8 my-10 " id="menu">
+            <li><a class="hover:underline" href="index.php">Trang chủ</a></li>
+            <li><a class="hover:underline" href="index.php?act=san_pham">Sản phẩm</a></li>
+            <li><a class="hover:underline" href="">Giới Thiệu</a></li>
+            <li><a class="hover:underline" href="">Liên hệ</a></li>
+            <li><a class="hover:underline" href="">Tin Tức</a></li>
 
-
-    <div class="list-none hidden flex justify-center space-x-8 my-10 " id="menu">
-        <li><a class="hover:underline" href="index.php">Trang chủ</a></li>
-        <li><a class="hover:underline" href="index.php?act=san_pham">Sản phẩm</a></li>
-        <li><a class="hover:underline" href="">Giới Thiệu</a></li>
-        <li><a class="hover:underline" href="">Liên hệ</a></li>
-        <li><a class="hover:underline" href="">Tin Tức</a></li>
-
+        </div>
+        <div class="list-none hidden flex justify-center space-x-8 my-10 " id="tk">
+        <form action="index.php?act=san_pham" method="post">
+        <input type="text" placeholder="Tìm kiếm sản phẩm" name="kw">
+        <button type="submit" name="timkiem">Tìm Kiếm</button>
+       
+        </form>
     </div>
     <script>
-        const menu = document.getElementById("menu");
-        const button = document.getElementById("button");
+        const tk = document.getElementById("tk");
+        const tim_kiem = document.getElementById("tim_kiem");
 
-        button.addEventListener("click", function() {
-            menu.classList.toggle("hidden");
+        tim_kiem.addEventListener("click", function() {
+            tk.classList.toggle("hidden");
         });
     </script>
+        <script>
+            const menu = document.getElementById("menu");
+            const button = document.getElementById("button");
+
+            button.addEventListener("click", function() {
+                menu.classList.toggle("hidden");
+            });
+        </script>

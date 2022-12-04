@@ -60,11 +60,6 @@
                         <label for="">Điện thoại *</label><br>
                         <input type="text" placeholder="098+ ?? " name="phone" class="py-4 px-4 w-full border-2 rounded border-[#CFCCC8]" required>
                     </div>
-                    <div class="mx-10 py-10 space-y-4 space-x-4">
-                        <label for="">Vai trò *</label><br>
-                        <input type="radio" name="role" value="1"><label for="">Khách hàng</label>
-                        <input type="radio" name="role" value="1"><label for="">Quản trị viên</label>
-                    </div>
                 </div>
                 <button class="font-semibold text-xl px-6 py-2 bg-black text-[#FFFFFF]" type="submit" name="confirm">Xác nhận</button>
             </div>

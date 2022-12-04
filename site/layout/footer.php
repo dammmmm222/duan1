@@ -56,6 +56,8 @@
         </div>
     </div>
 </footer>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -75,8 +77,25 @@
                 }, 500)
             }, 1000)
         })
-    })
+    });
 </script>
+
+</div>
 </body>
+<script language="javascript">
+    document.getElementById("btn1").onclick = function() {
+        document.getElementById("content").style.display = 'none';
+        document.getElementById("videomain").style.position = 'absolute';
+
+    };
+
+    document.getElementById("btn2").onclick = function() {
+        document.getElementById("content").style.display = 'block';
+        document.getElementById("videomain").style.position = 'fixed';
+
+
+    };
+</script>
+
 
 </html>
