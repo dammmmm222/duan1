@@ -199,7 +199,21 @@ if (isset($_GET['act'])) {
                 $users = loadall_taikhoan();
                 include "user/list.php";
                 break;
-/*
+                case "listorder":
+                    $order = loadall_order_admin();
+                    if (!empty($order)) { 
+                    include "order/listorder.php";
+                    }
+                    break;
+
+                    case "detail_order":
+                        $code_cart = $_GET['code_cart'];
+                       
+                        $listorder_detail = loadone_order($code_cart);
+                        
+                        include "order/detail_order.php";
+                        break;
+/*     
         case "cap_nhat_sp":
             if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
                 $ma_hang_hoa = $_POST['ma_hang_hoa'];

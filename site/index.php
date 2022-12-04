@@ -9,7 +9,9 @@ include "../guest/order.php";
 include "../guest/product.php";
 include "../guest/account.php";
 include "../site/layout/header.php";
-$dsdm=lay_tat_ca_danh_muc();
+
+$dsdm= lay_tat_ca_danh_muc();
+
 $sptop10 = lay_san_pham_noi_bat();
 // Kiểm tra biến chuyển trang ?act
 if (isset($_GET['act'])) {
@@ -21,6 +23,7 @@ if (isset($_GET['act'])) {
       // Trang sản phẩm
     case "san_pham":
          $ds_san_pham = lay_tat_ca_san_pham();
+         
        include "san-pham/products.php";
            break;  
     case 'signup':
@@ -120,8 +123,14 @@ if (isset($_GET['act'])) {
                       include "thanhtoan/camon.php";
                       break;
                       case'thanhtoan':
-                        $money = $_GET['tong'];
+                    if(isset($_SESSION['dangky'])){
+                      $money = $_GET['tong'];
                         include "thanhtoan/xulythanhtoanmomo.php";
+                    }
+                    else{ 
+                      echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Vui lòng đăng nhập để thanh toán</h1>';
+                      include "cart/viewcart.php";
+                    }
                         break;
                    case'detail_order':
                     include "detail_order.php";

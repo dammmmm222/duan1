@@ -111,7 +111,7 @@
                             <a href="" class="text-3xl font-bold">' . $product_name . '</a>
                         </h3>
                 <div class="text-3xl my-2">
-                        <span class="text-violet-900 font-bold">$' . $product_price . '</span>
+                        <span class="text-violet-900 font-bold">' . $product_price . ' VNĐ</span>
                 </div>
                 <button class="border-2 border-violet-900 px-4 py-3 my-8 text-violet-900 font-bold text-xl group-hover:bg-violet-900 group-hover:text-white transition delay-300 duration-300 ease-in-out">
             <form action="index.php?act=addtocart" method="post">
@@ -119,7 +119,7 @@
                 <input type="hidden" name="product_name" value="' . $product_name . '">
                 <input type="hidden" name="image" value="' . $image . '">
                 <input type="hidden" name="product_price" value="' . $product_price . '">
-                <input type="submit" name="addtocart"  value="THÊM VÀO RỎ HÀNG">
+                <input type="submit" name="addtocart"  value="THÊM VÀO GIỎ HÀNG">
             </form>
             
                 </button>

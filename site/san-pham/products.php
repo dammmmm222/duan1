@@ -130,14 +130,14 @@
                 $image2 = $img_path . $image2;
             ?>
                 <div class="">
-                    <a href="index.php?act=productdetail&id= <?php echo $ds_san_pham['id']; ?>">
+                    <a href="index.php?act=productdetail&id= <?php echo $id ?>">
                         <div class="my-10 ">
                             <div class="bg-[#F3F3F3] w-[259px] h-[259px]">
                                 <img src=" <?= $image2 ?> " alt="" class="w-[259px] h-[259px]">
                             </div>
                             <h3 class="text-gray-600 my-2"> <?= $product_name  ?></h3>
                             <div class="flex">
-                                <span><?= $product_price ?></span>
+                                <span><?= $product_price ?> VNĐ</span>
                     </a>
                     <form action="index.php?act=addtocart" method="post">
 

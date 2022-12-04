@@ -15,7 +15,7 @@ if(isset($_GET['partnerCode'])){
 		$ship_name_user =  $get_address['full_name'];
 		$ship_phone_user = $get_address['phone'];
 				//lay thong tin van chuyen
-		$now = time();
+		$now = date('h:i:sa d/m/Y');;
 		//insert database momo
 		$insert_momo = "INSERT INTO tbl_momo(partner_code,order_id,amount,order_info,order_type,trans_id,pay_type,code_cart) VALUE('".$partnerCode."','".$orderId."','".$amount."','".$orderInfo."','".$orderType."','".$transId."','".$payType."','".$code_order."')";
 		$cart_excute = pdo_execute($insert_momo);
