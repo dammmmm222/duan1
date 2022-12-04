@@ -36,6 +36,7 @@
         });
     </script>
 </div>
+
 <div class="dmnb my-10 max-w-[1080px] mx-auto grid grid-cols-2  items-center">
     <div class=""><button class="border-2 border-black py-1 px-5 font-black flex items-center">Danh mục<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity mx-2" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
@@ -183,6 +184,4 @@
     <span class="hover:bg-violet-900 hover:text-white px-4 ml-2 py-2">2</span>
     <span class="hover:bg-violet-900 hover:text-white px-4 py-2">
         Tiếp »</span>
-</div>
-
 </div>
