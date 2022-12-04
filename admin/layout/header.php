@@ -2,103 +2,130 @@
 <html lang="en">
 
 <head>
-    <!--Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Thêm thị user</title>
-    <!--Bootstrap CSS-->
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        body {
-
-            background-image: url(../upload/backgr2.jpg);
-        }
-
-        .left {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        }
-
-        .r {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-
-        .search_up li {
-            list-style: none;
-            border: 1px solid #E0E6E6;
-            border-radius: 10px;
-            background-color: #E1E7E7;
-
-        }
-
-        .search_up input {
-            height: 30px;
-            width: 100%;
-            border-radius: 5px;
-            border: none;
-            padding-left: 6px;
-            outline: none;
-            text-align: center;
-            background-color: #E1E7E7;
-            color: #333;
-            font-family: sans-serif;
-        }
-
-        .search_up {
-            position: relative;
-            border-radius: 5px;
-            width: 90%;
-            margin: 0 auto 15px;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .search_up svg {
-            position: absolute;
-            font-size: 15px;
-            color: #333;
-            line-height: 30px;
-            cursor: pointer;
-            margin: 3px 0 0 7px;
-        }
-
-        .admin {
-            padding-bottom: 50px;
-            height: auto;
-
-        }
-
-
-
-        .ad-l {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-
-        .search_up li {
-            list-style: none;
-            border: 1px solid #E0E6E6;
-            border-radius: 10px;
-            background-color: #E1E7E7;
-
-        }
-    </style>
 </head>
-<html>
 
 <body>
-    <div class="container m-0 mx-auto">
-        <div class="flex justify-between bg-[#BAAACE] p-1 px-4">
-            <div class="left text-white list-none flex space-x-4 ">
-                <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: #e9eAeB;">
-                        <path d="M19.665 16.811a10.316 10.316 0 0 1-1.021 1.837c-.537.767-.978 1.297-1.316 1.592-.525.482-1.089.73-1.692.744-.432 0-.954-.123-1.562-.373-.61-.249-1.17-.371-1.683-.371-.537 0-1.113.122-1.73.371-.616.25-1.114.381-1.495.393-.577.025-1.154-.229-1.729-.764-.367-.32-.826-.87-1.377-1.648-.59-.829-1.075-1.794-1.455-2.891-.407-1.187-.611-2.335-.611-3.447 0-1.273.275-2.372.826-3.292a4.857 4.857 0 0 1 1.73-1.751 4.65 4.65 0 0 1 2.34-.662c.46 0 1.063.142 1.81.422s1.227.422 1.436.422c.158 0 .689-.167 1.593-.498.853-.307 1.573-.434 2.163-.384 1.6.129 2.801.759 3.6 1.895-1.43.867-2.137 2.08-2.123 3.637.012 1.213.453 2.222 1.317 3.023a4.33 4.33 0 0 0 1.315.863c-.106.307-.218.6-.336.882zM15.998 2.38c0 .95-.348 1.838-1.039 2.659-.836.976-1.846 1.541-2.941 1.452a2.955 2.955 0 0 1-.021-.36c0-.913.396-1.889 1.103-2.688.352-.404.8-.741 1.343-1.009.542-.264 1.054-.41 1.536-.435.013.128.019.255.019.381z"></path>
+    <div class="flex mx-auto max-w-screen-2xl">
+        <div class="ad-l w-[15%] mx-10">
+            <div class=""></div>
+            <hr class="my-4">
+            <div class="flex">
+                <div class="my-auto mx-auto">
+                    <svg class="w-[25%] rotate-90 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z" />
                     </svg>
-                </a>
-                <li><a href="" class="hover:underline">Maps</a></li>
-                <li><a href="" class="hover:underline">File</a></li>
-                <li><a href="" class="hover:underline">Edit</a></li>
-                <li><a href="" class="hover:underline">View</a></li>
-                <li><a href="" class="hover:underline">Window</a></li>
-                <li><a href="" class="hover:underline">Help</a></li>
+                    <div class="rotate-90 mt-10">
+
+                        <span>R</span>
+                        <span>O</span>
+                        <span>Y</span>
+                        <span>A</span>
+                        <span>L</span>
+                    </div>
+                </div>
+
+                <img src="img/257v65a2827x5645_1440_1200.webp" alt="" width="70%" class="mx-auto">
             </div>
+            <hr class="my-2">
+            <div class="bg-slate-50 h-[500px]">
+                <div class="flex pb-4 pt-4 px-4 items-center space-x-2 hover:bg-cyan-300 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FC1269" class="bi bi-shop"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+                    </svg>
+                    <a href="../site/index.php" class="hover:text-[#551AA9]">Xem trang Web</a>
+                </div>
+                <div class="flex py-4 px-4 items-center space-x-2  hover:bg-cyan-300 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#62C6FC"
+                        class="bi bi-house-gear" viewBox="0 0 16 16">
+                        <path
+                            d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.708L8 2.207l-5 5V13.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 2 13.5V8.207l-.646.647a.5.5 0 1 1-.708-.708L7.293 1.5Z" />
+                        <path
+                            d="M11.886 9.46c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.044c-.613-.181-.613-1.049 0-1.23l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
+                    </svg>
+                    <a href="#" class="hover:text-[#551AA9]">Trang chủ</a>
+                </div>
+
+                <div class="flex py-4 px-4 hover:bg-cyan-300 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="fill: #5fe6c2;">
+                        <circle cx="18" cy="6" r="3"></circle>
+                        <path
+                            d="M13 6c0-.712.153-1.387.422-2H6c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7.422A4.962 4.962 0 0 1 18 11a5 5 0 0 1-5-5z">
+                        </path>
+                    </svg>
+                    <a href="index.php?act=listsp" class="hover:text-[#551AA9]">Quản Lý sản phẩm</a>
+                </div>
+                <div class="flex py-4 px-4 hover:bg-cyan-300 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="fill: #3e4a87;">
+                        <circle cx="18" cy="6" r="3"></circle>
+                        <path
+                            d="M13 6c0-.712.153-1.387.422-2H6c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7.422A4.962 4.962 0 0 1 18 11a5 5 0 0 1-5-5z">
+                        </path>
+                    </svg>
+                    <a href="index.php?act=list-user" class="hover:text-[#551AA9]">Quản Lý Users</a>
+                </div>
+                <div class="flex py-4 px-4 hover:bg-cyan-300 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="fill: #34fafe;">
+                        <circle cx="18" cy="6" r="3"></circle>
+                        <path
+                            d="M13 6c0-.712.153-1.387.422-2H6c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7.422A4.962 4.962 0 0 1 18 11a5 5 0 0 1-5-5z">
+                        </path>
+                    </svg>
+                    <a href="index.php?act=list-cate" class="hover:text-[#551AA9]">Quản Lý Danh Mục</a>
+                </div>
+                <div class="flex py-4 px-4 space-x-2 hover:bg-cyan-300 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-chat-quote" viewBox="0 0 16 16">
+                        <path
+                            d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
+                        <path
+                            d="M7.066 6.76A1.665 1.665 0 0 0 4 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z" />
+                    </svg>
+                    <!-- cần update -->
+                    <a href="#" class="hover:text-[#551AA9]">Bình Luận</a>
+                </div>
+                <div class="flex py-4 px-4 space-x-2 hover:bg-cyan-300 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-truck" viewBox="0 0 16 16">
+                        <path
+                            d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                    </svg>
+                    <!-- cần update -->
+                    <a href="#" class="hover:text-[#551AA9]">Đơn Hàng</a>
+                </div>
+
+                <div class="flex py-4 px-4 hover:bg-cyan-300 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="fill: black;">
+                        <path d="M5 3H3v18h18v-2H5z"></path>
+                        <path d="M13 12.586 8.707 8.293 7.293 9.707 13 15.414l3-3 4.293 4.293 1.414-1.414L16 9.586z">
+                        </path>
+                    </svg>
+                    <!-- cần update -->
+                    <a href="" class="hover:text-[#551AA9]">Thống kê</a>
+                </div>
+            </div>
+        </div>
+        <div class="ad-r w-[80%] ">
+            <div class="flex mt-8 mb-4 mx-8 space-x-2 items-center justify-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                </svg>
+                <h3 class="">
+                <?php echo isset($_SESSION['dangky']) ? 'Chào: '.$_SESSION['dangky'] :  '<a href="user.php">Tài khoản</a>' ?>
+                </h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20" fill="currentColor"
+                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+            </div>
+            <hr class="mr-8">

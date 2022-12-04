@@ -18,10 +18,11 @@ if(isset($_GET['partnerCode'])){
 		$now = time();
 		//insert database momo
 		$insert_momo = "INSERT INTO tbl_momo(partner_code,order_id,amount,order_info,order_type,trans_id,pay_type,code_cart) VALUE('".$partnerCode."','".$orderId."','".$amount."','".$orderInfo."','".$orderType."','".$transId."','".$payType."','".$code_order."')";
-		pdo_execute($insert_momo);
+		$cart_excute = pdo_execute($insert_momo);
+		if($_GET['message']== "Giao dịch thành công."){
 			$insert_order = "INSERT INTO `order`(id_user,code_cart,status,total,time,ship_address,ship_name_user,ship_phone_user,pttt)
 			 VALUE('".$id_khachhang."','".$code_order."',1,'".$amount."','".$now."','".$ship_address."','".$ship_name_user."','".$ship_phone_user."','".$cart_payment."')";
-			pdo_execute($insert_order);
+			  pdo_execute($insert_order);	
 			//insert gio hàng
 			//them don hàng chi tiet
 			foreach($_SESSION['cart'] as $key => $value){
@@ -33,9 +34,12 @@ if(isset($_GET['partnerCode'])){
 				pdo_execute($insert_order_details);
 			}
 			unset($_SESSION['cart']);
-			echo '<h3>Giao dịch thanh toán bằng MOMO thành công</h3>';
-			echo '<p>Vui lòng vào trang <a target="_blank" href="index.php?act=detail_order">lịch sử đơn hàng</a> để xem chi tiết đơn hàng của bạn</p>';
+			echo '<h3 class=" text-center text-[32px]">Giao dịch thanh toán bằng MOMO thành công</h3>';
+			echo '<p  class=" text-center text-[32px] ">Vui lòng vào trang <a  href="index.php?act=detail_order" class="border border-slate-300 ">lịch sử đơn hàng</a> để xem chi tiết đơn hàng của bạn</p>';
+		}
+		else{
+			echo '<h3 class=" text-center text-[32px]">Giao dịch thanh toán bằng MOMO thất bại</h3>';
 
-
+		}
 	}
 ?>

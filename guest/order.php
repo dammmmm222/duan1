@@ -21,7 +21,7 @@ function insert_detail_order($idorder, $idpro, $quanlity, $total)
 
 function loadone_order($id)
 {
-    $sql = "SELECT * FROM `detail_order`,`product` WHERE `detail_order`.id_product = `product`.id ";
+    $sql = "SELECT * FROM `detail_order`,`product` WHERE `detail_order`.id_product = `product`.id and id_order=".$id;
     $bill = pdo_query($sql);
     return $bill;
 }
@@ -37,7 +37,7 @@ function loadall_order_count($id)
     $bill = pdo_query($sql);
     return sizeof($bill);
 }
-function order_detail($listorder_detail,$order){
+function order_detail($order){
      $img_path  = "../upload/";
     $tong = 0;
     $i = 0;
@@ -52,10 +52,17 @@ function order_detail($listorder_detail,$order){
                 <label for="">'.$pttt.'</label>
             </div>
         </div>';
+                    $code_cart = $order['code_cart'];
+                    $listorder_detail = loadone_order($code_cart);
+          $tong = 0;
       foreach($listorder_detail as $listorder){
           $price = $listorder['quanlity']*$listorder['product_price'];
           $tong += $price;
           $hinh = $img_path . $listorder['image'];
+          $id_size = $listorder['size'];
+          $id_color = $listorder['color'];
+          $size = size_one($id_size);
+          $color = color_one($id_color);
           echo'  
           <hr>
           <div class="flex my-10 grid grid-cols-4">
@@ -64,7 +71,7 @@ function order_detail($listorder_detail,$order){
                   <div class="">
                       <h3 class="font-semibold"> '.$listorder['product_name'].'</h3>
                       <label class="my-10">Số Lượng : '.$listorder['quanlity'].' </label><br>
-                      <label class="my-10">Phân loại hàng : ###</label>
+                      <label class="my-10">Phân loại hàng : Size '.$size['size'].", ".$color['color'].'   </label>
                   </div>
                   <div class="">
                       <span><del class="text-gray-400 mx-4">$'.$listorder['product_price_sale'].'</del></span>
@@ -118,6 +125,18 @@ function get_ttdh($n)
             break;
     }
     return $tt;
+}
+
+function size_one($id){
+    $sql = "SELECT * FROM `size` where id_size=".$id ;
+    $size = pdo_query_one($sql);
+    return $size;
+}
+
+function color_one($id){
+    $sql = "SELECT * FROM `color` where id_color=".$id ;
+    $color = pdo_query_one($sql);
+    return $color;
 }
 
 function size($id){

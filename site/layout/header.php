@@ -175,7 +175,11 @@
             <div class="flex gap-10 justify-end items-center">
 
                 <div class="flex space-x-4">
-                    <button id="btn2">Tài khoản</button>
+                    <button id="btn2 "> 
+
+                    <?php echo isset($_SESSION['dangky']) ? 'Chào: '.$_SESSION['dangky'] :  '<a href="user.php">Tài khoản</a>' ?>
+
+                    </button>
                     <a href="index.php?act=viewcart">
 
                         <div id="cart" class="cart" data-totalitems="0">
@@ -188,10 +192,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
 
 
