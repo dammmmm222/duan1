@@ -85,6 +85,7 @@ function lay_san_pham_theo_ma($id)
     return $san_pham;
 }
 
+
 // Truy vấn tất cả hàng hóa theo mã loại(có cùng mã loại) và phải khác mã hàng hóa sắp xếp theo mã hàng hóa giảm giá giới hạn là 3 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
 function lay_san_pham_lien_quan($id, $id_categories)
 {

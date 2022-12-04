@@ -1,3 +1,4 @@
+
 <?php
 function loadall_taikhoan()
 {
@@ -17,30 +18,38 @@ function search_id()
     $listtaikhoan = pdo_query_one($sql);
     $iduser = $listtaikhoan['id'];
     return $iduser;
+
 }
-function insert_taikhoan($user, $pass, $email)
+
+// Cập nhật tài khoản phía admin
+function cap_nhat_tai_khoan_admin($id, $user_name, $full_name, $email, $phone, $address, $password, $role)
 {
-    $sql = "insert into taikhoan(user,pass,email) values('$user','$pass','$email')";
+    $sql = "UPDATE `user` SET `user_name`='$user_name',`full_name`='$full_name',`email`='$email',`phone`='$phone',`address`='$address',`password`='$password',`role`='$role' WHERE `id` = '$id'";
     pdo_execute($sql);
 }
 
-function check_email($email)
+// Xóa tài khoản theo mã khách hàng
+function xoa_tai_khoan($id)
 {
-    $sql = "select * from taikhoan where email='" . $email . "'";
-    $kq = pdo_query_one($sql);
-    return $kq;
+    $sql = "DELETE FROM user WHERE id = '$id'";
+    pdo_execute($sql);
 }
 
-function check_user($user, $pass)
+// Kiểm tra email
+function ktra_email($email)
 {
-    $sql = "select * from user where user_name='" . $user . "' AND password='" . $pass . "'";
-    $kq = pdo_query_one($sql);
-    return $kq;
+    // Truy vấn đến tài khoản mà email trùng với tham số email truyền vào
+    $sql = "SELECT * FROM khach_hang WHERE email = '$email'";
+    $tai_khoan_email = pdo_query_one($sql);
+    return $tai_khoan_email;
 }
 
-function update_taikhoan($id, $user, $pass, $email, $address, $tel)
+// Kiểm tài khoản có tồn tại trong database ko
+
+// Cập nhật mật khẩu theo mã khách hàng
+function doi_mat_khau_tai_khoan($ma_kh, $mat_khau_moi)
 {
-    $sql = "update taikhoan set user='" . $user . "', pass='" . $pass . "',email='" . $email . "',address='" . $address . "',tel='" . $tel . "'where id=" . $id;
+    $sql = "UPDATE khach_hang SET mat_khau = '$mat_khau_moi' WHERE ma_kh = '$ma_kh'";
     pdo_execute($sql);
 }
 
