@@ -7,8 +7,6 @@ if (is_array($danh_muc)) {
 ?>
 <div class="home mt-5 px-40 py-10 mr-8 bg-[#F4F6FA] h-auto rounded">
     <div class="ad-r">
-
-
         <!-- Lưu lại id dể update -->
 
         <div class="">

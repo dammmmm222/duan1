@@ -23,7 +23,16 @@ function lay_tat_ca_danh_muc($order = "DESC") // Tham số order nhận giá tr�
     $ds_danh_muc = pdo_query($sql);
     return $ds_danh_muc;
 }
-
+function load_ten_dm($idmm){
+    if($idmm>0){
+    $sql="select * from categories where id=".$idmm;
+    $dm= pdo_query_one($sql);
+    extract($dm);
+    return $categories_name;
+    }else {
+        return "";
+    }
+} 
 // Truy vấn một loại hàng theo mã loại
 function lay_danh_muc_theo_ma($id)
 {

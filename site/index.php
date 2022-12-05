@@ -12,7 +12,6 @@ include "../guest/binh_luan.php";
 include "../site/layout/header.php";
 
 $dsdm= lay_tat_ca_danh_muc();
-
 $sptop10 = lay_san_pham_noi_bat();
 // Kiểm tra biến chuyển trang ?act
 if (isset($_GET['act'])) {
@@ -22,11 +21,22 @@ if (isset($_GET['act'])) {
   // Kiểm tra các trường hợp chuyển trang
   switch ($act) {
       // Trang sản phẩm
-    case "san_pham":
-         $ds_san_pham = lay_tat_ca_san_pham();
-         
+      case "san_pham":
+        if (isset($_POST['kw']) && ($_POST['kw'] != "")) {
+            $kw = $_POST['kw'];
+        } else {
+            $kw = "";
+        }
+        if (isset($_GET['iddm']) && ($_GET['iddm'] > 0)) {
+          $iddm = $_GET['iddm'];
+      } else {
+          $iddm = 0;
+      }
+        $ds_san_pham = lay_tat_ca_san_pham($kw,$iddm);
+        $tendm = load_ten_dm($iddm);
+        //  $ds_san_pham = lay_san_pham_theo_kw($kw);
        include "san-pham/products.php";
-           break;  
+           break; 
     case 'signup':
       	if(isset($_POST['confirm'])) {
 	          	$username = $_POST['username'];
@@ -113,11 +123,17 @@ if (isset($_GET['act'])) {
           case 'viewcart':
             include "cart/viewcart.php";
                 break;
+                case "gioi_thieu":
+                  include "layout/gioithieu.php";
+                  break;
+            
+                case "lien_he":
+                  include "layout/lienhe.php";
+                  break;
                   case "productdetail":
                     $pro = [];
                     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                       $pro = showspdetail($_GET['id']);
-                      $danh_sach_bl = [];
                       if (isset($_POST['stars'])) {
                         $comment = $_POST['comment'];
                         $ma_hang_hoa = $_GET['id'];
@@ -131,13 +147,19 @@ if (isset($_GET['act'])) {
                    
                         them_binh_luan($comment, $_GET['id'], $_SESSION['id_user'], $ngay_bl, $stars);
                       $danh_sach_bl = lay_binh_luan_theo_hh($ma_hang_hoa);
-
-                      }
                       include "san-pham/productdetail.php";
+                      }
+                      
                       
                       // Lấy danh sách bình luận theo hàng hóa với tham số $ma_hang_hoa ở trên
 
-                    } 
+                    
+                    else {
+                      $ma_hang_hoa = $_GET['id'];
+                      $danh_sach_bl = lay_binh_luan_theo_hh($ma_hang_hoa);
+                      include "san-pham/productdetail.php";
+
+                    } }
                     break;
                     case'camon':
                       include "thanhtoan/camon.php";

@@ -44,13 +44,28 @@ function loadall_ALL_product()
     $list_product = pdo_query($sql);
     return $list_product;
 }
-
-// Truy vấn tất cả hàng hóa
-function lay_tat_ca_san_pham()
+function lay_tat_ca_san_pham_admin()
 {
     $sql = "SELECT * FROM product ORDER BY id DESC";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
+}
+// Truy vấn tất cả hàng hóa
+function lay_tat_ca_san_pham($kw="",$iddm)
+{
+    // $sql = "SELECT * FROM product ORDER BY id DESC";
+    // $ds_san_pham = pdo_query($sql);
+    // return $ds_san_pham;
+    $sql="select * from product where 1";
+        if($kw!=""){
+            $sql.=" and product_name like '%".$kw."%'";
+        }
+        if($iddm>0){
+            $sql.= " and id_categories = '".$iddm."'";
+        }
+        
+        $ds_san_pham=pdo_query($sql);
+        return $ds_san_pham;
 }
 
 // Truy vấn tất cả hàng hóa theo sắp xếp theo số lượt xem giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
@@ -135,51 +150,3 @@ function cap_nhat_san_pham($id, $product_name, $product_price, $product_price_sa
     }
     pdo_execute($sql);
 }
-/*
-// Truy vấn hàng hóa theo trang page
-// Truyền vào 2 tham số order: sắp xếp theo cái gì đó, limit: giới hạn dữ liệu xuất hiện(hiển thị)
-function lay_san_pham_theo_trang($order, $limit)
-{
-    if (!isset($_GET['page'])) {
-        $_SESSION['page'] = 1;
-    }
-    if (!isset($_SESSION['total_page'])) {
-        $_SESSION['total_page'] = 1;
-    }
-    // Sử pdo_query_value để lấy giá trị của câu lệnh sql count trả về(ở đây là lấy số lượng hàng hóa trong bảng hang_hoa)
-    // Khởi tạo một biến $_SESSION['total_pro'](chứa số lượng sản phẩm)
-    $_SESSION['total_pro'] = pdo_query_value("SELECT count(*) FROM hang_hoa");
-    // Nếu tồn tại biến page ở trên url 
-    if (isset($_GET['page'])) {
-        // Khởi tạo $_SESSION['page'] chứa biến page
-        $_SESSION['page'] = $_GET['page'];
-    }
-    // Tạo biến begin để câu lệnh LIMIT lấy bắt đầu từ vị trí index = ?
-    $begin = ($_SESSION['page'] - 1) * $limit;
-    // ceil() làm tròn lên số nguyên gần nhất
-    // Lấy $_SESSION['total_pro'] chia cho tham số $limit truyền vào và làm tròn lên số nguyên gần nhất gán vào biến $_SESSION['total_page']
-    $_SESSION['total_page'] = ceil($_SESSION['total_pro'] / $limit);
-    // Truy vấn tất cả sản phẩm từ bảng hàng hóa sắp xếp theo tham số order truyền vào lấy tất cả sản phẩm từ vị trí $begin, và giới hạn $limit
-    $sql = "SELECT * FROM hang_hoa ORDER BY $order DESC LIMIT $begin, $limit";
-    return pdo_query($sql);
-}
-
-/*
-  Ví dụ: Nếu người dùng chọn vào phím 1(trang đầu tiên)
-
-  $_SESSION['total_pro'] = số lượng sản phẩm trong bảng hàng hóa (ở đây là 26 * có thể tăng ...) = 26
-
-  Nếu tồn tại biến page trên url thì lưu vào $_SESSION['page'] (trường hợp người dùng không nhấn vào trang số nào thường là khi mới vào trang sản phẩm thì mặc định $_SESSION['PAGE'] = 1)
-
-  Tính vị trí index đầu tiên bắt đầu lấy từ câu lệnh LIMIT và lưu vào biến $begin bằng :
-    Lấy số trang - 1 * với tham số giới hạn truyền vào(ví dụ là 16)
-         (1 - 1) * 16 = 0
-         
-  Tính số trang để hiển thị số sản phẩm theo tham số $limit truyền vào và lưu vào biến $_SESSION['total_page'] bằng
-    Tổng số sản phẩm / giới hạn $limit truyền vào(16)
-        26 / 16 = 1.625 --> 2 Sử dụng ceil(làm tròn lên số nguyên gần nhất)
-
-  Viết câu lệnh sql truy vấn tất cả sản phẩm trong bảng hang_hoa sắp xếp theo tham số $order có thể truyền vào các thuộc tính trong bảng(ma_hang_hoa, ten_hang_hoa. don_gia, ...) và dùng câu lệnh LIMIT để lấy sản phẩm bắt đầu từ vị trí $begin(0) ở đây là do sắp xếp giảm dần nên sẽ lấy tử vị trí cuối cùng trở đi là $begin(26) và chỉ lấy giới hạn tổng số $limit(16) sản phẩm
-  
-  Các trường hợp còn lại tương tự khi ấn vào trang số khác như 2, 3, 4, 5, ...
-*/

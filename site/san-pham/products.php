@@ -14,7 +14,7 @@
             <?php
                 foreach ($dsdm as $dm){
                     extract($dm);
-                    $linkdm = "index.php?act=sanpham&iddm=" . $id;
+                    $linkdm = "index.php?act=san_pham&iddm=" . $id;
                     echo'
                         <li>
                         <a href="' . $linkdm . '">' . $categories_name . '</a>
@@ -49,47 +49,7 @@
         <div class="">
             <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Sản phẩm nổi bật
             </h2>
-            <!-- <div class="flex items-center">
-                <img srcset="../upload/LV4.webp 6x" alt="">
-                <div class="">
-                    <h3 class=" text-gray-600">Bolsa De Transporte</h3>
-                    <div class="flex">
-                        <span class="mx-4 my-2">$499</span>
-                        <del class="mx-4 my-2 text-gray-600">$999</del>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-center my-4">
-                <img srcset="../upload/chanel.jpg 4x" alt="" class="ml-6">
-                <div class="mx-4">
-                    <h3 class="ml-2 text-gray-600">Bolsa De Transporte</h3>
-                    <div class="flex">
-                        <span class="mx-4 my-2">$499</span>
-                        <del class="mx-4 my-2">$999</del>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-center my-4">
-                <img srcset="../upload/LV15.webp 9x" alt="">
-                <div class="">
-                    <h3 class="text-gray-600">VIVIENNE BANDEAU</h3>
-                    <div class="flex">
-                        <span class="mx-4 my-2">$499</span>
-                        <del class="mx-4 my-2">$999</del>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="flex items-center ml-2">
-                <img srcset="../upload/gucci.jpg 8x" alt="">
-                <div class="">
-                    <h3 class="ml-4 text-gray-600">Bolsa De Transporte</h3>
-                    <div class="flex">
-                        <span class="mx-4 my-2">$499</span>
-                        <del class="mx-4 my-2">$999</del>
-                    </div>
-                </div>
-            </div> -->
+         
             <?php
             foreach ($sptop10 as $dssp){
                 extract($dssp);
@@ -97,7 +57,7 @@
                 $image2 = $img_path . $image2;
                 echo '
                 <div class="flex items-center ml-2">
-                <img srcset="'.$image2.' 8x" alt="">
+                <img srcset="'.$image2.' " alt="" class="w-[135px] h-[135px]">
                 <div class="">
                     <a href="' . $linksp . '" class="ml-4 text-gray-600">'.$product_name.'</a>
                     <div class="flex">

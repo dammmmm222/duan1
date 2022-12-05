@@ -101,7 +101,7 @@ if (isset($_GET['act'])) {
 
         case "listsp":
             $ds_danh_muc = lay_tat_ca_danh_muc();
-            $danh_sach_sp = lay_tat_ca_san_pham();
+            $danh_sach_sp = lay_tat_ca_san_pham_admin();
             include "san_pham/listsp.php";
             break;
 
@@ -114,8 +114,8 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id']) && ($_GET['id']) > 0) {
                 $san_pham = xoa_san_pham($_GET['id']);
             }
-            $danh_sach_sp = lay_tat_ca_san_pham();
-            include "san_pham/listsp.php";
+            $danh_sach_sp = lay_tat_ca_san_pham_admin();
+            include "san_pham/listsp.php";  
             break;
 
         case "sua_san_pham":
@@ -149,7 +149,7 @@ if (isset($_GET['act'])) {
 
                 cap_nhat_san_pham($id, $product_name, $product_price, $product_price_sale, $description, $origin, $image2, $id_categories);
             }
-            $danh_sach_sp = lay_tat_ca_san_pham();
+            $danh_sach_sp = lay_tat_ca_san_pham_admin();
             include "san_pham/listsp.php";
             break;
         case "them_tai_khoan":
@@ -249,7 +249,7 @@ if (isset($_GET['act'])) {
                 cap_nhat_san_pham($ma_hang_hoa, $ten_hang_hoa, $don_gia, $giam_gia, $hinh, $ngay_nhap, $mau, $mo_ta, $thong_so, $dac_biet, $so_luot_xem, $ma_loai);
                 $thong_bao = "Cập nhật thành công";
             }
-            $danh_sach_sp = lay_san_pham_theo_trang('ma_hang_hoa', 10);
+            $danh_sach_sp = lay_tat_ca_san_pham_admin();
             include "san_pham/list.php";
             break;
 
@@ -289,7 +289,7 @@ if (isset($_GET['act'])) {
 
         default:
             $danh_muc = count(lay_tat_ca_danh_muc());
-            $san_pham = count(lay_tat_ca_san_pham());
+            $san_pham = count(lay_tat_ca_san_pham_admin());
             $tai_khoan = count(loadall_taikhoan());
             /* $binh_luan = count(lay_tat_ca_binh_luan());*/
             include "layout/home.php";
@@ -297,7 +297,7 @@ if (isset($_GET['act'])) {
     }
 } else {
     $danh_muc = count(lay_tat_ca_danh_muc());
-    $san_pham = count(lay_tat_ca_san_pham());
+    $san_pham = count(lay_tat_ca_san_pham_admin());
     $tai_khoan = count(loadall_taikhoan());
     /*  $binh_luan = count(lay_tat_ca_binh_luan());*/
     include "layout/home.php";
