@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2022 at 03:25 PM
+-- Generation Time: Dec 08, 2022 at 04:46 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -38,7 +38,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `categories_name`, `image`) VALUES
-(1, 'Áo', NULL);
+(22, 'Túi', 'vi12.jpg'),
+(23, 'Balo', 'balo12.jpg'),
+(24, 'Giày', 'giay12.jpg'),
+(27, 'Phụ kiện', 'tui12.jpg');
 
 -- --------------------------------------------------------
 
@@ -70,8 +73,8 @@ CREATE TABLE `detail_order` (
   `id_product` int(11) DEFAULT NULL,
   `id_order` int(11) DEFAULT NULL,
   `quanlity` int(11) DEFAULT NULL,
-  `size` int(11) NOT NULL,
-  `color` int(11) NOT NULL
+  `size` varchar(20) DEFAULT NULL,
+  `color` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -79,16 +82,10 @@ CREATE TABLE `detail_order` (
 --
 
 INSERT INTO `detail_order` (`id`, `id_product`, `id_order`, `quanlity`, `size`, `color`) VALUES
-(40, 1, 1433, 26, 2, 1),
-(41, 2, 1433, 5, 2, 1),
-(42, 3, 1433, 7, 2, 1),
-(43, 1, 5020, 27, 2, 1),
-(44, 2, 5020, 5, 2, 1),
-(45, 3, 5020, 7, 2, 1),
-(46, 2, 4097, 11, 2, 1),
-(47, 2, 203, 11, 2, 1),
-(48, 2, 3746, 11, 2, 1),
-(49, 1, 7454, 10, 2, 1);
+(67, 8, 7081, 1, '2', '1'),
+(68, 6, 4646, 1, '2', '1'),
+(69, 6, 8639, 2, 'L', 'green'),
+(70, 6, 8639, 1, 'XL', 'black');
 
 -- --------------------------------------------------------
 
@@ -114,24 +111,9 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id`, `id_user`, `code_cart`, `status`, `total`, `time`, `ship_address`, `ship_name_user`, `ship_phone_user`, `pttt`) VALUES
-(1, 14, '5977', 1, 100000, '0000-00-00 00:00:00', 'Ha noi', 'Phi', '00000098', 'momo'),
-(2, 14, '166', 1, 100000, '0000-00-00 00:00:00', 'Ha noi', 'Phi', '00000098', 'momo'),
-(3, 14, '1814', 1, 100000, '0000-00-00 00:00:00', 'Ha noi', 'Phi', '00000098', 'momo'),
-(25, 14, '8511', 1, 100000, '0000-00-00 00:00:00', 'TDP Vĩnh Thịnh]', 'phi2', '099999]', 'momo'),
-(26, 14, '3092', 1, 100000, '0000-00-00 00:00:00', 'TDP Vĩnh Thịnh]', 'phi2', '099999]', 'momo'),
-(27, 15, '3026', 1, 12000, '0000-00-00 00:00:00', 'Hà]', 'phi', '000000]', 'momo'),
-(28, 17, '3619', 1, 12000, '0000-00-00 00:00:00', 'TDP Vĩnh Thịnh]', 'phi', '0862323322]', 'momo'),
-(29, 17, '4979', 1, 12000, '0000-00-00 00:00:00', 'TDP Vĩnh Thịnh]', 'phi', '0862323322]', 'momo'),
-(30, 17, '8944', 1, 12000, '0000-00-00 00:00:00', 'TDP Vĩnh Thịnh]', 'phi', '0862323322]', 'momo'),
-(31, 18, '2344', 1, 3000, '0000-00-00 00:00:00', 'Hà nội]', 'vippro2020', '098777]', 'momo'),
-(32, 19, '4150', 1, 6000, '0000-00-00 00:00:00', 'Ha noi]', 'Phi', '0862323322]', 'momo'),
-(34, 21, '5390', 1, 38000, '0000-00-00 00:00:00', 'vippro2020]', 'phi', '2222]', 'momo'),
-(35, 21, '1433', 1, 38000, '0000-00-00 00:00:00', 'vippro2020]', 'phi', '2222]', 'momo'),
-(36, 21, '5020', 1, 39000, '0000-00-00 00:00:00', 'vippro2020]', 'phi', '2222]', 'momo'),
-(37, 21, '4097', 1, 11000, '0000-00-00 00:00:00', 'vippro2020]', 'phi', '2222]', 'momo'),
-(38, 21, '203', 1, 11000, '0000-00-00 00:00:00', 'vippro2020]', 'phi', '2222]', 'momo'),
-(39, 21, '3746', 1, 11000, '0000-00-00 00:00:00', 'vippro2020]', 'phi', '2222]', 'momo'),
-(40, 21, '7454', 1, 10000, '0000-00-00 00:00:00', 'vippro2020]', 'phi', '2222]', 'momo');
+(79, 22, '7081', 3, 299000, '0000-00-00 00:00:00', 'hà nội', 'Trần Hoàng Phi', '09866663', 'COD'),
+(80, 24, '4646', 2, 499000, '0000-00-00 00:00:00', 'TDP Vĩnh Thịnh', 'admin', '988888887', 'COD'),
+(82, 24, '8639', 2, 1497000, '0000-00-00 00:00:00', 'TDP Vĩnh Thịnh', 'admin', '988888887', 'COD');
 
 -- --------------------------------------------------------
 
@@ -158,9 +140,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_categories`, `product_name`, `product_price`, `product_price_sale`, `description`, `origin`, `image`, `image2`, `image3`, `view`) VALUES
-(1, 1, 'Áo dài', '1000', '2222', 'Áo dài cách tân', 'Việt Nam', 'detaildior1.png', 'detaildior1.png', 'detaildior1.png', 0),
-(2, 1, 'Áo dài', '1000', '2222', 'Áo dài cách tân', 'Việt Nam', 'detaildior1.png', 'detaildior1.png', 'detaildior1.png', 0),
-(3, 1, 'Áo dài', '1000', '2222', 'Áo dài cách tân', 'Việt Nam', 'detaildior1.png', 'detaildior1.png', 'detaildior1.png', 0);
+(6, 24, 'TÚI SÁCH DIOR LỚN', '499000', '999000', 'Dior Dior', 'Italy', 'detaildior1.png', 'dior.webp', 'detaildior3.webp', 64),
+(8, 23, 'Khăn Louis VT', '299000', '999000', 'Vivienne bandeau ghi lại cảm giác phấn khích khi đi du lịch. Nó được chế tác từ lụa mịn và được trang trí bằng những hình minh họa giàu trí tưởng tượng của nhân vật Vivienne đến thăm Ngôi nhà Louis Vuitton ở Tokyo. Đan xen vào thiết kế vui tươi là rất nhiều biểu tượng Ngôi nhà bao gồm hoa văn Chữ lồng và Hoa chữ lồng.', 'Hoa Kỳ', 'LVkhan1.webp', 'LVkhan.webp', 'LVkhan3.webp', 34),
+(15, 22, 'Túi LV Yellow', '799000', '999000', 'Phối màu xanh da trời theo mùa mát mẻ làm tươi mới chiếc áo sơ mi nam tính trường tồn với thời gian này. Được thiết kế theo kiểu dáng hình hộp thoải mái được cắt từ vải twill mềm mại được in phủ ngoài với họa tiết Monogram ngoại cỡ.', 'Hoa Kì', 'tui3.webp', 'tui1.webp', 'tui2.webp', 7);
 
 -- --------------------------------------------------------
 
@@ -172,7 +154,9 @@ CREATE TABLE `product_rev` (
   `id` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   `id_product` int(11) DEFAULT NULL,
-  `stars` tinyint(4) DEFAULT NULL
+  `stars` tinyint(4) DEFAULT NULL,
+  `comment` varchar(255) NOT NULL,
+  `ngay_bl` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -185,6 +169,14 @@ CREATE TABLE `role` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name`) VALUES
+(0, 'Khách hàng'),
+(1, 'Quản trị viên');
 
 -- --------------------------------------------------------
 
@@ -318,7 +310,39 @@ INSERT INTO `tbl_momo` (`id_momo`, `partner_code`, `order_id`, `amount`, `order_
 (79, 'MOMOBKUN20180529', '1670075723', '11000', 'Thanh toán qua momo', 'momo_wallet', '2807612358', 'qr', '4097'),
 (80, 'MOMOBKUN20180529', '1670075808', '11000', 'Thanh toán qua momo', 'momo_wallet', '1670075813505', '', '203'),
 (81, 'MOMOBKUN20180529', '1670075911', '11000', 'Thanh toán qua momo', 'momo_wallet', '1670075916023', '', '3746'),
-(82, 'MOMOBKUN20180529', '1670077142', '10000', 'Thanh toán qua momo', 'momo_wallet', '1670077154383', '', '7454');
+(82, 'MOMOBKUN20180529', '1670077142', '10000', 'Thanh toán qua momo', 'momo_wallet', '1670077154383', '', '7454'),
+(83, 'MOMOBKUN20180529', '1670077736', '17000', 'Thanh toán qua momo', 'momo_wallet', '1670077740703', '', '3356'),
+(84, 'MOMOBKUN20180529', '1670077736', '17000', 'Thanh toán qua momo', 'momo_wallet', '1670077740703', '', '7429'),
+(85, 'MOMOBKUN20180529', '1670077736', '17000', 'Thanh toán qua momo', 'momo_wallet', '1670077740703', '', '873'),
+(86, 'MOMOBKUN20180529', '1670077736', '17000', 'Thanh toán qua momo', 'momo_wallet', '1670077740703', '', '3272'),
+(87, 'MOMOBKUN20180529', '1670086310', '13000', 'Thanh toán qua momo', 'momo_wallet', '1670086314847', '', '6230'),
+(88, 'MOMOBKUN20180529', '1670086310', '13000', 'Thanh toán qua momo', 'momo_wallet', '1670086314847', '', '5142'),
+(89, 'MOMOBKUN20180529', '1670086339', '13000', 'Thanh toán qua momo', 'momo_wallet', '1670086343706', '', '7407'),
+(90, 'MOMOBKUN20180529', '1670086424', '14000', 'Thanh toán qua momo', 'momo_wallet', '1670086432600', '', '2337'),
+(91, 'MOMOBKUN20180529', '1670086588', '15000', 'Thanh toán qua momo', 'momo_wallet', '1670086593923', '', '2421'),
+(92, 'MOMOBKUN20180529', '1670086679', '16000', 'Thanh toán qua momo', 'momo_wallet', '2807614794', 'qr', '153'),
+(93, 'MOMOBKUN20180529', '1670087041', '16000', 'Thanh toán qua momo', 'momo_wallet', '1670087045871', '', '2912'),
+(94, 'MOMOBKUN20180529', '1670097115', '11000', 'Thanh toán qua momo', 'momo_wallet', '1670097129120', '', '1714'),
+(95, 'MOMOBKUN20180529', '1670097115', '11000', 'Thanh toán qua momo', 'momo_wallet', '1670097129120', '', '413'),
+(96, 'MOMOBKUN20180529', '1670097185', '11000', 'Thanh toán qua momo', 'momo_wallet', '2807617050', 'qr', '5201'),
+(97, 'MOMOBKUN20180529', '1670097185', '11000', 'Thanh toán qua momo', 'momo_wallet', '2807617050', 'qr', '9916'),
+(98, 'MOMOBKUN20180529', '1670097335', '12000', 'Thanh toán qua momo', 'momo_wallet', '1670097340451', '', '6218'),
+(99, 'MOMOBKUN20180529', '1670097335', '12000', 'Thanh toán qua momo', 'momo_wallet', '1670097340451', '', '7651'),
+(100, 'MOMOBKUN20180529', '1670097384', '10000', 'Thanh toán qua momo', 'momo_wallet', '1670097389177', '', '209'),
+(101, 'MOMOBKUN20180529', '1670114983', '13000', 'Thanh toán qua momo', 'momo_wallet', '2807640799', 'qr', '367'),
+(102, 'MOMOBKUN20180529', '1670115140', '17000', 'Thanh toán qua momo', 'momo_wallet', '1670115146296', '', '9162'),
+(103, 'MOMOBKUN20180529', '1670118519', '18000', 'Thanh toán qua momo', 'momo_wallet', '1670118542977', '', '501'),
+(104, 'MOMOBKUN20180529', '1670146603', '13000', 'Thanh toán qua momo', 'momo_wallet', '1670146611317', '', '9552'),
+(105, 'MOMOBKUN20180529', '1670163038', '103000', 'Thanh toán qua momo', 'momo_wallet', '1670163348621', '', '9266'),
+(106, 'MOMOBKUN20180529', '1670179764', '200000', 'Thanh toán qua momo', 'momo_wallet', '2807744884', 'qr', '6982'),
+(107, 'MOMOBKUN20180529', '1670190155', '100000', 'Thanh toán qua momo', 'momo_wallet', '2807774615', 'qr', '3486'),
+(108, 'MOMOBKUN20180529', '1670191021', '300000', 'Thanh toán qua momo', 'momo_wallet', '1670191030483', '', '2263'),
+(109, 'MOMOBKUN20180529', '1670191021', '300000', 'Thanh toán qua momo', 'momo_wallet', '1670191030483', '', '4691'),
+(110, 'MOMOBKUN20180529', '1670194245', '400000', 'Thanh toán qua momo', 'momo_wallet', '2807779153', 'qr', '2402'),
+(111, 'MOMOBKUN20180529', '1670206108', '499000', 'Thanh toán qua momo', 'momo_wallet', '1670206199657', '', '3914'),
+(112, 'MOMOBKUN20180529', '1670376478', '799000', 'Thanh toán qua momo', 'momo_wallet', '2808967131', 'qr', '7478'),
+(113, 'MOMOBKUN20180529', '1670376478', '799000', 'Thanh toán qua momo', 'momo_wallet', '2808967131', 'qr', '2963'),
+(114, 'MOMOBKUN20180529', '1670376478', '799000', 'Thanh toán qua momo', 'momo_wallet', '2808967131', 'qr', '7349');
 
 -- --------------------------------------------------------
 
@@ -342,27 +366,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `full_name`, `email`, `phone`, `address`, `role`, `password`) VALUES
-(1, 'Phi1', NULL, NULL, NULL, NULL, 1, 'qqq'),
-(2, 'Phi3', NULL, NULL, NULL, '11111', 0, '2232323'),
-(3, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(4, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(5, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(6, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(7, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(8, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(9, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(10, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(11, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(12, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '099999]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(13, 'admin', 'phi', 'phithph22381@fpt.edu.vn]', '0862222222]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(14, 'Phi', 'phi2', 'vsphiphi281@gmail.com]', '099999]', 'TDP Vĩnh Thịnh]', 1, 'f4175d1be752cdb26f3c1d6f08622c97]'),
-(15, 'acekyros@gmail.com', 'phi', 'phithph22381@fpt.edu.vn]', '000000]', 'Hà]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(16, 'phi', 'phi', 'phithph22381@fpt.edu.vn]', '08722222]', 'Hà Nội]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(17, 'Ctv123', 'phi', 'phithph22381@fpt.edu.vn]', '0862323322]', 'TDP Vĩnh Thịnh]', 1, 'ef49d7532642cf35f3fde5c19feabcc9]'),
-(18, 'admin', 'vippro2020', 'phithph22381@fpt.edu.vn]', '098777]', 'Hà nội]', 1, 'aaf2fee73e38a6d7f2a031a3091df5f9]'),
-(19, 'admin', 'Phi', 'vsphiphi281@gmail.com]', '0862323322]', 'Ha noi]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(20, 'admin', 'admin', 'admin@gmail.com]', '0008886]', 'admin]', 1, '21232f297a57a5a743894a0e4a801fc3]'),
-(21, 'admin', 'phi', 'vsphiphi281@gmail.com]', '2222]', 'vippro2020]', 1, 'vippro2020]');
+(22, 'Phi 2', 'Trần Hoàng Phi', 'phithph22381@fpt.edu.vn', '09866663', 'hà nội', 0, 'vip'),
+(24, 'admin', 'admin', 'admin@gmail.com', '988888887', 'TDP Vĩnh Thịnh', 1, 'admin'),
+(25, 'user', 'user', 'user@gmail.com', '8983437', 'ha noi', 0, 'user');
 
 -- --------------------------------------------------------
 
@@ -397,9 +403,7 @@ ALTER TABLE `color`
 -- Indexes for table `detail_order`
 --
 ALTER TABLE `detail_order`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `lk_orderdt_color` (`color`),
-  ADD KEY `lk_orderdt_size` (`size`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `order`
@@ -457,7 +461,7 @@ ALTER TABLE `voucher`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `color`
@@ -469,31 +473,31 @@ ALTER TABLE `color`
 -- AUTO_INCREMENT for table `detail_order`
 --
 ALTER TABLE `detail_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `product_rev`
 --
 ALTER TABLE `product_rev`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `size`
@@ -505,30 +509,19 @@ ALTER TABLE `size`
 -- AUTO_INCREMENT for table `tbl_momo`
 --
 ALTER TABLE `tbl_momo`
-  MODIFY `id_momo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id_momo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `voucher`
 --
 ALTER TABLE `voucher`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `detail_order`
---
-ALTER TABLE `detail_order`
-  ADD CONSTRAINT `lk_orderdt_color` FOREIGN KEY (`color`) REFERENCES `color` (`id_color`),
-  ADD CONSTRAINT `lk_orderdt_size` FOREIGN KEY (`size`) REFERENCES `size` (`id_size`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
