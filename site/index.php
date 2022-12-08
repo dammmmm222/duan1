@@ -82,18 +82,26 @@ if (isset($_GET['act'])) {
           }
       break;
       case 'addtocart':
+        $_SESSION['thongbao'] = "";
         if(!isset($_SESSION['cart'])) $_SESSION['cart']=array();
         if(isset($_POST['addtocart'])&&($_POST['addtocart'])){
+          if ((!isset($_POST['colors'])) || (!isset($_POST['size']))){
+            $_SESSION['thongbao'] = "Vui lòng chọn đầy đủ màu và size";
+            header('location: index.php?act=productdetail&id='.$_POST['id'].'');
+            break;
+            }
+            $colors = $_POST['colors'];
+            $size = $_POST['size'];
             $id=$_POST['id'];
             $product_name=$_POST['product_name'];
             $image=$_POST['image'];
             $product_price=$_POST['product_price'];
             $sl=1; 
             $i=0;
-            $arr=[$id,$product_name,$image,$product_price,$sl];
+            $arr=[$id,$product_name,$image,$product_price,$sl,$colors,$size];
             $check =0;
             foreach ($_SESSION['cart'] as $product) {
-                if($product[0]==$id){
+                if($product[0]==$id && $product[5]==$colors && $product[6]== $size){
                 //cập nhật mới số lượng
                 $sl+=$product[4];
                 $tm=1;
@@ -142,9 +150,7 @@ if (isset($_GET['act'])) {
                         // *) format: chỉ định định dạng cho kiểu ngày
                         $ngay_bl = date_format(date_create(), 'Y-m-d'); // format theo năm - tháng - ngày
                         $stars = $_POST['stars'];
-              
                         // Thêm bình luận 
-                   
                         them_binh_luan($comment, $_GET['id'], $_SESSION['id_user'], $ngay_bl, $stars);
                       $danh_sach_bl = lay_binh_luan_theo_hh($ma_hang_hoa);
                       include "san-pham/productdetail.php";

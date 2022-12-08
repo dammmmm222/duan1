@@ -29,10 +29,10 @@ if(isset($_GET['partnerCode'])){
 			foreach($_SESSION['cart'] as $key => $value){
 				$id_sanpham = $value[0];
 				
-				$color = 1;
-				$size = 2;
+				$colors = $value[5];
+				$size = $value[6];
 				$soluong = $value[4];
-				$insert_order_details = "INSERT INTO detail_order(id_product,id_order,quanlity,color,size) VALUE('".$id_sanpham."','".$code_order."','".$soluong."','".$color."','".$size."')";
+				$insert_order_details = "INSERT INTO detail_order(id_product,id_order,quanlity,color,size) VALUE('".$id_sanpham."','".$code_order."','".$soluong."','".$colors."','".$size."')";
 				pdo_execute($insert_order_details);
 			}
 			unset($_SESSION['cart']);
@@ -61,10 +61,10 @@ if(isset($_GET['partnerCode'])){
 			  foreach($_SESSION['cart'] as $key => $value){
 				$id_sanpham = $value[0];
 				
-				$color = 1;
-				$size = 2;
+				$colors = $value[5];;
+				$size = $value[6];;
 				$soluong = $value[4];
-				$insert_order_details = "INSERT INTO detail_order(id_product,id_order,quanlity,color,size) VALUE('".$id_sanpham."','".$code_order."','".$soluong."','".$color."','".$size."')";
+				$insert_order_details = "INSERT INTO detail_order(id_product,id_order,quanlity,color,size) VALUE('".$id_sanpham."','".$code_order."','".$soluong."','".$colors."','".$size."')";
 				pdo_execute($insert_order_details);
 			}}
 			unset($_SESSION['cart']);

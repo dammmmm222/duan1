@@ -24,7 +24,7 @@
                           $i = 0;
                          foreach($order as $order){
                     
-                         $status = get_ttdh($order['status']);
+                            $status = get_status($order['status']);
                            $pttt = $order['pttt'];
                         $ttdh = 0;
                        if (isset($order['status']) && ($order['status'] != "")) {

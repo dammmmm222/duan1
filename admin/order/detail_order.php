@@ -18,8 +18,8 @@
                                 $hinh = $img_path . $listorder['image'];
                                 $id_size = $listorder['size'];
                                 $id_color = $listorder['color'];
-                                $size = size_one($id_size);
-                                $color = color_one($id_color);
+                                $size = $listorder['size'];
+                                $color = $listorder['color'];
                                 
                             echo '
                             <div class="flex my-10 grid grid-cols-4">
@@ -29,7 +29,7 @@
                             <div class="">
                         <h3 class="font-semibold">'.$listorder['product_name'].'</h3>
                         <label class="my-10">Số Lượng : x'.$listorder['quanlity'].'</label><br>
-                        <label class="my-10">Phân loại hàng : Size '.$size['size'].", ".$color['color'].'  </label>
+                        <label class="my-10">Phân loại hàng : Size '.$size.", màu: ".$color.'  </label>
                     </div>
 
                     <div class="">

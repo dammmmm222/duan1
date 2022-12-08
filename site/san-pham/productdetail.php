@@ -44,10 +44,10 @@ if (!is_array($pro)) {
                 </svg>
             </div>
         <form action="index.php?act=addtocart" method="post">
-
+        <p class="text-[red] text-[16px] my-4" for=""><?php echo isset($_SESSION['thongbao']) ? $_SESSION['thongbao'] : " "?></p>
             <div class="color flex space-x-6 items-center mt-6">
                 <h3 class="">Color: </h3>
-                <input type="radio" name="colors" value="yellow" id="yellow">
+                <input type="radio" name="colors" value="yellow" id="yellow" >
                 <label for="yellow" class="yellow rounded-lg"><img src="" alt=""></label>
                 <input type="radio" name="colors" value="green" id="green">
                 <label for="green" class="green rounded-lg"></label>
@@ -92,15 +92,13 @@ if (!is_array($pro)) {
                     House</p>
             </div>
             <p class="text-center font-bold mt-10"><?= $pr_price ?> VNĐ</p>
-            <button class="py-3 mt-4 w-full bg-black text-white rounded-lg">
+            
                 <input type="hidden" name="id" value="<?= $id ?>">
                 <input type="hidden" name="product_name" value="<?= $pr_name ?>">
                 <input type="hidden" name="image" value="<?= $image ?>">
                 <input type="hidden" name="product_price" value="<?= $pr_price ?>">
-                <input type="submit" name="addtocart"  value="THÊM VÀO GIỎ HÀNG">
+                <input type="submit" class="py-3 mt-4 w-full bg-black text-white rounded-lg" name="addtocart"  value="THÊM VÀO GIỎ HÀNG">
         </form>
-            
-                </button>
             <p class="mt-10 text-[10px] text-center">By placing your order you agree to the terms of service. Please
                 note,
                 shipping to US
