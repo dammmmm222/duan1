@@ -1,6 +1,5 @@
 
 
-    </div>
     <hr class="my-10 max-w-6xl  mx-auto">
     <div class="grid grid-cols-5 max-w-[1080px] mx-auto">
         <div class="col-span-1 text-[14px]  space-y-4">
@@ -49,14 +48,7 @@
             </div>
         </div>
         <div class="col-span-4 ml-10 ">
-            <div class="space-x-4 bg-[#F7F6F7] justify-between flex list-none rounded-lg px-10 py-2">
-                <li><a href="">Tất Cả</a></li>
-                <li><a href="">Chờ Xác Nhận</a></li>
-                <li><a href="">Chờ Lấy Hàng</a></li>
-                <li><a href="">Đang Giao</a></li>
-                <li><a href="">Đã Giao</a></li>
-                <li><a href="">Trả Hàng / Hoàn Tiền</a></li>
-            </div>
+          
             <input type="text" placeholder=" Search Dior , Gucci , Balenciaga ...." class="px-10 py-2 border-2 w-full my-6" svg="">
           <div class="border-2 border-gray-200 px-10 py-4 ">
         <?php 
@@ -71,7 +63,8 @@
                     </h1>';
                 }
     ?>
-        </div>
-        </div>
-        </div>
+    </div>
+    </div>
+    </div>
+
     <hr class="max-w-6xl mx-auto my-10">

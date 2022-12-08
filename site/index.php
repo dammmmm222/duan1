@@ -55,8 +55,8 @@ if (isset($_GET['act'])) {
 	      }
             break;
       case 'signin': 
-            if (isset($_POST['signin']) && ($_POST['signin'])) {
-           $user = $_POST['name'];
+          if (isset($_POST['signin']) && ($_POST['signin'])) {
+          $user = $_POST['name'];
           $pass = $_POST['password'];
           $check_user = check_user($user, $pass);
           if (is_array($check_user)) {
@@ -126,13 +126,13 @@ if (isset($_GET['act'])) {
                 case "gioi_thieu":
                   include "layout/gioithieu.php";
                   break;
-            
                 case "lien_he":
                   include "layout/lienhe.php";
                   break;
                   case "productdetail":
                     $pro = [];
                     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                      update_view($_GET['id']);
                       $pro = showspdetail($_GET['id']);
                       if (isset($_POST['stars'])) {
                         $comment = $_POST['comment'];
@@ -174,6 +174,16 @@ if (isset($_GET['act'])) {
                       include "cart/viewcart.php";
                     }
                         break;
+                        case'thanhtoan_COD':
+                          if(isset($_SESSION['dangky'])){
+                            $money = $_GET['tong'];
+                              include "thanhtoan/camon.php";
+                          }
+                          else{ 
+                            echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Vui lòng đăng nhập để thanh toán</h1>';
+                            include "cart/viewcart.php";
+                          }
+                              break;
                    case'detail_order':
                     include "detail_order.php";
                     break;

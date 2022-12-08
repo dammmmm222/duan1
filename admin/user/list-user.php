@@ -36,9 +36,15 @@
             <?php
             foreach ($users as $user) {
                 extract($user);
+                
                 $sua_us = "index.php?act=sua_us&id=" . $id;
                 $xoa_us = "index.php?act=xoa_us&id=" . $id;
-
+                if($role == 0){
+                    $role = 'Khách hàng';
+                }
+                else{
+                    $role = 'Quản trị viên';
+                }
             ?>
                 <tr class="text-[#551AA9] ">
                     <td class="border-2 border-cyan-500 py-4 px-2 text-center">

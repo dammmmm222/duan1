@@ -2,9 +2,10 @@
 if (!is_array($pro)) {
     echo 'Sản Phẩm Không Tồn Tại';
 } else {
+    
+    $id = $pro['id'];
     $pr_name = $pro['product_name'];
-    $pr_size = 'size L, Màu đỏ';
-    $pr_color = // $pro['size'];
+    
     $pr_price = $pro['product_price'];
     $pr_price_sale = $pro['product_price_sale'];
     $pr_description = $pro['description'];
@@ -42,7 +43,37 @@ if (!is_array($pro)) {
                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                 </svg>
             </div>
-            <span class="block my-4 text-[12px] text-gray-600"><?= $pr_size ?></span>
+        <form action="index.php?act=addtocart" method="post">
+
+            <div class="color flex space-x-6 items-center mt-6">
+                <h3 class="">Color: </h3>
+                <input type="radio" name="colors" value="yellow" id="yellow">
+                <label for="yellow" class="yellow rounded-lg"><img src="" alt=""></label>
+                <input type="radio" name="colors" value="green" id="green">
+                <label for="green" class="green rounded-lg"></label>
+                <input type="radio" name="colors" value="black" id="black">
+                <label for="black" class="black rounded-lg"></label>
+                <input type="radio" name="colors" value="pink" id="pink">
+                <label for="pink" class="pink rounded-lg"></label>
+                <input type="radio" name="colors" value="cyan" id="cyan">
+                <label for="cyan" class="cyan rounded-lg"></label>
+            </div>
+            <hr class="my-4 w-[80%] mx-auto">
+            <div class="size flex space-x-6 items-center ">
+                <h3>Size: </h3>
+                <div class=" space-x-4">
+                    <input type="radio" name="size" value="S" id="S">
+                    <label for="S" class="S rounded-lg">S</label>
+                    <input type="radio" name="size" value="M" id="M">
+                    <label for="M" class="M rounded-lg">M</label>
+                    <input type="radio" name="size" value="L" id="L">
+                    <label for="L" class="L rounded-lg">L</label>
+                    <input type="radio" name="size" value="XL" id="XL">
+                    <label for="XL" class="XL rounded-lg">XL</label>
+                </div>
+
+            </div>
+            <hr class="my-4 w-[80%] mx-auto">
             <span class="block my-4 text-[12px] text-gray-600">Reference: M1286ZRIW_M928</span>
             <div class="bg-[#F6F6F6] px-4 py-4">
 
@@ -61,14 +92,14 @@ if (!is_array($pro)) {
                     House</p>
             </div>
             <p class="text-center font-bold mt-10"><?= $pr_price ?> VNĐ</p>
-            
-            <button class="py-3 mt-4 w-full bg-black text-white rounded-lg"><form action="index.php?act=addtocart" method="post">
+            <button class="py-3 mt-4 w-full bg-black text-white rounded-lg">
                 <input type="hidden" name="id" value="<?= $id ?>">
                 <input type="hidden" name="product_name" value="<?= $pr_name ?>">
                 <input type="hidden" name="image" value="<?= $image ?>">
                 <input type="hidden" name="product_price" value="<?= $pr_price ?>">
                 <input type="submit" name="addtocart"  value="THÊM VÀO GIỎ HÀNG">
-            </form>
+        </form>
+            
                 </button>
             <p class="mt-10 text-[10px] text-center">By placing your order you agree to the terms of service. Please
                 note,

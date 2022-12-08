@@ -27,11 +27,19 @@
         }
         ?>
             <?php
-              $order = [];
+              $check = false;
+            $id_product = $pro['id'];
+
              if (isset($_SESSION['id_user'])){
-                $order = loadall_order($_SESSION['id_user']);
+                $order = checkcomment($_SESSION['id_user']);
             }
-          if (isset($_SESSION['dangky']) && ($order!=[])) {
+            foreach($order as $order){
+                if($id_product == $order['id_product']){
+                    $check = true;
+                    break;
+                }
+            }
+          if (isset($_SESSION['dangky']) && ($check == true)) {
             $id = $_SESSION['id_user'];
              $order = loadall_order($id);
                 echo '

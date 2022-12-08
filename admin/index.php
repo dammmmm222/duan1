@@ -12,8 +12,16 @@ include "layout/header.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
-        case "order":
-
+        case "status":
+            if (isset($_POST['luu']) && ($_POST['luu'])) {
+                $ttdh = $_POST['status'];
+                $id = $_POST['id'];
+                update_order($id, $ttdh);
+            }
+            $order = loadall_order_admin();
+                    if (!empty($order)) { 
+                    include "order/listorder.php";
+                    }
             break;
         case "them_dm":
             if (isset($_POST['btn_luu'])) {
@@ -168,6 +176,7 @@ if (isset($_GET['act'])) {
             break;
 
         case "list-user":
+            $role_test = role();
             $users = loadall_taikhoan();
             include "user/list-user.php";
             break;
@@ -187,7 +196,6 @@ if (isset($_GET['act'])) {
                 include "user/update-user.php";
             }
             break;
-
         case "cap_nhat_tk":
             if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
                 $id = $_POST['id'];

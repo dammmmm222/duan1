@@ -20,7 +20,16 @@ function search_id()
     return $iduser;
 
 }
-
+function role(){
+    $sql = "SELECT * FROM `role`";
+    $role = pdo_query($sql);
+    return $role;
+}
+function role_check($id){
+    $sql = "SELECT * FROM `role` where id = " . $id;
+    $role = pdo_query_one($sql);
+    return $role;
+}
 // Cập nhật tài khoản phía admin
 function cap_nhat_tai_khoan_admin($id, $user_name, $full_name, $email, $phone, $address, $password, $role)
 {

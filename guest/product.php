@@ -9,12 +9,12 @@ function them_san_pham($product_name, $product_price, $product_price_sale, $desc
     pdo_execute($sql);
 }
 
-/*function cap_nhat_so_luot_xem($ma_hang_hoa)
+function update_view($id)
 {
-    $sql = "UPDATE hang_hoa SET so_luot_xem = so_luot_xem + 1 WHERE ma_hang_hoa = $ma_hang_hoa";
+    $sql = "UPDATE product SET view = view + 1 WHERE id = $id";
     pdo_execute($sql);
 }
-*/
+
 // Xóa hàng hóa theo mã hàng hóa
 function showspdetail($id)
 {

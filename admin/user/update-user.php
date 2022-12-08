@@ -1,6 +1,9 @@
 <?php
+    $role_test = role();
+
 if (is_array($tai_khoan)) {
     extract($tai_khoan);
+  
 }
 ?>
 
@@ -48,8 +51,21 @@ if (is_array($tai_khoan)) {
                 <br>
                 <div class=" py-10 space-y-4 space-x-4">
                     <label for="" class="text-[#551AA9] text-[20px] my-4">Vai trò *</label><br>
-                    <input type="radio" name="role" value="0"><label for="">Khách hàng</label>
-                    <input type="radio" name="role" value="1"><label for="">Quản trị viên</label>
+                    <?php 
+                   foreach ($role_test as $role_test) {
+                    extract($role_test);
+                   if ($tai_khoan['role'] == $id) {
+                    echo '
+                    <input checked ="checked"  type="radio" name="role" value="'.$id.'"><label for="">'.$name.'</label>
+                    ';
+                   }
+                   else{
+                    echo '
+                    <input  type="radio" name="role" value="'.$id.'"><label for="">'.$name.'</label>
+                    ';
+                   }
+                   }
+                   ?>
                 </div>
                 <input type="submit" value="Update User" name="btn_update" class="bg-[#ff523b] my-10 py-2 px-8 hover:bg-[#BAAACE] hover:text-white rounded-lg">
 

@@ -19,17 +19,22 @@
                                 Action
                             </th>
                         </tr>
-
+                           
                         <?php  $tong = 0;
                           $i = 0;
-                      foreach($order as $order){
-                        $status = get_ttdh($order['status']);
-                       $pttt = $order['pttt'];
+                         foreach($order as $order){
+                    
+                         $status = get_ttdh($order['status']);
+                           $pttt = $order['pttt'];
+                        $ttdh = 0;
+                       if (isset($order['status']) && ($order['status'] != "")) {
+                        $ttdh = $order['status'];
+                       }
                      echo '
-        <tr class="text-[#551AA9] space-x-4">
-        <td class="border-2 border-cyan-500 py-4 px-2 text-center">
-             <tr class="text-[#551AA9] space-x-4">
-
+                     <form  action="index.php?act=status" method="post">
+                        <tr class="text-[#551AA9] space-x-4">
+                     <td class="border-2 border-cyan-500 py-4 px-2 text-center">
+                     <tr class="text-[#551AA9] space-x-4">
                             <td class="border-2 border-cyan-500 py-4 px-2 text-center">
                             '.$order['id'].'
                             </td>
@@ -50,7 +55,22 @@
                             '.$order['total'].'
                             </td>
                             <td class="border-2 border-cyan-500 py-4  text-center">
-                            '.$status.'   
+                            <select name="status"> ';
+                            $liststatus = checkstatus();
+                            foreach($liststatus as $liststatus){
+                                if($order['status'] == $liststatus['0']){
+                                    echo'
+                               <option selected="selected" value="'.$liststatus[0].'">'.$liststatus[1].'</option>
+                                    ';
+                                }
+                                else{
+                                    echo'
+                               <option value="'.$liststatus[0].'">'.$liststatus[1].'</option>
+                                    ';
+                                }
+                            }
+                            echo '
+                        </select>
                             </td>
                             <td class="border-2 border-cyan-500 py-4  text-center">
                             '.$order['time'].'
@@ -58,12 +78,13 @@
                             <td class="border-2 border-cyan-500 py-4  text-center">
                             '.$pttt.'
                             <td class="border-2 border-cyan-500 py-4 px-2 text-center">
-                                <a class="py-1 px-4 bg-[#1E74A4] hover:bg-[#BAAACE] hover:text-white text-white rounded-md mx-2"
-                                    href="index.php?act=status">Lưu</a>
+                                    <input type="hidden" name="id" value="'.$order['id'].'">
+                                    <input class="py-1 px-4 bg-[#1E74A4] hover:bg-[#BAAACE] hover:text-white text-white rounded-md mx-2" type="submit" name="luu" value="Lưu">
                             </td>
                         </tr>
                         </td>
         </tr>
+        </form>
      
         ';} ?>
                       

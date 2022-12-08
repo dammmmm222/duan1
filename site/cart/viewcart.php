@@ -3,7 +3,6 @@
 
 if (isset($_SESSION['cart']) && ($_SESSION['cart'] != [])) {
     //echo var_dump($_SESSION['cart']); 
-
 ?>
 
  <div class="items-center text-center text-[50px] font-bold ">
@@ -49,7 +48,9 @@ if (isset($_SESSION['cart']) && ($_SESSION['cart'] != [])) {
         </table>
         <p><a href="index.php?act=san_pham" class=" pt-10 font-bold ">Tiếp tục đặt hàng?</a></p>
         <div class="items-center text-stast rounded-lg   text-[30px] font-bold mt-10 ">
-            <a href="index.php?act=thanhtoan&tong=<?= $tong ?>" class=""> <button type="submit" class="text-black hover:bg-gray-300 hover:rounded-lg ">THANH TOÁN MOMO</button> </a>
+            <a href="index.php?act=thanhtoan&tong=<?= $tong ?>" class=""> <button type="submit" class="text-black hover:bg-gray-300 hover:rounded-lg mb-10 ">THANH TOÁN MOMO</button> </a>
+            <br>
+            <a href="index.php?act=thanhtoan_COD&tong=<?= $tong ?>&COD" class=""> <button type="submit" class="text-black hover:bg-gray-300 hover:rounded-lg ">THANH TOÁN KHI NHẬN HÀNG</button> </a>
         </div>
     </div>
 
