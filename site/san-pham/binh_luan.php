@@ -32,13 +32,12 @@
 
              if (isset($_SESSION['id_user'])){
                 $order = checkcomment($_SESSION['id_user']);
-            }
             foreach($order as $order){
                 if($id_product == $order['id_product']){
                     $check = true;
                     break;
                 }
-            }
+            } }
           if (isset($_SESSION['dangky']) && ($check == true)) {
             $id = $_SESSION['id_user'];
              $order = loadall_order($id);

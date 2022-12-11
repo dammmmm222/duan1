@@ -7,8 +7,8 @@ include "../guest/product.php";
 include "../guest/category.php";
 include "../guest/order.php";
 include "../guest/account.php";
+include "../guest/thongke.php";
 include "layout/header.php";
-
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -86,16 +86,13 @@ if (isset($_GET['act'])) {
                 $description = $_POST['description'];
                 $origin = $_POST['origin'];
                 $id_categories = $_POST['id_categories'];
-
                 //file upload
                 $file = $_FILES['image'];
                 $image = $file['name'];
-
                 $file = $_FILES['image2'];
                 $image2 = $file['name'];
                 $file = $_FILES['image3'];
                 $image3 = $file['name'];
-
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES['image']['name']);
                 $target_file = $target_dir . basename($_FILES['image2']['name']);
@@ -106,7 +103,10 @@ if (isset($_GET['act'])) {
             $ds_danh_muc = lay_tat_ca_danh_muc();
             include "san_pham/addsp.php";
             break;
-
+        case "thongke":
+            $listthongke = loadall_thongke();
+            include "thongke.php";
+            break;
         case "listsp":
             $ds_danh_muc = lay_tat_ca_danh_muc();
             $danh_sach_sp = lay_tat_ca_san_pham_admin();

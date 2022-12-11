@@ -24,28 +24,9 @@
             ?>
         </ul>
         </div>
-        <div class="space-x-4">
-            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Kích Thước
-            </h2>
-            <span>S</span>
-            <span>M</span>
-            <span>L</span>
-            <span>XL</span>
-            <span>XXL</span>
-        </div>
-        <div class="">
-            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Màu</h2>
-            <div class="">
-            </div>
-        </div>
-        <div class="space-y-4">
-            <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Thương Hiệu Cao Cấp</h2>
-            <li class="list-none"><a href="">Louis Vuitton</a></li>
-            <li class="list-none"><a href="">Gucci</a></li>
-            <li class="list-none"><a href="">Chanel</a></li>
-            <li class="list-none"><a href="">Adidas</a></li>
-            <li class="list-none"><a href="">Dior</a></li>
-        </div>
+        
+        
+        
         <div class="">
             <h2 style="font-family: 'Courier New', Courier, monospace" ; class="my-4 font-black text-xl">Sản phẩm nổi bật
             </h2>
@@ -56,17 +37,19 @@
                 $linksp= "index.php?act=productdetail&id=" .$id;
                 $image2 = $img_path . $image2;
                 echo '
+                <a href="' . $linksp . '" >
                 <div class="flex items-center ml-2">
                 <img srcset="'.$image2.' " alt="" class="w-[135px] h-[135px]">
                 <div class="">
-                    <a href="' . $linksp . '" class="ml-4 text-gray-600">'.$product_name.'</a>
+                 <p class="ml-4 text-gray-600">'.$product_name.'</p>
                     <div class="flex">
                         <span class="mx-4 my-2">'.$product_price.' VNĐ</span>
                     </div>
                 </div>
-            </div>
-                ';
 
+            </div>
+            </a>
+                ';
             }
             ?>
         </div>

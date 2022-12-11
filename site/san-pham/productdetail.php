@@ -169,39 +169,28 @@ if (!is_array($pro)) {
   include "binh_luan.php";
   ?>
     <h3 class="text-center">SUGGESTIONS</h3>
-    <div class="grid grid-cols-4 gap-10">
-        <div class="my-10">
-            <img src="../upload/Lou4.webp" alt="">
-            <h3 class="text-gray-600">LARGE DIOR BOOK TOTE</h3>
+    <div class="grid grid-cols-4 gap-10 ">
+    <?php   
+                $sptop4 = lay_4_san_pham_noi_bat();
+
+             foreach ($sptop4 as $dssp){
+                 extract($dssp);
+                 $linksp= "index.php?act=productdetail&id=" .$id;
+                $image2 = $img_path . $image2;
+                 echo '
+                <a href="'.$linksp.'">
+                <div class="my-10">
+            <img src="'.$image2.'" alt="">
+            <h3 class="text-gray-600">'.$product_name.'</h3>
             <div class="flex">
-                <span>$499.00</span>
-                <button class="mx-4 hover:border-2 border-gray-200">+ Add To Cart </button>
+                <span>'.$product_price.'</span>
             </div>
-        </div>
-        <div class="my-10">
-            <img src="../upload/Lou1.webp" alt="">
-            <h3 class="text-gray-600">LARGE DIOR BOOK TOTE</h3>
-            <div class="flex">
-                <span>$499.00</span>
-                <button class="mx-4 hover:border-2 border-gray-200">+ Add To Cart </button>
-            </div>
-        </div>
-        <div class="my-10">
-            <img src="../upload/Lou2.webp" alt="">
-            <h3 class="text-gray-600">LARGE DIOR BOOK TOTE</h3>
-            <div class="flex">
-                <span>$499.00</span>
-                <button class="mx-4 hover:border-2 border-gray-200">+ Add To Cart </button>
-            </div>
-        </div>
-        <div class="my-10">
-            <img src="../upload/Lou3.webp" alt="">
-            <h3 class="text-gray-600">LARGE DIOR BOOK TOTE</h3>
-            <div class="flex">
-                <span>$499.00</span>
-                <button class="mx-4 hover:border-2 border-gray-200">+ Add To Cart </button>
-            </div>
+        </div> </a>
+                ';
+
+             }
+             ?>
+
         </div>
     </div>
     <hr class="my-10">
-</div>

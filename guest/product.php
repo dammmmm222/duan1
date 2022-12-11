@@ -2,6 +2,12 @@
 require_once "pdo.php";
 
 // Thêm hàng hóa
+function lay_4_san_pham_noi_bat()
+{
+    $sql = "SELECT * FROM product WHERE 1 ORDER BY view DESC LIMIT 0,4";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
 function them_san_pham($product_name, $product_price, $product_price_sale, $description, $image, $image2, $image3, $origin, $id_categories)
 {
 

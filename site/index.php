@@ -39,7 +39,7 @@ if (isset($_GET['act'])) {
            break; 
     case 'signup':
       	if(isset($_POST['confirm'])) {
-	          	$username = $_POST['username'];
+	        $username = $_POST['username'];
 	    	  $fullname = $_POST['fullname'];
 	      	$email = $_POST['email'];
 	    	  $phone = $_POST['phone'];
@@ -53,7 +53,7 @@ if (isset($_GET['act'])) {
 		  	  $_SESSION['id_user'] = search_id();
 		  	header('Location:index.php?act=home');
 	      }
-            break;
+          break;
       case 'signin': 
           if (isset($_POST['signin']) && ($_POST['signin'])) {
           $user = $_POST['name'];
@@ -75,6 +75,22 @@ if (isset($_GET['act'])) {
           }
       } 
         break;
+        case "cap_nhat_tk":
+          if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
+              $id = $_POST['id'];
+              $user_name = $_POST['user_name'];
+              $full_name = $_POST['full_name'];
+              $email = $_POST['email'];
+              $phone = $_POST['phone'];
+              $address = $_POST['address'];
+              $password = $_POST['password'];
+              $role = $_SESSION['role'];
+              cap_nhat_tai_khoan_admin($id, $user_name, $full_name, $email, $phone, $address, $password, $role);
+              $users = loadall_taikhoan();
+           header('Location: index.php'); 
+
+          }
+              break;
         case 'signout': 
           if (isset($_POST['signout']) && ($_POST['signout'])) {
             session_unset();
@@ -119,6 +135,56 @@ if (isset($_GET['act'])) {
             // tìm và so sánh sp trong giỏ hàng
             include "cart/viewcart.php";
         }   
+        break;
+
+        case 'change_quantity':
+   
+            //echo var_dump($_SESSION['cart']); 
+            
+            if (isset($_POST['sub'])){        
+            $quantity = $_POST['quantity'];
+            $idproduct = $_POST['pr_id'];
+            $colors = $_POST['pr_colors'];
+            $size = $_POST['pr_size'];
+            $i=0;
+            $sl=1;
+            foreach ($_SESSION['cart'] as $product) {
+                if($product[0]==$idproduct && $product[5]==$colors && $product[6]== $size){
+                //cập nhật mới số lượng
+                $product[4]-= $sl;
+                if($product[4]<=0){
+                  $product[4]+=$sl;
+                }
+                //cập nhật số lượng mới vào giỏ hàng
+                $_SESSION['cart'][$i][4]= $product[4];
+                header('Location: index.php?act=viewcart');
+                break;
+                }   
+                $i++;
+
+            }
+        }
+          if(isset($_POST['add'])){
+                $quantity = $_POST['quantity'];
+                $idproduct = $_POST['pr_id'];
+                $colors = $_POST['pr_colors'];
+                $size = $_POST['pr_size'];
+                $i=0;
+                foreach ($_SESSION['cart'] as $product) {
+                    if($product[0]==$idproduct && $product[5]==$colors && $product[6]== $size){
+                    //cập nhật mới số lượng
+                    $sl = $product[4]+1;
+                    //cập nhật số lượng mới vào giỏ hàng
+                    $_SESSION['cart'][$i][4]=$sl;
+                    break;
+                    }  
+                    $i++;
+
+                }
+                
+            // tìm và so sánh sp trong giỏ hàng
+            header('Location: index.php?act=viewcart');
+            }
             break;
             case 'delcart':
                 if(isset($_GET['idcart'])){
@@ -191,7 +257,7 @@ if (isset($_GET['act'])) {
                           }
                               break;
                    case'detail_order':
-                    include "detail_order.php";
+                    include "order/detail_order.php";
                     break;
              default:
                      include "../site/layout/home.php";

@@ -37,7 +37,6 @@ if (is_array($tai_khoan)) {
                 <input type="hidden" name="id" value="<?= $id ?>">
                 <p class="text-[#551AA9] text-[20px] my-4" for="">Tài khoản</p>
                 <input required type="text" value="<?= $user_name ?>" name="user_name" placeholder="username....." class="px-10 py-2 rounded-md">
-
                 <p class="text-[#551AA9] text-[20px] my-4" for="">Mật khẩu</p>
                 <input required type="text" name="password" value="<?= $password ?>" placeholder="******" class="px-10 py-2 rounded-md">
                 <p class="text-[#551AA9] text-[20px] my-4" for="">Họ và tên</p>
