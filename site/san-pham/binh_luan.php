@@ -29,7 +29,6 @@
     <?php
     $check = false;
     $id_product = $pro['id'];
-
     if (isset($_SESSION['id_user'])) {
         $order = checkcomment($_SESSION['id_user']);
         foreach ($order as $order) {
@@ -44,6 +43,7 @@
         $id = $_SESSION['id_user'];
         $order = loadall_order($id);
         echo '
+
                 <form action="" method="post" enctype="multipart/form-data" class="detail-pro-form">
                 <div class="flex space-x-2">
                     <h3 class="detail-pro-rate-title">Đánh giá sản phẩm:</h3>

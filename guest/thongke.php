@@ -1,4 +1,5 @@
 <?php
+
 require_once "pdo.php";
 
 // Thông kế bình luận
@@ -18,6 +19,15 @@ function thong_ke_hang_hoa()
     $sql = "SELECT lh.id, lh.categories_name, COUNT(*) so_luong, MIN(hh.product_price) gia_thap_nhat, MAX(hh.product_price) gia_cao_nhat, AVG(hh.product_price) gia_trung_binh FROM product hh JOIN loai_hang lh ON lh.ma_loai = hh.ma_loai GROUP BY lh.ma_loai, lh.ten_loai";
     $ds_hang_hoa = pdo_query($sql);
     return $ds_hang_hoa;
+
+function loadall_thongke()
+{
+    $sql = "select categories.id as madm, categories.categories_name as tendm, count(product.id)";
+    $sql .=" as countsp from product left join categories on categories.id = product.id_categories";
+    $sql .= " JOIN detail_order on product.id = detail_order.id_product group by categories.id order by categories.id desc";
+    $listtk = pdo_query($sql);
+    return $listtk;
+
 }
 function loadall_thongke_2()
 {
@@ -27,3 +37,6 @@ function loadall_thongke_2()
     $listtk = pdo_query($sql);
     return $listtk;
 }
+
+?>
+

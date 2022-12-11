@@ -735,7 +735,7 @@
                     <h3 class="font-semibold my-4">TÔI KHÔNG CÓ TÀI KHOẢN ?</h3>
                     <span>Tận hưởng các lợi ích bổ sung và trải nghiệm phong phú hơn bằng cách tạo tài khoản cá
                         nhân</span>
-                    <button type="submit" class="hover:bg-[#EAE8E4] hover:text-black  bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]"><a href="user.php">Tạo
+                    <button type="submit" class="hover:bg-[#EAE8E4] hover:text-black  bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]"><a href="user/user.php">Tạo
                         tài khoản</a></button>
                 </div>';
                 } else {
@@ -754,8 +754,8 @@
                  
                     <input type="submit" value="Đơn hàng của tôi" name="" class="hover:bg-[#EAE8E4] my-10 hover:text-black bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]">
                 </form>
-             
-                
+                <a  href="./user/update_user.php" ><button class="hover:bg-[#EAE8E4] my-10 hover:text-black bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]">Sửa thông tin khách hàng</button></a>
+
                 ';
                     if ($_SESSION['role'] == 1) {
                         echo '

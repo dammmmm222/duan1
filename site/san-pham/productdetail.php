@@ -169,6 +169,7 @@ if (!is_array($pro)) {
     include "binh_luan.php";
     ?>
     <h3 class="text-center">SUGGESTIONS</h3>
+
     <div class="grid grid-cols-4 gap-10 mx-auto">
 
         <?php
@@ -196,3 +197,4 @@ if (!is_array($pro)) {
     </div>
 
 </div>
+

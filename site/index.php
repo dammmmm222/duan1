@@ -40,75 +40,154 @@ if (isset($_GET['act'])) {
       include "san-pham/products.php";
       break;
     case 'signup':
-      if (isset($_POST['confirm'])) {
-        $username = $_POST['username'];
-        $fullname = $_POST['fullname'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $password = ($_POST['password']);
-        $address = $_POST['address'];
-        $role = $_POST['role'];
-        $sql_dangky = pdo_execute("INSERT INTO `user`( `user_name`, `full_name`, `email`, `phone`, `address`, `role`, `password`) VALUES ('$username','$fullname','$email','$phone','$address','$role','$password')");
-        echo '<p style="color:green">Bạn đã đăng ký thành công</p>';
-        $_SESSION['dangky'] = $fullname;
-        $_SESSION['email'] = $email;
-        $_SESSION['id_user'] = search_id();
-        header('Location:index.php?act=home');
-      }
-      break;
-    case 'signin':
-      if (isset($_POST['signin']) && ($_POST['signin'])) {
-        $user = $_POST['name'];
-        $pass = $_POST['password'];
-        $check_user = check_user($user, $pass);
-        if (is_array($check_user)) {
-          $_SESSION['dangky'] = $check_user['full_name'];
-          $_SESSION['role'] = $check_user['role'];
-          $_SESSION['id_user'] = $check_user['id'];
-          if ($check_user['role'] == 1) {
-            header('Location: ../admin/index.php');
-          } else {
-            // $thongbao = "Bạn đã đăng nhập thành công!";
-            header('Location: index.php');
-          }
-        } else {
-          echo 'Sai tên tài khoản hoặc mật khẩu';
-        }
-      }
-      break;
-    case 'signout':
-      if (isset($_POST['signout']) && ($_POST['signout'])) {
-        session_unset();
-        header('Location: index.php');
-      }
-      break;
-    case 'addtocart':
-      $_SESSION['thongbao'] = "";
-      if (!isset($_SESSION['cart'])) $_SESSION['cart'] = array();
-      if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
-        if ((!isset($_POST['colors'])) || (!isset($_POST['size']))) {
-          $_SESSION['thongbao'] = "Vui lòng chọn đầy đủ màu và size";
-          header('location: index.php?act=productdetail&id=' . $_POST['id'] . '');
+      	 if (isset($_POST['confirm'])) {
+	        $username = $_POST['username'];
+	    	  $fullname = $_POST['fullname'];
+	      	$email = $_POST['email'];
+	    	  $phone = $_POST['phone'];
+	      	$password = ($_POST['password']);
+	      	$address = $_POST['address'];
+	      	$role = $_POST['role'];
+	      	$sql_dangky = pdo_execute("INSERT INTO `user`( `user_name`, `full_name`, `email`, `phone`, `address`, `role`, `password`) VALUES ('$username','$fullname','$email','$phone','$address','$role','$password')");
+	    	  echo '<p style="color:green">Bạn đã đăng ký thành công</p>';
+		    	$_SESSION['dangky'] = $fullname;
+		  	  $_SESSION['email'] = $email;
+		  	  $_SESSION['id_user'] = search_id();
+		  	header('Location:index.php?act=home');
+	      }
           break;
+      case 'signin': 
+          if (isset($_POST['signin']) && ($_POST['signin'])) {
+          $user = $_POST['name'];
+          $pass = $_POST['password'];
+          $check_user = check_user($user, $pass);
+          if (is_array($check_user)) {
+           $_SESSION['dangky'] = $check_user['full_name'];
+           $_SESSION['role'] = $check_user['role'];
+		  	   $_SESSION['id_user'] = $check_user['id'];  
+           if ($check_user['role'] == 1){
+            header('Location: ../admin/index.php');
+           }
+           else{
+        // $thongbao = "Bạn đã đăng nhập thành công!";
+           header('Location: index.php'); 
+          }
+          } else{
+            echo 'Sai tên tài khoản hoặc mật khẩu';
+          }
+      } 
+        break;
+        case "cap_nhat_tk":
+          if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
+              $id = $_POST['id'];
+              $user_name = $_POST['user_name'];
+              $full_name = $_POST['full_name'];
+              $email = $_POST['email'];
+              $phone = $_POST['phone'];
+              $address = $_POST['address'];
+              $password = $_POST['password'];
+              $role = $_SESSION['role'];
+              cap_nhat_tai_khoan_admin($id, $user_name, $full_name, $email, $phone, $address, $password, $role);
+              $users = loadall_taikhoan();
+           header('Location: index.php'); 
+
+          }
+              break;
+        case 'signout': 
+          if (isset($_POST['signout']) && ($_POST['signout'])) {
+            session_unset();
+         header('Location: index.php'); 
+          }
+        } 
+      break;
+      case 'addtocart':
+        $_SESSION['thongbao'] = "";
+        if(!isset($_SESSION['cart'])) $_SESSION['cart']=array();
+        if(isset($_POST['addtocart'])&&($_POST['addtocart'])){
+          if ((!isset($_POST['colors'])) || (!isset($_POST['size']))){
+            $_SESSION['thongbao'] = "Vui lòng chọn đầy đủ màu và size";
+            header('location: index.php?act=productdetail&id='.$_POST['id'].'');
+            break;
+            }
+            $colors = $_POST['colors'];
+            $size = $_POST['size'];
+            $id=$_POST['id'];
+            $product_name=$_POST['product_name'];
+            $image=$_POST['image'];
+            $product_price=$_POST['product_price'];
+            $sl=1; 
+            $i=0;
+            $arr=[$id,$product_name,$image,$product_price,$sl,$colors,$size];
+            $check =0;
+            foreach ($_SESSION['cart'] as $product) {
+                if($product[0]==$id && $product[5]==$colors && $product[6]== $size){
+                //cập nhật mới số lượng
+                $sl+=$product[4];
+                $tm=1;
+                //cập nhật số lượng mới vào giỏ hàng
+                $_SESSION['cart'][$i][4]=$sl;
+                $check =1;
+                break;
+                }                 
+                $i++;
+            }
+            if($check==0){
+                    array_push($_SESSION['cart'],$arr);
+            }
+            $tm=0;
+            // tìm và so sánh sp trong giỏ hàng
+            include "cart/viewcart.php";
+        }   
+        break;
+
+        case 'change_quantity':
+   
+            //echo var_dump($_SESSION['cart']); 
+            
+            if (isset($_POST['sub'])){        
+            $quantity = $_POST['quantity'];
+            $idproduct = $_POST['pr_id'];
+            $colors = $_POST['pr_colors'];
+            $size = $_POST['pr_size'];
+            $i=0;
+            $sl=1;
+            foreach ($_SESSION['cart'] as $product) {
+                if($product[0]==$idproduct && $product[5]==$colors && $product[6]== $size){
+                //cập nhật mới số lượng
+                $product[4]-= $sl;
+                if($product[4]<=0){
+                  $product[4]+=$sl;
+                }
+                //cập nhật số lượng mới vào giỏ hàng
+                $_SESSION['cart'][$i][4]= $product[4];
+                header('Location: index.php?act=viewcart');
+                break;
+                }   
+                $i++;
+
+            }
         }
-        $colors = $_POST['colors'];
-        $size = $_POST['size'];
-        $id = $_POST['id'];
-        $product_name = $_POST['product_name'];
-        $image = $_POST['image'];
-        $product_price = $_POST['product_price'];
-        $sl = 1;
-        $i = 0;
-        $arr = [$id, $product_name, $image, $product_price, $sl, $colors, $size];
-        $check = 0;
-        foreach ($_SESSION['cart'] as $product) {
-          if ($product[0] == $id && $product[5] == $colors && $product[6] == $size) {
-            //cập nhật mới số lượng
-            $sl += $product[4];
-            $tm = 1;
-            //cập nhật số lượng mới vào giỏ hàng
-            $_SESSION['cart'][$i][4] = $sl;
-            $check = 1;
+          if(isset($_POST['add'])){
+                $quantity = $_POST['quantity'];
+                $idproduct = $_POST['pr_id'];
+                $colors = $_POST['pr_colors'];
+                $size = $_POST['pr_size'];
+                $i=0;
+                foreach ($_SESSION['cart'] as $product) {
+                    if($product[0]==$idproduct && $product[5]==$colors && $product[6]== $size){
+                    //cập nhật mới số lượng
+                    $sl = $product[4]+1;
+                    //cập nhật số lượng mới vào giỏ hàng
+                    $_SESSION['cart'][$i][4]=$sl;
+                    break;
+                    }  
+                    $i++;
+
+                }
+                
+            // tìm và so sánh sp trong giỏ hàng
+            header('Location: index.php?act=viewcart');
+            }
             break;
           }
           $i++;
@@ -162,41 +241,44 @@ if (isset($_GET['act'])) {
         // Lấy danh sách bình luận theo hàng hóa với tham số $ma_hang_hoa ở trên
 
 
+
         else {
           $ma_hang_hoa = $_GET['id'];
           $danh_sach_bl = lay_binh_luan_theo_hh($ma_hang_hoa);
           include "san-pham/productdetail.php";
-        }
-      }
-      break;
-    case 'camon':
-      include "thanhtoan/camon.php";
-      break;
-    case 'thanhtoan':
-      if (isset($_SESSION['dangky'])) {
-        $money = $_GET['tong'];
-        include "thanhtoan/xulythanhtoanmomo.php";
-      } else {
-        echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Vui lòng đăng nhập để thanh toán</h1>';
-        include "cart/viewcart.php";
-      }
-      break;
-    case 'thanhtoan_COD':
-      if (isset($_SESSION['dangky'])) {
-        $money = $_GET['tong'];
-        include "thanhtoan/camon.php";
-      } else {
-        echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Vui lòng đăng nhập để thanh toán</h1>';
-        include "cart/viewcart.php";
-      }
-      break;
-    case 'detail_order':
-      include "detail_order.php";
-      break;
-    default:
-      include "../site/layout/home.php";
+       
+                    } }
+                    break;
+                    case'camon':
+                      include "thanhtoan/camon.php";
+                      break;
+                      case'thanhtoan':
+                    if(isset($_SESSION['dangky'])){
+                      $money = $_GET['tong'];
+                        include "thanhtoan/xulythanhtoanmomo.php";
+                    }
+                    else{ 
+                      echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Vui lòng đăng nhập để thanh toán</h1>';
+                      include "cart/viewcart.php";
+                    }
+                        break;
+                        case'thanhtoan_COD':
+                          if(isset($_SESSION['dangky'])){
+                            $money = $_GET['tong'];
+                              include "thanhtoan/camon.php";
+                          }
+                          else{ 
+                            echo '<h1 class=" text-center text-[32px] border border-slate-300 ...">Vui lòng đăng nhập để thanh toán</h1>';
+                            include "cart/viewcart.php";
+                          }
+                              break;
+                   case'detail_order':
+                    include "order/detail_order.php";
+                    break;
+             default:
+                     include "../site/layout/home.php";
       $san_pham = count(lay_tat_ca_san_pham_guest());
-      break;
+                  break;
   }
 } else {
   include "../site/layout/home.php";

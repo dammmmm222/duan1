@@ -1,3 +1,4 @@
+
 <?php
 if (isset($_SESSION['cart']) && ($_SESSION['cart'] != [])) {
     //echo var_dump($_SESSION['cart']); 
@@ -38,29 +39,40 @@ if (isset($_SESSION['cart']) && ($_SESSION['cart'] != [])) {
                             <td class=" px-11 border border-slate-300 ..." >' . ($i + 1) . '</td>
                             <td class=" px-11 border border-slate-300 ..."><img src="' . $product[2] . '" ></td>
                             <td class=" px-11 border border-slate-300"><h3>' . $product[1] . '</h3></td>
+
                             <td class=" px-11 border border-slate-300 ...">' . $product[3] . '</td>
-                            <td class=" px-11 border border-slate-300 ..."> 
-                            <input class="w-9 h-12"  type="hidden" name="product_id[]" value="' . $product[0] . '">
-                            <input class="w-9 h-12"  type="number" name="quantity[]" value="' . $product[4] . '">
+                           <form action="index.php?act=change_quantity" method="POST">
+
+                            <td class=" px-11 pt-2 border flex justify-between"> 
+                            <input type=submit name="sub" value="-">
+                            <input type="hidden" name="pr_id" value="' . $product[0] . '">
+                            <input type="hidden" name="pr_colors" value="' . $product[5] . '">
+                            <input type="hidden" name="pr_size" value="' . $product[6] . '">
+                            <input type="hidden" name="quantity" value="' . $product[4] . '">
+                            <p class="w-9 h-12 pt-3" >' . $product[4] . '</p>
+                            <input type=submit name="add" value="+">
+                            </td>
+                            <p class="text-[red] text-[16px] my-4" for="">'.( isset($_SESSION['thong_bao_sl']) ? $_SESSION['thong_bao_sl'] : "").'</p>
+
+                         </form>
                             <td class=" px-11 border border-slate-300 ...">' . $product[5] . ',' . $product[6] . '</td>
                             <td class=" px-11 border border-slate-300 ...">' . $ttien . '</td>
                             <td style="text-align:center"><a href="index.php?act=delcart&idcart=' . $i . '">Xóa</a></td>
              </tr>';
-                    $i++;
-                }
-                ?>
-                <tr>
-                    <td colspan="6" class=" px-11 border border-slate-300 ...">Tổng đơn hàng</td>
-                    <td style="background-color: #CCC;"><?= $tong; ?></td>
-                    <td style="background-color: #CCC;"> <a href="index.php?act=delcart">Xóa tất cả</a></td>
-                </tr>
-            </table>
-            <p class="flex justify-between"><a href="index.php?act=san_pham" class=" pt-10 font-bold ">Tiếp tục đặt hàng?</a>
-                <input type="submit" class="mt-10 font-bold hover:bg-gray-300 rounded-lg mb-10" name='update_quantity' value="Cập nhật lại giỏ hàng">
-            </p>
-        </form>
-        <div class="items-center text-stast rounded-lg   font-bold mt-10 ">
-            <a href="index.php?act=thanhtoan&tong=<?= $tong ?>" class=""> <button type="submit" class="text-black py-4 px-10 bg-gray-300 rounded-lg mb-10 hover:bg-white hover:shadow-lg hover:shadow-cyan-500/50 hover:text-[#4F46E5]">THANH TOÁN MOMO</button> </a>
+
+                $i++;
+            }
+            ?>  
+            <tr>
+                <td colspan="6" class=" px-11 border border-slate-300 ...">Tổng đơn hàng</td>
+                <td style="background-color: #CCC;"><?= $tong; ?></td>
+                <td style="background-color: #CCC;"> <a href="index.php?act=delcart">Xóa tất cả</a></td>
+            </tr>
+        </table>
+
+        <p class="flex justify-between"><a href="index.php?act=san_pham" class=" pt-10 font-bold ">Tiếp tục đặt hàng?</a> 
+        <div class="items-center text-stast rounded-lg   text-[30px] font-bold mt-10 ">
+            <a href="index.php?act=thanhtoan&tong=<?= $tong ?>" class=""> <button type="submit" class="text-black hover:bg-gray-300 hover:rounded-lg mb-10 ">THANH TOÁN MOMO</button> </a>
             <br>
             <a href="index.php?act=thanhtoan_COD&tong=<?= $tong ?>&COD" class=""> <button type="submit" class="text-black py-4 px-10 bg-gray-300 rounded-lg mb-10  hover:bg-white hover:shadow-lg hover:shadow-cyan-500/50 hover:text-[#4F46E5]">THANH TOÁN KHI NHẬN HÀNG</button> </a>
         </div>

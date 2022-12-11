@@ -21,9 +21,11 @@
                         </li>
                     ';
                 }
+
                 ?>
             </ul>
         </div>
+
 
 
         <div class="">
@@ -36,15 +38,20 @@
                 $linksp = "index.php?act=productdetail&id=" . $id;
                 $image2 = $img_path . $image2;
                 echo '
-                <div class="flex my-4 items-center ml-2">
-                <img srcset="' . $image2 . ' " alt="" class="w-[135px] h-[135px] ">
-                <div class="text-[12px] text-center">
-                    <a href="' . $linksp . '" class="px-2 text-gray-600">' . $product_name . '</a>
+
+                <a href="' . $linksp . '" >
+                <div class="flex items-center ml-2">
+                <img srcset="'.$image2.' " alt="" class="w-[135px] h-[135px]">
+                <div class="">
+                 <p class="ml-4 text-gray-600">'.$product_name.'</p>
+
                     <div class="flex">
                         <span class="ml-8 my-2">' . $product_price . ' VNĐ</span>
                     </div>
                 </div>
+
             </div>
+            </a>
                 ';
             }
             ?>
