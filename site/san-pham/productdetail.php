@@ -2,10 +2,10 @@
 if (!is_array($pro)) {
     echo 'Sản Phẩm Không Tồn Tại';
 } else {
-    
+
     $id = $pro['id'];
     $pr_name = $pro['product_name'];
-    
+
     $pr_price = $pro['product_price'];
     $pr_price_sale = $pro['product_price_sale'];
     $pr_description = $pro['description'];
@@ -43,62 +43,62 @@ if (!is_array($pro)) {
                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                 </svg>
             </div>
-        <form action="index.php?act=addtocart" method="post">
-        <p class="text-[red] text-[16px] my-4" for=""><?php echo isset($_SESSION['thongbao']) ? $_SESSION['thongbao'] : " "?></p>
-            <div class="color flex space-x-6 items-center mt-6">
-                <h3 class="">Color: </h3>
-                <input type="radio" name="colors" value="yellow" id="yellow" >
-                <label for="yellow" class="yellow rounded-lg"><img src="" alt=""></label>
-                <input type="radio" name="colors" value="green" id="green">
-                <label for="green" class="green rounded-lg"></label>
-                <input type="radio" name="colors" value="black" id="black">
-                <label for="black" class="black rounded-lg"></label>
-                <input type="radio" name="colors" value="pink" id="pink">
-                <label for="pink" class="pink rounded-lg"></label>
-                <input type="radio" name="colors" value="cyan" id="cyan">
-                <label for="cyan" class="cyan rounded-lg"></label>
-            </div>
-            <hr class="my-4 w-[80%] mx-auto">
-            <div class="size flex space-x-6 items-center ">
-                <h3>Size: </h3>
-                <div class=" space-x-4">
-                    <input type="radio" name="size" value="S" id="S">
-                    <label for="S" class="S rounded-lg">S</label>
-                    <input type="radio" name="size" value="M" id="M">
-                    <label for="M" class="M rounded-lg">M</label>
-                    <input type="radio" name="size" value="L" id="L">
-                    <label for="L" class="L rounded-lg">L</label>
-                    <input type="radio" name="size" value="XL" id="XL">
-                    <label for="XL" class="XL rounded-lg">XL</label>
+            <form action="index.php?act=addtocart" method="post">
+                <p class="text-[red] text-[16px] my-4" for=""><?php echo isset($_SESSION['thongbao']) ? $_SESSION['thongbao'] : " " ?></p>
+                <div class="color flex space-x-6 items-center mt-6">
+                    <h3 class="">Color: </h3>
+                    <input type="radio" name="colors" value="yellow" id="yellow">
+                    <label for="yellow" class="yellow rounded-lg"><img src="" alt=""></label>
+                    <input type="radio" name="colors" value="green" id="green">
+                    <label for="green" class="green rounded-lg"></label>
+                    <input type="radio" name="colors" value="black" id="black">
+                    <label for="black" class="black rounded-lg"></label>
+                    <input type="radio" name="colors" value="pink" id="pink">
+                    <label for="pink" class="pink rounded-lg"></label>
+                    <input type="radio" name="colors" value="cyan" id="cyan">
+                    <label for="cyan" class="cyan rounded-lg"></label>
                 </div>
-
-            </div>
-            <hr class="my-4 w-[80%] mx-auto">
-            <span class="block my-4 text-[12px] text-gray-600">Reference: M1286ZRIW_M928</span>
-            <div class="bg-[#F6F6F6] px-4 py-4">
-
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center ">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                        </svg>
-                        <h2 class="mx-4  text-[14px] font-bold">Personalize your product</h2>
+                <hr class="my-4 w-[80%] mx-auto">
+                <div class="size flex space-x-6 items-center ">
+                    <h3>Size: </h3>
+                    <div class=" space-x-4">
+                        <input type="radio" name="size" value="S" id="S">
+                        <label for="S" class="S rounded-lg">S</label>
+                        <input type="radio" name="size" value="M" id="M">
+                        <label for="M" class="M rounded-lg">M</label>
+                        <input type="radio" name="size" value="L" id="L">
+                        <label for="L" class="L rounded-lg">L</label>
+                        <input type="radio" name="size" value="XL" id="XL">
+                        <label for="XL" class="XL rounded-lg">XL</label>
                     </div>
-                    <span class=" text-[10px] font-semibold">Free</span>
+
                 </div>
-                <p class="text-[10px] my-2">Add your own signature embroidery with your name or initials, a lucky
-                    number
-                    or symbol of the
-                    House</p>
-            </div>
-            <p class="text-center font-bold mt-10"><?= $pr_price ?> VNĐ</p>
-            
+                <hr class="my-4 w-[80%] mx-auto">
+                <span class="block my-4 text-[12px] text-gray-600">Reference: M1286ZRIW_M928</span>
+                <div class="bg-[#F6F6F6] px-4 py-4">
+
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                            </svg>
+                            <h2 class="mx-4  text-[14px] font-bold">Personalize your product</h2>
+                        </div>
+                        <span class=" text-[10px] font-semibold">Free</span>
+                    </div>
+                    <p class="text-[10px] my-2">Add your own signature embroidery with your name or initials, a lucky
+                        number
+                        or symbol of the
+                        House</p>
+                </div>
+                <p class="text-center font-bold mt-10"><?= $pr_price ?> VNĐ</p>
+
                 <input type="hidden" name="id" value="<?= $id ?>">
                 <input type="hidden" name="product_name" value="<?= $pr_name ?>">
-                <input type="hidden" name="image" value="<?= $image ?>">
+                <input type="hidden" name="image" value="<?= $image2 ?>">
                 <input type="hidden" name="product_price" value="<?= $pr_price ?>">
-                <input type="submit" class="py-3 mt-4 w-full bg-black text-white rounded-lg" name="addtocart"  value="THÊM VÀO GIỎ HÀNG">
-        </form>
+                <input type="submit" class="py-3 mt-4 w-full bg-black text-white rounded-lg" name="addtocart" value="THÊM VÀO GIỎ HÀNG">
+            </form>
             <p class="mt-10 text-[10px] text-center">By placing your order you agree to the terms of service. Please
                 note,
                 shipping to US
@@ -166,31 +166,35 @@ if (!is_array($pro)) {
     <HR class="my-20">
     </HR>
     <?php
-  include "binh_luan.php";
-  ?>
+    include "binh_luan.php";
+    ?>
     <h3 class="text-center">SUGGESTIONS</h3>
-    <div class="grid grid-cols-4 gap-10 ">
-    <?php   
-                $sptop4 = lay_4_san_pham_noi_bat();
 
-             foreach ($sptop4 as $dssp){
-                 extract($dssp);
-                 $linksp= "index.php?act=productdetail&id=" .$id;
-                $image2 = $img_path . $image2;
-                 echo '
-                <a href="'.$linksp.'">
-                <div class="my-10">
-            <img src="'.$image2.'" alt="">
-            <h3 class="text-gray-600">'.$product_name.'</h3>
-            <div class="flex">
-                <span>'.$product_price.'</span>
+    <div class="grid grid-cols-4 gap-10 mx-auto">
+
+        <?php
+        foreach ($sugget as $sg) {
+            extract($sg);
+            $linksp = "index.php?act=productdetail&id=" . $id;
+            $image2 = $img_path . $image2;
+            echo '
+               
+            <a href="' . $linksp . '" class="px-2 text-gray-600">
+            <div class="my-10">
+            <img src="' . $image2 . '" alt="" class="bg-[#F3F3F3] mx-auto w-[184px] h-[184px]">
+            <h3 class="text-gray-600 my-4 text-center">' . $product_name . '</h3>
+            <div class="flex mx-auto text-[14px] text-center">
+                <span class="ml-8">' . $product_price . ' VNĐ</span>
+                
+                <button class="ml-4 hover:border-2 border-gray-200">+ Add To Cart </button>
             </div>
-        </div> </a>
-                ';
+            </div>
+            </a>
+        ';
+        }
+        ?>
 
-             }
-             ?>
-
-        </div>
     </div>
-    <hr class="my-10">
+
+</div>
+

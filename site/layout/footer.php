@@ -1,3 +1,4 @@
+<hr class="w-[90%] my-10 mx-auto">
 <footer class="mt-10 mx-auto max-w-screen-2xl">
     <div class="f-on grid grid-cols-5 mx-10 items-center">
         <div class="col-span-2">
@@ -91,6 +92,19 @@
 
     document.getElementById("btn2").onclick = function() {
         document.getElementById("content").style.display = 'block';
+        document.getElementById("videomain").style.position = 'fixed';
+
+
+    };
+</script>
+<script language="javascript">
+    document.getElementById("closed").onclick = function() {
+        document.getElementById("headgh").style.display = 'none';
+        document.getElementById("videomain").style.position = 'absolute';
+    };
+
+    document.getElementById("opencart").onclick = function() {
+        document.getElementById("headgh").style.display = 'block';
         document.getElementById("videomain").style.position = 'fixed';
 
 

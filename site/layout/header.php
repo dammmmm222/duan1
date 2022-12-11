@@ -593,10 +593,120 @@
 </style>
 
 <body>
+    <?php
+    if (isset($_SESSION['cart']) && ($_SESSION['cart'] != [])) {
+        //echo var_dump($_SESSION['cart']); 
+        if (isset($_POST['update_quantity'])) {
+            $quantity = array();
+            $idproduct = array();
+            $quantity = $_POST['quantity'];
+            $idproduct = $_POST['product_id'];
+            echo print_r($quantity);
+            echo print_r($idproduct);
+            die();
+        }
+    ?>
+        <div class="">
+            <div class="headcart w-[30%] hidden shadow-lg shadow-cyan-500/50" id="headgh">
+
+                <div class="mx-10 my-10 text-center">
+                    <div class="head flex items-center justify-between  shadow-lg shadow-cyan-500/50">
+                        <h3 class="text-[18px] font-semibold pl-8">TÚI MUA SẮM CỦA BẠN</h3>
+                        <button class="hover:bg-[#F8FAFC] hover:shadow-lg hover:shadow-cyan-500/50 hover:text-black text-xl  border-2 py-3 ml-10 px-6" id="closed">X</button>
+                    </div>
+                    <?php
+                    $tong = 0;
+                    $i = 0;
+                    foreach ($_SESSION['cart'] as $product) {
+                        $ttien = $product[3] * $product[4];
+                        $tong += $ttien;
+                        echo '
+                    <div class="my-10">
+                        <div class="grid-cols-2 grid items-center my-4 shadow-lg shadow-cyan-500/50 rounded-lg">
+                            <img src="' . $product[2] . '" alt="">
+                            <div class="">
+                                <h3 class="my-4">' . $product[1] . '</h3>
+                                <div class="wrapper">
+
+                                    <div class="product-qty space-x-2">
+                                        <button class="bg-[#E8E8E8] " id="decrement">
+                                            <ion-icon name="remove-outline"></ion-icon>
+                                        </button>
+
+                                        <span id="quantity">x' . $product[4] . '</span>
+
+                                        <button id="increment" class="bg-[#E8E8E8] ">
+                                            <ion-icon name="add-outline"></ion-icon>
+                                        </button>
+                                    </div>
+
+                                    <div class="price my-2">
+                                        $ <span id="price">' . $product[3] . '</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                            ';
+                        $i++;
+                    }
+                    ?>
+                    <hr>
+                </div>
+                <hr width=" mx-auto">
+                <div class="flex justify-between my-10">
+                    <h3 class="text-xl">TỔNG CỘNG</h3>
+                    <div class="subtotal">
+                        <span>$ <span id="subtotal"><?= $tong; ?></span></span>
+                    </div>
+                </div>
+
+                <div class="hover:bg-[#EAE8E4] hover:text-black  bg-black text-[#FFFFFF] py-3 text-center  text-[16px] w-full">
+                    <a href="index.php?act=viewcart" class="">Thanh
+                        toán ngay</a>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+    <?php
+
+    } else {
+
+        echo ' <div class="">
+        <div class="headcart w-[30%] hidden shadow-lg shadow-cyan-500/50" id="headgh">
+        <div class="mx-10 my-10 text-center">
+            <div class="head flex items-center justify-between  shadow-lg shadow-cyan-500/50">
+                <h3 class="text-[18px] font-semibold pl-8">TÚI MUA SẮM CỦA BẠN</h3>
+            </div>
+
+            <hr>
+        </div>
+        
+        <hr width=" mx-auto">
+    </div>
+    </div>
+
+';
+    }
+
+    ?>
+
+
+
+
+
+
+
+
+
+
+
     <div class="mx-auto max-w-screen-2xl">
 
         <div class="login hidden px-12" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-        'Open Sans', 'Helvetica Neue', sans-serif" id="content">
+                'Open Sans', 'Helvetica Neue', sans-serif" id="content">
             <div class="my-4">
                 <?php
                 if (!isset($_SESSION['dangky'])) {
@@ -647,20 +757,20 @@
                 <a  href="./user/update_user.php" ><button class="hover:bg-[#EAE8E4] my-10 hover:text-black bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]">Sửa thông tin khách hàng</button></a>
 
                 ';
-                if ($_SESSION['role']==1) {
-                    echo '
+                    if ($_SESSION['role'] == 1) {
+                        echo '
                     <form method="post" action="../admin/index.php">
                  
                     <input type="submit" value="Quay về trang admin" name="" class="hover:bg-[#EAE8E4] my-10 hover:text-black bg-black text-[#FFFFFF] w-full text-center py-4 text-[16px]">
                 </form>
                     ';
-                }
+                    }
                 }
                 ?>
             </div>
         </div>
     </div>
-    
+
 
     <div class="videomain" id="videomain">
         <div class="" style="font-family: 'Courier New', Courier, monospace;">
@@ -669,11 +779,11 @@
                 <div class="flex items-center gap-10">
 
                     <button id="button"><img src="../upload/menu.svg" alt="" class="w-6"></button>
-                <button id="tim_kiem">
+                    <button id="tim_kiem">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 19" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 19" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
 
                 </div>
 
@@ -685,13 +795,14 @@
 
 
 
-                    <a href="index.php?act=viewcart">
+                    <a id="opencart">
 
                         <div id="cart" class="cart" data-totalitems="0">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 3 24 20" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-right">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                             </svg>
                         </div>
+
                     </a>
                 </div>
             </div>
@@ -705,20 +816,20 @@
 
         </div>
         <div class="list-none hidden flex justify-center space-x-8 my-10 " id="tk">
-        <form action="index.php?act=san_pham" method="post">
-        <input type="text" placeholder="Tìm kiếm sản phẩm" name="kw">
-        <button type="submit" name="timkiem">Tìm Kiếm</button>
-       
-        </form>
-    </div>
-        <script>
-        const tk = document.getElementById("tk");
-        const tim_kiem = document.getElementById("tim_kiem");
+            <form action="index.php?act=san_pham" method="post">
+                <input type="text" placeholder="Tìm kiếm sản phẩm" name="kw">
+                <button type="submit" name="timkiem">Tìm Kiếm</button>
 
-        tim_kiem.addEventListener("click", function() {
-            tk.classList.toggle("hidden");
-        });
-    </script>
+            </form>
+        </div>
+        <script>
+            const tk = document.getElementById("tk");
+            const tim_kiem = document.getElementById("tim_kiem");
+
+            tim_kiem.addEventListener("click", function() {
+                tk.classList.toggle("hidden");
+            });
+        </script>
         <script>
             const menu = document.getElementById("menu");
             const button = document.getElementById("button");

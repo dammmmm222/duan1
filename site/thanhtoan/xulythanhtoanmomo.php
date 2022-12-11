@@ -13,8 +13,8 @@ $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua momo";
 $amount = $_GET["tong"];
 $orderId = time() ."";
-$redirectUrl = "http://localhost:8080/duan1/site/index.php?act=camon";
-$ipnUrl = "http://localhost:8080/web_mysqli/site/index.php?act=camon";
+$redirectUrl = "http://localhost:/duan1/site/index.php?act=camon";
+$ipnUrl = "http://localhost:/web_mysqli/site/index.php?act=camon";
 $extraData = "";
 $requestId = time() . "";
 $requestType = "captureWallet";
@@ -43,5 +43,3 @@ $signature = hash_hmac("sha256", $rawHash, $secretKey);
     //Just a example, please check more in there
 
     header('Location: ' . $jsonResult['payUrl']);
-
-?>
