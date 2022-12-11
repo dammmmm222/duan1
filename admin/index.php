@@ -7,8 +7,9 @@ include "../guest/product.php";
 include "../guest/category.php";
 include "../guest/order.php";
 include "../guest/account.php";
+include "../guest/binh_luan.php";
 include "layout/header.php";
-
+include "../guest/thongke.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -19,9 +20,9 @@ if (isset($_GET['act'])) {
                 update_order($id, $ttdh);
             }
             $order = loadall_order_admin();
-                    if (!empty($order)) { 
-                    include "order/listorder.php";
-                    }
+            if (!empty($order)) {
+                include "order/listorder.php";
+            }
             break;
         case "them_dm":
             if (isset($_POST['btn_luu'])) {
@@ -109,7 +110,8 @@ if (isset($_GET['act'])) {
 
         case "listsp":
             $ds_danh_muc = lay_tat_ca_danh_muc();
-            $danh_sach_sp = lay_tat_ca_san_pham_admin();
+            $ds_san_pham = lay_tat_ca_san_pham_admin();
+
             include "san_pham/listsp.php";
             break;
 
@@ -123,7 +125,7 @@ if (isset($_GET['act'])) {
                 $san_pham = xoa_san_pham($_GET['id']);
             }
             $danh_sach_sp = lay_tat_ca_san_pham_admin();
-            include "san_pham/listsp.php";  
+            include "san_pham/listsp.php";
             break;
 
         case "sua_san_pham":
@@ -186,6 +188,7 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id']) && ($_GET['id']) > 0) {
                 $tai_khoan = xoa_tai_khoan($_GET['id']);
             }
+
             $users = loadall_taikhoan();
             include "user/list-user.php";
             break;
@@ -211,22 +214,22 @@ if (isset($_GET['act'])) {
                 $thong_bao = "Cập nhật thành công";
                 $users = loadall_taikhoan();
             }
-                include "user/list-user.php";
-                break;
-                case "listorder":
-                    $order = loadall_order_admin();
-                    if (!empty($order)) { 
-                    include "order/listorder.php";
-                    }
-                    break;
+            include "user/list-user.php";
+            break;
+        case "listorder":
+            $order = loadall_order_admin();
+            if (!empty($order)) {
+                include "order/listorder.php";
+            }
+            break;
 
-                    case "detail_order":
-                        $code_cart = $_GET['code_cart'];
-                       
-                        $listorder_detail = loadone_order($code_cart);
-                        
-                        include "order/detail_order.php";
-                        break;
+        case "detail_order":
+            $code_cart = $_GET['code_cart'];
+
+            $listorder_detail = loadone_order($code_cart);
+
+            include "order/detail_order.php";
+            break;
 
         case "cap_nhat_sp":
             if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
@@ -261,13 +264,18 @@ if (isset($_GET['act'])) {
             include "san_pham/list.php";
             break;
 
-        
+
 
         case "binh_luan":
-            $danh_sach_bl = thong_ke_binh_luan();
-            include "binh_luan/list.php";
-            break;
+            $danh_sach_bl = lay_tat_ca_binh_luan();
+            $danh_sach_sp = lay_tat_ca_san_pham_admin();
 
+            include "binh_luan/listbl.php";
+            break;
+        case "thong_ke":
+            $ds_thong_ke_hh = loadall_thongke_2();
+            include "thong_ke/list.php";
+            break;
         case "chi_tiet_bl":
             if (isset($_GET['ma_hang_hoa']) && ($_GET['ma_hang_hoa'] > 0)) {
                 $ds_chi_tiet_bl = lay_binh_luan_theo_hh($_GET['ma_hang_hoa']);
@@ -276,20 +284,21 @@ if (isset($_GET['act'])) {
             break;
 
         case "xoa_binh_luan":
-            if (isset($_GET['ma_bl']) && ($_GET['ma_bl']) > 0) {
-                $tai_khoan = xoa_binh_luan($_GET['ma_bl']);
+            if (isset($_GET['id']) && ($_GET['id']) > 0) {
+                $tai_khoan = xoa_binh_luan($_GET['id']);
             }
-            if (isset($_GET['ma_hang_hoa']) && ($_GET['ma_hang_hoa'] > 0)) {
-                $ds_chi_tiet_bl = lay_binh_luan_theo_hh($_GET['ma_hang_hoa']);
+            if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
+                $ds_chi_tiet_bl = lay_binh_luan_theo_hh($_GET['id_product']);
             }
-            include "binh_luan/chi_tiet_binh_luan.php";
+            $ds_binh_luan = lay_tat_ca_binh_luan();
+            include "binh_luan/listbl.php";
             break;
 
-        case "thong_ke":
+
+            /*case "thong_ke":
             $ds_thong_ke_hh = thong_ke_hang_hoa();
             include "thong_ke/list.php";
             break;
-
             // case "bieu_do":
             //   $ds_thong_ke_hh = thong_ke_hang_hoa();
             //   include "thong_ke/chart.php";
@@ -299,7 +308,7 @@ if (isset($_GET['act'])) {
             $danh_muc = count(lay_tat_ca_danh_muc());
             $san_pham = count(lay_tat_ca_san_pham_admin());
             $tai_khoan = count(loadall_taikhoan());
-            /* $binh_luan = count(lay_tat_ca_binh_luan());*/
+            $binh_luan = count(lay_tat_ca_binh_luan());
             include "layout/home.php";
             break;
     }
@@ -307,6 +316,7 @@ if (isset($_GET['act'])) {
     $danh_muc = count(lay_tat_ca_danh_muc());
     $san_pham = count(lay_tat_ca_san_pham_admin());
     $tai_khoan = count(loadall_taikhoan());
-    /*  $binh_luan = count(lay_tat_ca_binh_luan());*/
+    $binh_luan = count(lay_tat_ca_binh_luan());
+
     include "layout/home.php";
 }

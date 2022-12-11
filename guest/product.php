@@ -34,7 +34,7 @@ function xoa_san_pham($id)
 
 function loadall_product_trangchu()
 {
-    $sql = "SELECT * FROM `product` where 1";
+    $sql = "SELECT * FROM `product` ORDER BY view DESC LIMIT 0,6";
     $list_product = pdo_query($sql);
     return $list_product;
 }
@@ -50,36 +50,72 @@ function lay_tat_ca_san_pham_admin()
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
+function lay_tat_ca_san_pham_guest()
+{
+    $sql = "SELECT * FROM product ORDER BY id DESC";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
 // Truy vấn tất cả hàng hóa
-function lay_tat_ca_san_pham($kw="",$iddm)
+function lay_tat_ca_san_pham($kw = "", $iddm)
 {
     // $sql = "SELECT * FROM product ORDER BY id DESC";
     // $ds_san_pham = pdo_query($sql);
     // return $ds_san_pham;
-    $sql="select * from product where 1";
-        if($kw!=""){
-            $sql.=" and product_name like '%".$kw."%'";
-        }
-        if($iddm>0){
-            $sql.= " and id_categories = '".$iddm."'";
-        }
-        
-        $ds_san_pham=pdo_query($sql);
-        return $ds_san_pham;
-}
-
-// Truy vấn tất cả hàng hóa theo sắp xếp theo số lượt xem giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
-function lay_san_pham_noi_bat()
-{
-    $sql = "SELECT * FROM product WHERE 1 ORDER BY view DESC LIMIT 0,5";
+    $sql = "select * from product where 1 ";
+    if ($kw != "") {
+        $sql .= " and product_name like '%" . $kw . "%'";
+    }
+    if ($iddm > 0) {
+        $sql .= " and id_categories = '" . $iddm . "'";
+    }
+    $sql .= "limit 0,9";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
 
+function lay_san_pham_theo_trang($order, $limit)
+{
+    if (!isset($_GET['page'])) {
+        $_SESSION['page'] = 1;
+    }
+    if (!isset($_SESSION['total_page'])) {
+        $_SESSION['total_page'] = 1;
+    }
+    // Sử pdo_query_value để lấy giá trị của câu lệnh sql count trả về(ở đây là lấy số lượng hàng hóa trong bảng hang_hoa)
+    // Khởi tạo một biến $_SESSION['total_pro'](chứa số lượng sản phẩm)
+    $_SESSION['total_pro'] = pdo_query_value("SELECT count(*) FROM product");
+    // Nếu tồn tại biến page ở trên url 
+    if (isset($_GET['page'])) {
+        // Khởi tạo $_SESSION['page'] chứa biến page
+        $_SESSION['page'] = $_GET['page'];
+    }
+    // Tạo biến begin để câu lệnh LIMIT lấy bắt đầu từ vị trí index = ?
+    $begin = ($_SESSION['page'] - 1) * $limit;
+    // ceil() làm tròn lên số nguyên gần nhất
+    // Lấy $_SESSION['total_pro'] chia cho tham số $limit truyền vào và làm tròn lên số nguyên gần nhất gán vào biến $_SESSION['total_page']
+    $_SESSION['total_page'] = ceil($_SESSION['total_pro'] / $limit);
+    // Truy vấn tất cả sản phẩm từ bảng hàng hóa sắp xếp theo tham số order truyền vào lấy tất cả sản phẩm từ vị trí $begin, và giới hạn $limit
+    $sql = "SELECT * FROM product ORDER BY $order  LIMIT $begin, $limit";
+    return pdo_query($sql);
+}
+// Truy vấn tất cả hàng hóa theo sắp xếp theo số lượt xem giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
+function lay_san_pham_noi_bat()
+{
+    $sql = "SELECT * FROM product  ORDER BY view DESC LIMIT 0,5";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
+function lay_san_pham_goi_y()
+{
+    $sql = "SELECT * FROM product  ORDER BY view DESC LIMIT 0,4";
+    $ds_san_pham = pdo_query($sql);
+    return $ds_san_pham;
+}
 // Truy vấn tất cả hàng hóa có thuộc tính đặc biệt là 1 sắp xếp theo mã hàng hóa giảm dần giới hạn là 5 hàng hóa bắt đầu từ vị trí index = 0(đầu tiên)
 function lay_san_pham_dac_biet()
 {
-    $sql = "SELECT * FROM product WHERE dac_biet = 1 ORDER BY id DESC LIMIT 0,5";
+    $sql = "SELECT * FROM product WHERE view = (SELECT MAX(view) FROM product); ORDER BY id DESC LIMIT 0,8";
     $ds_san_pham = pdo_query($sql);
     return $ds_san_pham;
 }
@@ -146,7 +182,6 @@ function cap_nhat_san_pham($id, $product_name, $product_price, $product_price_sa
     } else {
         // Nếu tham số hình là rỗng(người dùng giữ nguyên) thì sẽ cập nhật tất cả trừ hình ảnh
         $sql = "UPDATE `product` SET `product_name`='$product_name',`product_price`='$product_price',`product_price_sale`='$product_price_sale',`description`='$description',`origin`='$origin',`id_categories`='$id_categories' WHERE id = $id";
-
     }
     pdo_execute($sql);
 }

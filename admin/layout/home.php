@@ -1,4 +1,3 @@
-
 <div class="home mt-5 mr-8 bg-[#F4F6FA] h-auto rounded">
     <!-- content -->
     <h1 class="text-center text-cyan-500 pt-10  text-4xl " style="font-family: 'Courier New', Courier, monospace">List</h1>
@@ -43,7 +42,7 @@
         <div class="bg-white shadow-lg shadow-cyan-500/50  items-center px-6 rounded-2xl py-8 text-[#4F46E5]">
             <div class="grid grid-cols-2">
                 <div class="text-[#4F46E5]">
-                    <h3 class="text-[60px] text-center">9</h3>
+                    <h3 class="text-[60px] text-center"><?= $binh_luan ?></h3>
 
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="100" fill="#4F46E5" class="bi bi-wechat" viewBox="0 0 16 16">
