@@ -19,6 +19,7 @@ function thong_ke_hang_hoa()
     $sql = "SELECT lh.id, lh.categories_name, COUNT(*) so_luong, MIN(hh.product_price) gia_thap_nhat, MAX(hh.product_price) gia_cao_nhat, AVG(hh.product_price) gia_trung_binh FROM product hh JOIN loai_hang lh ON lh.ma_loai = hh.ma_loai GROUP BY lh.ma_loai, lh.ten_loai";
     $ds_hang_hoa = pdo_query($sql);
     return $ds_hang_hoa;
+}
 
 function loadall_thongke()
 {
